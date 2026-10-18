@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MemPABench</title>
+<meta name="description" content="MemPABench: an interactive environment for on-policy evaluation of memory in personal assistants, focused on interaction preferences.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MemPABench">
+<meta property="og:description" content="Why Bother Me Again? Benchmarking Personal Assistant Memory for Interaction Preferences.">
+<meta property="og:url" content="https://mempabench.github.io/">
+<meta property="og:image" content="https://mempabench.github.io/assets/teaser.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1d1d1f;
+    --muted: #5f6368;
+    --border: #e3e3e6;
+    --code-bg: #f5f5f7;
+    --btn-bg: #f0f0f3;
+    --btn-fg: #8a8a90;
+    --accent: #2457c5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121214;
+      --fg: #ececef;
+      --muted: #a0a0a8;
+      --border: #2e2e33;
+      --code-bg: #1c1c20;
+      --btn-bg: #222227;
+      --btn-fg: #7c7c84;
+      --accent: #7aa2ff;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+  }
+  main { max-width: 880px; margin: 0 auto; padding: 56px 16px 32px; }
+  header { text-align: center; }
+  h1 { font-size: clamp(2.4rem, 8vw, 3.6rem); margin: 0; letter-spacing: -0.02em; line-height: 1.1; }
+  .paper-title { font-size: clamp(1.15rem, 3.6vw, 1.5rem); font-weight: 500; margin: 16px auto 0; max-width: 720px; line-height: 1.35; }
+  .authors { margin-top: 24px; font-size: 1.05rem; }
+  .authors span { display: inline-block; margin: 0 10px; }
+  .affil, .note { color: var(--muted); margin: 4px 0 0; }
+  .note { font-size: 0.9rem; }
+  a { color: var(--accent); }
+  .buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 28px 0 0; }
+  .btn {
+    display: inline-flex; flex-direction: column; align-items: center;
+    padding: 8px 18px; border-radius: 999px;
+    background: var(--btn-bg); color: var(--btn-fg); border: 1px solid var(--border);
+    font: inherit; font-size: 0.95rem; line-height: 1.25; cursor: not-allowed;
+  }
+  .btn small { font-size: 0.7rem; }
+  .tagline { text-align: center; font-size: clamp(1.05rem, 3.2vw, 1.25rem); font-style: italic; margin: 44px 0 0; }
+  section { margin-top: 48px; }
+  h2 { font-size: 1.35rem; margin: 0 0 12px; }
+  .abstract p { margin: 0; text-align: justify; hyphens: auto; }
+  figure { margin: 0; }
+  figure img { display: block; width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--border); background: #fff; }
+  figcaption { color: var(--muted); font-size: 0.92rem; margin-top: 10px; }
+  pre {
+    background: var(--code-bg); border: 1px solid var(--border); border-radius: 6px;
+    padding: 14px 16px; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; margin: 0;
+    user-select: all;
+  }
+  footer { max-width: 880px; margin: 0 auto; padding: 24px 16px 48px; color: var(--muted); font-size: 0.9rem; text-align: center; border-top: 1px solid var(--border); }
+  footer p { margin: 4px 0; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>MemPABench</h1>
+    <p class="paper-title">Why Bother Me Again? Benchmarking Personal Assistant Memory for Interaction Preferences</p>
+    <div class="authors">
+      <span>Jialin Li</span><span>Zhenhao Chen</span><span>Hanjun Luo</span><span>Hanan Salam*</span>
+    </div>
+    <p class="affil">New York University Abu Dhabi</p>
+    <p class="note">* Corresponding author &middot; <a href="mailto:jl10897@nyu.edu">jl10897@nyu.edu</a></p>
+    <div class="buttons">
+      <button class="btn" type="button" disabled>Paper<small>coming soon</small></button>
+      <button class="btn" type="button" disabled>Code<small>coming soon</small></button>
+      <button class="btn" type="button" disabled>Dataset<small>coming soon</small></button>
+      <button class="btn" type="button" disabled>Leaderboard<small>coming soon</small></button>
+    </div>
+  </header>
+
+  <p class="tagline">Memory systems remember what you said, not how you want to be helped.</p>
+
+  <section class="abstract">
+    <h2>Abstract</h2>
+    <p>Personal intelligence systems are taking on increasingly complex everyday tasks, yet repeated questions, unnecessary confirmations, and unwanted outreach can turn capable assistance into interaction burden. Reducing this burden requires assistants to remember how users want to be assisted, but existing memory benchmarks focus on factual recall and personalized answers and rarely test how assistants learn and act on interaction preferences. We introduce MemPABench, an interactive environment for on-policy evaluation of memory in personal assistants. MemPABench poses long-horizon tasks requiring assistants to decide when to clarify, confirm, or act autonomously. Four grounded simulated users hold 14 preferences across work and personal contexts. Their feedback spans 99 sessions over four months, with five event-driven changes per user testing memory updates. We evaluate preference selection, delivered behavior, and sensitivity to context and preference change. Evaluating four memory systems across four LLM backbones, we find that current memory brings limited gains in preference selection. Retrieval-based systems (i.e. Mem0, MemOS, simple RAG), do not outperform a memoryless assistant, while File-based memory improves accuracy but applies preferences beyond relevant contexts. Our analysis shows that current memory struggles to retrieve interaction preferences and adapt to preference changes. Even with the correct preference available, overriding the assistant's default interaction habits remains challenging. The environment and dataset will be available on this page soon.</p>
+  </section>
+
+  <section>
+    <figure>
+      <img src="assets/teaser.png" width="2000" height="1057" alt="Overview of MemPABench: world design, benchmark harness, and evaluation">
+      <figcaption>Overview of the benchmark: persona-grounded world design, a multi-session interaction harness connecting the simulated user and personal assistant, and evaluation of interaction preferences.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>BibTeX</h2>
+<pre>@misc{li2026mempabench,
+  title  = {Why Bother Me Again? Benchmarking Personal Assistant Memory for Interaction Preferences},
+  author = {Li, Jialin and Chen, Zhenhao and Luo, Hanjun and Salam, Hanan},
+  year   = {2026},
+  url    = {https://mempabench.com}
+}</pre>
+  </section>
+</main>
+<footer>
+  <p>Contact: <a href="mailto:jl10897@nyu.edu">jl10897@nyu.edu</a></p>
+  <p>&copy; 2026 MemPABench authors</p>
+</footer>
+</body>
+</html>
