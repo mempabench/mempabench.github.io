@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MemPABench</title>
-<meta name="description" content="MemPABench: an interactive environment for on-policy evaluation of memory in personal assistants, focused on interaction preferences.">
+<meta name="description" content="MemPABench: an interactive environment for on-policy evaluation of memory in personal agents, focused on interaction preferences.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="MemPABench">
-<meta property="og:description" content="Why Bother Me Again? Benchmarking Personal Assistant Memory for Interaction Preferences.">
+<meta property="og:description" content="Why Bother Me Again? Benchmarking Personal Agent Memory for Interaction Preferences.">
 <meta property="og:url" content="https://mempabench.github.io/">
 <meta property="og:image" content="https://mempabench.github.io/assets/teaser.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -82,7 +82,7 @@
 <main>
   <header>
     <h1>MemPABench</h1>
-    <p class="paper-title">Why Bother Me Again? Benchmarking Personal Assistant Memory for Interaction Preferences</p>
+    <p class="paper-title">Why Bother Me Again? Benchmarking Personal Agent Memory for Interaction Preferences</p>
     <div class="authors">
       <span>Jialin Li</span><span>Zhenhao Chen</span><span>Hanjun Luo</span><span>Hanan Salam*</span>
     </div>
@@ -100,20 +100,20 @@
 
   <section class="abstract">
     <h2>Abstract</h2>
-    <p>Personal intelligence systems are taking on increasingly complex everyday tasks, yet repeated questions, unnecessary confirmations, and unwanted outreach can turn capable assistance into interaction burden. Reducing this burden requires assistants to remember how users want to be assisted, but existing memory benchmarks focus on factual recall and personalized answers and rarely test how assistants learn and act on interaction preferences. We introduce MemPABench, an interactive environment for on-policy evaluation of memory in personal assistants. MemPABench poses long-horizon tasks requiring assistants to decide when to clarify, confirm, or act autonomously. Four grounded simulated users hold 14 preferences across work and personal contexts. Their feedback spans 99 sessions over four months, with five event-driven changes per user testing memory updates. We evaluate preference selection, delivered behavior, and sensitivity to context and preference change. Evaluating four memory systems across four LLM backbones, we find that current memory brings limited gains in preference selection. Retrieval-based systems (i.e. Mem0, MemOS, simple RAG), do not outperform a memoryless assistant, while File-based memory improves accuracy but applies preferences beyond relevant contexts. Our analysis shows that current memory struggles to retrieve interaction preferences and adapt to preference changes. Even with the correct preference available, overriding the assistant's default interaction habits remains challenging. The code and dataset are linked above.</p>
+    <p>Personal intelligence systems are taking on increasingly complex everyday tasks, yet repeated questions, unnecessary confirmations, and unwanted outreach can turn capable assistance into interaction burden. Reducing this burden requires agents to remember how users want to be assisted. However, existing memory benchmarks focus on factual recall and personalized answers and rarely test how agents learn and act on interaction preferences. We introduce MemPABench, an interactive environment for on-policy evaluation of memory in personal agents. MemPABench poses long-horizon tasks requiring agents to decide when to clarify, confirm, or act autonomously. Four grounded simulated users hold 14 preferences across work and personal contexts. Their feedback spans 99 sessions over four months, with five event-driven changes per user testing memory updates. We evaluate preference selection, delivered behavior, and sensitivity to context and preference change. Evaluating four memory systems across four LLM backbones, we find that current memory brings limited gains in preference selection. Retrieval-based systems (i.e. Mem0, MemOS, simple RAG) do not outperform No Memory, while File-based memory improves accuracy but applies preferences beyond relevant contexts. Our analysis shows that current memory struggles to retrieve interaction preferences and adapt to preference changes. Even with the correct preference available, overriding the agent's default interaction habits remains challenging. The code and dataset are linked above.</p>
   </section>
 
   <section>
     <figure>
       <img src="assets/teaser.png" width="2000" height="1057" alt="Overview of MemPABench: world design, benchmark harness, and evaluation">
-      <figcaption>Overview of the benchmark: persona-grounded world design, a multi-session interaction harness connecting the simulated user and personal assistant, and evaluation of interaction preferences.</figcaption>
+      <figcaption>Overview of the benchmark: persona-grounded world design, a multi-session interaction harness connecting the simulated user and personal agent, and evaluation of interaction preferences.</figcaption>
     </figure>
   </section>
 
   <section>
     <h2>BibTeX</h2>
 <pre>@misc{li2026mempabench,
-  title  = {Why Bother Me Again? Benchmarking Personal Assistant Memory for Interaction Preferences},
+  title  = {Why Bother Me Again? Benchmarking Personal Agent Memory for Interaction Preferences},
   author = {Li, Jialin and Chen, Zhenhao and Luo, Hanjun and Salam, Hanan},
   year   = {2026},
   url    = {https://mempabench.com}
