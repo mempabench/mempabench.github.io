@@ -13,7 +13,6 @@
     smile: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-10"/></svg>',
     frown: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg>',
   };
-  const LOGO = '<svg viewBox="5.5 4.5 54 54" aria-hidden="true"><path d="M31 11A23 23 0 0 0 31 57Z" fill="#22201c"/><circle cx="24" cy="30" r="2.2" fill="#f7f5f0"/><path d="M31 39Q26.4 39.6 24.4 36.6" stroke="#f7f5f0" stroke-width="2.6" stroke-linecap="round" fill="none"/><path d="M34.4 7.6A21.6 21.6 0 0 1 50.6 41.5L54.2 49.4L44.9 47.4A21.6 21.6 0 0 1 34.4 50.4Z" fill="none" stroke="#22201c" stroke-width="2.8" stroke-linejoin="round"/><circle cx="40" cy="25" r="2.2" fill="#22201c"/><path d="M34.4 31.6H40.6Q40 39 34.4 39Z" fill="#22201c"/></svg>';
   // Neutral silhouette for users who have no art yet.
   const SILHOUETTE = (tint) => `<svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" fill="${tint}"/><circle cx="32" cy="25" r="11" fill="#fffdf8" opacity=".85"/><path d="M12 64c1.5-13 9.5-20 20-20s18.5 7 20 20z" fill="#fffdf8" opacity=".85"/></svg>`;
   const USERS = [
@@ -44,7 +43,7 @@
     ];
     bar.className = "topbar";
     bar.innerHTML =
-      `<a class="logo" href="index.html" aria-label="MemPABench home">${LOGO}<span>MemPABench</span></a>` +
+      `<a class="logo" href="index.html" aria-label="MemPABench home"><span>MemPABench</span></a>` +
       `<nav class="nav" aria-label="Sections">${nav.map(([id, label, href]) => `<a href="${href}" data-nav="${id}"${id === page ? ' aria-current="page"' : ""}>${label}</a>`).join("")}</nav>` +
       `<div class="tools">` +
       `<a class="icon-btn" href="https://arxiv.org/abs/2610.30485" target="_blank" rel="noopener" title="Paper (arXiv)" aria-label="Paper on arXiv">${ICON.paper}</a>` +
@@ -283,7 +282,9 @@
   // Leaderboard
   // ======================================================================
   async function initLeaderboard() {
-    const lb = await loadJSON("data/leaderboard.json");
+    const [lb, mex] = await Promise.all([loadJSON("data/leaderboard.json"), loadJSON("data/metric_examples.json")]);
+    const noEx = Object.keys(lb.metrics).filter((mk) => !mex.metrics[mk]?.text || !mex.metrics[mk]?.calc);
+    if (noEx.length) throw new Error(`metric_examples.json: no example for ${noEx.join(", ")}`);
     const views = ["Overall", ...lb.dimensions];
     const st = {
       view: views.includes(store.get("lb.view")) ? store.get("lb.view") : "Overall",
@@ -358,7 +359,7 @@
         `<thead><tr><th class="pin-col"><span class="sr">Pin</span></th><th class="name-col">Memory</th>` +
         metrics.map((mk) => { const md = lb.metrics[mk];   // click sorts by the column; hover or focus shows what it measures
           return `<th class="m${mk === st.metric ? " sel" : ""}" data-m="${mk}" scope="col" tabindex="0">${mk}` +
-            `<span class="tip" role="tooltip"><b>${esc(md.name)} (${mk}, ${esc(md.unit)})</b>. ${esc(md.definition)}</span></th>`; }).join("") + `</tr></thead><tbody>` +
+            `<span class="tip" role="tooltip"><img src="assets/metric_${mk.toLowerCase()}.jpg" alt=""><b>${esc(md.name)} (${mk}, ${esc(md.unit)})</b><span>${esc(md.definition)}</span></span></th>`; }).join("") + `</tr></thead><tbody>` +
         sorted.map((c, i) => rowHTML(c, i === 0 ? "top" : "")).join("") +
         `<tr class="ref-sep"><td colspan="${metrics.length + 2}">Reference</td></tr>` +
         lb.reference_conditions.map((c) => rowHTML(c, "ref")).join("") + `</tbody>`;
@@ -368,9 +369,20 @@
       renderCompare();
     }
 
-    // one card per metric under the table: a picture of what it measures, its full name and definition
-    $("#mcards").innerHTML = Object.entries(lb.metrics).map(([mk, m]) => `<div class="mcard card"><img src="assets/metric_${mk.toLowerCase()}.jpg" alt="">` +
-      `<h3>${esc(m.name)} (${mk}, ${esc(m.unit)})</h3><p>${esc(m.definition)}</p></div>`).join("");
+    // one card per metric under the table: a picture of what it measures, its full name and definition; a click
+    // opens an example calculation below the cards, a second click on the same card closes it
+    $("#mcards").innerHTML = Object.entries(lb.metrics).map(([mk, m]) => `<button class="mcard card" type="button" data-m="${mk}" aria-expanded="false" aria-controls="mex">` +
+      `<img src="assets/metric_${mk.toLowerCase()}.jpg" alt=""><h3>${esc(m.name)} (${mk}, ${esc(m.unit)})</h3><p>${esc(m.definition)}</p>` +
+      `<span class="mcard-more">Example</span></button>`).join("");
+    $("#mcards").addEventListener("click", (e) => {
+      const card = e.target.closest(".mcard");
+      if (!card) return;
+      const open = card.getAttribute("aria-expanded") !== "true";
+      $$(".mcard", $("#mcards")).forEach((c) => c.setAttribute("aria-expanded", String(open && c === card)));
+      const box = $("#mex"), mk = card.dataset.m, ex = mex.metrics[mk];
+      box.hidden = !open;
+      if (open) box.innerHTML = `<h3>Example: ${esc(lb.metrics[mk].name)} (${mk})</h3><p>${esc(ex.text)}</p><p class="mex-calc">${esc(ex.calc)}</p>`;
+    });
 
     $("#lb-table").addEventListener("click", (e) => {
       const pin = e.target.closest("[data-pin]");

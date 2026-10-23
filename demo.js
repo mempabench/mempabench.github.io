@@ -756,9 +756,10 @@
       return changed.length ? [acc[0], ...changed, ...fin].filter(Boolean) : [...acc, ...fin];
     }
     function renderPicker() {
+      const mark = { work: "\u{1F4BB}", personal: "\u{1F3E0}" };   // laptop for work, house for personal
       const opts = prefDims.map((d) => `<optgroup label="${esc(d.name)}">` + d.attributes.flatMap((a) => ["work", "personal"].map((c) => {
         const cell = `${c}_${a.key}`, ch = replay.changed_cells.some((x) => x.cell === cell);
-        return `<option value="${cell}"${cell === followCell ? " selected" : ""}>${esc(a.name)} · ${CTX[c]}${ch ? " (changes)" : ""}</option>`;
+        return `<option value="${cell}"${cell === followCell ? " selected" : ""}>${esc(a.name)} · ${mark[c]} ${CTX[c]}${ch ? " (changes)" : ""}</option>`;
       })).join("") + `</optgroup>`).join("");
       $("#tl-follow").innerHTML = `<label for="tl-pick">Follow one preference:</label> <span class="tl-pick-wrap"><select id="tl-pick">${opts}</select></span>`;
       $("#tl-pick").addEventListener("change", (e) => { followCell = e.target.value; closePop(); renderTimeline(); });

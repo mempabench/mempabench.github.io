@@ -59,7 +59,7 @@
    "min": 0,
    "max": 100,
    "decimals": 1,
-   "definition": "The fraction of final probes in which the PA selects the user's target setting."
+   "definition": "The fraction of the final probes in which the PA correctly selects the user's target setting."
   },
   "CS": {
    "name": "Context Sensitivity",

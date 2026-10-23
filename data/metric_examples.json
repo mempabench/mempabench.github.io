@@ -1,0 +1,26 @@
+{
+ "schema": "mempabench-site-metric-examples/1",
+ "note": "Hand-written example calculations, one per leaderboard metric, following the metric definitions in the paper (MemPABench.tex, Evaluation). Numbers are illustrative; no specific user.",
+ "metrics": {
+  "PSA": {
+   "text": "A user has 28 final probes, one per attribute in each context. The PA picks the target setting in 14 of them.",
+   "calc": "PSA = 14 / 28 = 50%"
+  },
+  "CS": {
+   "text": "For Verbosity, a user wants Terse at work and Detailed in personal life. The PA picks Terse at work ✓ but Terse in personal life too ✗, so this pair scores 0. Suppose 2 of 8 such pairs are right in both contexts.",
+   "calc": "CS = 2 / 8 = 25%"
+  },
+  "PET": {
+   "text": "A change turns a user's Process Visibility at work from Silent to Bookend. The probe just before the change needs Silent; the final probe needs Bookend. The PA picks Silent both times: right before, wrong after, so this cell scores 0. Suppose 2 of 5 changing cells are right both times.",
+   "calc": "PET = 2 / 5 = 40%"
+  },
+  "BRS": {
+   "text": "The target is Terse, but the PA's reply runs three paragraphs. The judge reads the reply and the actions that ran, without seeing which setting the PA chose, and scores it 2 out of 5. BRS averages these scores over probes.",
+   "calc": "BRS = (2 + 5 + 4) / 3 = 3.67"
+  },
+  "PRS": {
+   "text": "After the probe, the user simulator re-reads it and rates how well the PA met its Verbosity preference: 4 out of 5. PRS averages these ratings over final probes.",
+   "calc": "PRS = (4 + 3 + 5) / 3 = 4.00"
+  }
+ }
+}
