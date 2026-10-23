@@ -5,114 +5,200 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MemPABench</title>
 <meta name="description" content="MemPABench: an interactive environment for on-policy evaluation of memory in personal agents, focused on interaction preferences.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="MemPABench">
-<meta property="og:description" content="Why Bother Me Again? Benchmarking Personal Agent Memory for Interaction Preferences.">
-<meta property="og:url" content="https://mempabench.github.io/">
-<meta property="og:image" content="https://mempabench.github.io/assets/teaser.png">
-<meta name="twitter:card" content="summary_large_image">
-<style>
-  :root {
-    --bg: #ffffff;
-    --fg: #1d1d1f;
-    --muted: #5f6368;
-    --border: #e3e3e6;
-    --code-bg: #f5f5f7;
-    --btn-bg: #f0f0f3;
-    --btn-fg: #8a8a90;
-    --accent: #2457c5;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #121214;
-      --fg: #ececef;
-      --muted: #a0a0a8;
-      --border: #2e2e33;
-      --code-bg: #1c1c20;
-      --btn-bg: #222227;
-      --btn-fg: #7c7c84;
-      --accent: #7aa2ff;
-    }
-  }
-  * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--fg);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    line-height: 1.6;
-  }
-  main { max-width: 880px; margin: 0 auto; padding: 56px 16px 32px; }
-  header { text-align: center; }
-  h1 { font-size: clamp(2.4rem, 8vw, 3.6rem); margin: 0; letter-spacing: -0.02em; line-height: 1.1; }
-  .paper-title { font-size: clamp(1.15rem, 3.6vw, 1.5rem); font-weight: 500; margin: 16px auto 0; max-width: 720px; line-height: 1.35; }
-  .authors { margin-top: 24px; font-size: 1.05rem; }
-  .authors span { display: inline-block; margin: 0 10px; }
-  .affil, .note { color: var(--muted); margin: 4px 0 0; }
-  .note { font-size: 0.9rem; }
-  a { color: var(--accent); }
-  .buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 28px 0 0; }
-  .btn {
-    display: inline-flex; flex-direction: column; align-items: center;
-    padding: 8px 18px; border-radius: 999px;
-    background: var(--btn-bg); color: var(--btn-fg); border: 1px solid var(--border);
-    font: inherit; font-size: 0.95rem; line-height: 1.25; cursor: not-allowed;
-  }
-  .btn small { font-size: 0.7rem; }
-  .btn.live { color: var(--fg); text-decoration: none; cursor: pointer; }
-  .btn.live:hover { border-color: var(--accent); color: var(--accent); }
-  .tagline { text-align: center; font-size: clamp(1.05rem, 3.2vw, 1.25rem); font-style: italic; margin: 44px 0 0; }
-  section { margin-top: 48px; }
-  h2 { font-size: 1.35rem; margin: 0 0 12px; }
-  .abstract p { margin: 0; text-align: justify; hyphens: auto; }
-  figure { margin: 0; }
-  figure img { display: block; width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--border); background: #fff; }
-  figcaption { color: var(--muted); font-size: 0.92rem; margin-top: 10px; }
-  pre {
-    background: var(--code-bg); border: 1px solid var(--border); border-radius: 6px;
-    padding: 14px 16px; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; margin: 0;
-    user-select: all;
-  }
-  footer { max-width: 880px; margin: 0 auto; padding: 24px 16px 48px; color: var(--muted); font-size: 0.9rem; text-align: center; border-top: 1px solid var(--border); }
-  footer p { margin: 4px 0; }
-</style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%225.5 4.5 54 54%22%3E%3Cpath d=%22M31 11A23 23 0 0 0 31 57Z%22 fill=%22%2322201c%22/%3E%3Ccircle cx=%2224%22 cy=%2230%22 r=%222.2%22 fill=%22%23f7f5f0%22/%3E%3Cpath d=%22M31 39Q26.4 39.6 24.4 36.6%22 stroke=%22%23f7f5f0%22 stroke-width=%222.6%22 stroke-linecap=%22round%22 fill=%22none%22/%3E%3Cpath d=%22M34.4 7.6A21.6 21.6 0 0 1 50.6 41.5L54.2 49.4L44.9 47.4A21.6 21.6 0 0 1 34.4 50.4Z%22 fill=%22none%22 stroke=%22%2322201c%22 stroke-width=%222.8%22 stroke-linejoin=%22round%22/%3E%3Ccircle cx=%2240%22 cy=%2225%22 r=%222.2%22 fill=%22%2322201c%22/%3E%3Cpath d=%22M34.4 31.6H40.6Q40 39 34.4 39Z%22 fill=%22%2322201c%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&family=Inconsolata:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<script type="importmap">
+  { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+</script>
 </head>
-<body>
+<body data-page="overview">
+<header id="topbar"></header>
+
 <main>
-  <header>
-    <h1>MemPABench</h1>
-    <p class="paper-title">Why Bother Me Again? Benchmarking Personal Agent Memory for Interaction Preferences</p>
-    <div class="authors">
-      <span>Jialin Li</span><span>Zhenhao Chen</span><span>Hanjun Luo</span><span>Hanan Salam*</span>
+  <!-- 1. Hero -->
+  <section class="hero" id="overview" aria-labelledby="hero-title">
+    <div class="hero-head wrap">
+      <h1 id="hero-title">Can your Personal Agent remember how you want to be assisted?</h1>
+      <p class="sub">MemPABench: Benchmarking personal agent memory for interaction preferences</p>
     </div>
-    <p class="affil">New York University Abu Dhabi</p>
-    <p class="note">* Corresponding author &middot; <a href="mailto:jl10897@nyu.edu">jl10897@nyu.edu</a></p>
-    <div class="buttons">
-      <a class="btn live" href="https://arxiv.org/abs/2610.30485">Paper<small>arXiv</small></a>
-      <a class="btn live" href="https://github.com/mempabench/mempabench">Code<small>GitHub</small></a>
-      <a class="btn live" href="https://huggingface.co/datasets/mempabench/mempabench-personas">Dataset<small>Hugging Face</small></a>
-      <button class="btn" type="button" disabled>Leaderboard<small>coming soon</small></button>
+    <div class="globe-hero" id="globe-hero" aria-label="Four users' worlds, each in a crystal ball on a globe">
+      <div class="globe-label" id="globe-label" aria-live="polite"></div>
     </div>
-  </header>
-
-  <p class="tagline">Memory systems remember what you said, not how you want to be helped.</p>
-
-  <section class="abstract">
-    <h2>Abstract</h2>
-    <p>Personal intelligence systems are taking on increasingly complex everyday tasks, yet repeated questions, unnecessary confirmations, and unwanted outreach can turn capable assistance into interaction burden. Reducing this burden requires agents to remember how users want to be assisted. However, existing memory benchmarks focus on factual recall and personalized answers and rarely test how agents learn and act on interaction preferences. We introduce MemPABench, an interactive environment for on-policy evaluation of memory in personal agents. MemPABench poses long-horizon tasks requiring agents to decide when to clarify, confirm, or act autonomously. Four grounded simulated users hold 14 preferences across work and personal contexts. Their feedback spans 99 sessions over four months, with five event-driven changes per user testing memory updates. We evaluate preference selection, delivered behavior, and sensitivity to context and preference change. Evaluating four memory systems across four LLM backbones, we find that current memory brings limited gains in preference selection. Retrieval-based systems (i.e. Mem0, MemOS, simple RAG) do not outperform No Memory, while File-based memory improves accuracy but applies preferences beyond relevant contexts. Our analysis shows that current memory struggles to retrieve interaction preferences and adapt to preference changes. Even with the correct preference available, overriding the agent's default interaction habits remains challenging. The code and dataset are linked above.</p>
   </section>
 
-  <section>
-    <figure>
-      <img src="assets/teaser.png" width="2000" height="1057" alt="Overview of MemPABench: world design, benchmark harness, and evaluation">
-      <figcaption>Overview of the benchmark: persona-grounded world design, a multi-session interaction harness connecting the simulated user and personal agent, and evaluation of interaction preferences.</figcaption>
-    </figure>
+  <!-- 2. What an interaction preference is -->
+  <section class="block wrap" id="interaction" aria-labelledby="ix-title" data-toc="Interaction preference">
+    <div class="reveal">
+      <h2 id="ix-title">What is an interaction preference?</h2>
+      <p class="lead">A personal agent (PA) acts on a user's behalf across messaging, files, scheduling, and long-running workflows. Task success and interaction quality are separate outcomes: an agent may complete a task correctly yet ask repeated questions, seek unnecessary confirmation, provide an unwanted level of explanation, or initiate unwanted contact.</p>
+      <p class="lead">We call the preferences governing these behaviors <em>interaction preferences</em>: how the PA communicates, how much explanation it provides, when it acts autonomously or initiates contact, and how it requests missing information.</p>
+    </div>
+
+    <div class="sub-block" id="dimensions" data-toc="Four interaction preference dimensions">
+      <h3 class="reveal">Four Interaction Preference Dimensions</h3>
+      <div class="dims reveal" id="dims"></div>
+      <div class="dim-detail card" id="dim-detail" aria-live="polite"></div>
+    </div>
+
+    <div class="sub-block" id="reactions" data-toc="Unique individual preference">
+      <h3 class="reveal">Different people react differently to the same reply</h3>
+      <div class="react reveal">
+        <div class="reactor" id="react-A"></div>
+        <div class="center">
+          <div style="text-align:center"><span class="task-card card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Work &middot; find a time for next week's meeting</span></div>
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="phone-head"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="7" width="16" height="12" rx="4"/><path d="M12 3v4M9 12.5h.01M15 12.5h.01"/></svg></span>Agent</div>
+              <div id="reply" aria-live="polite"></div>
+            </div>
+          </div>
+          <div class="switch" id="reply-switch" role="group" aria-label="Agent reply">
+            <button type="button" data-mode="many" aria-pressed="true">Several options</button>
+            <button type="button" data-mode="one" aria-pressed="false">One pick</button>
+          </div>
+        </div>
+        <div class="reactor" id="react-B"></div>
+      </div>
+    </div>
+
+    <div class="sub-block" id="contexts">
+      <h3 class="reveal">One person, different contexts, changing preferences</h3>
+      <div class="ix-grid">
+        <div class="ix-panel card reveal" id="context-difference" data-toc="Context difference" data-toc-sub>
+          <h3>Context difference: work and personal life</h3>
+          <figure class="ix-fig">
+            <img src="assets/ctx_cs.jpg" width="960" height="600" alt="A user at a work desk with the agent handing over a document, and on the sofa at home with the agent holding a heart card">
+            <div class="ix-note work"><span class="k">Work</span><b>Task-focused</b></div>
+            <div class="ix-note home"><span class="k">Personal</span><b>Relationship-focused</b></div>
+          </figure>
+          <p class="ctx-cap">A user might want the agent to stick to the task at work, but at home to first respond to how they feel. In the benchmark, 18 of the 56 user&ndash;attribute pairs differ between work and personal life.</p>
+        </div>
+        <div class="ix-panel card reveal" id="time-difference" data-toc="Time difference" data-toc-sub>
+          <h3>Time difference: preference change</h3>
+          <figure class="ix-fig">
+            <img src="assets/ctx_pet.jpg" width="960" height="600" alt="The agent crossing out an old entry in a notebook and writing a new one">
+            <div class="ix-note was"><span class="k">Before</span><b>Silent</b></div>
+            <div class="ix-note now"><span class="k">After</span><b>Bookend</b></div>
+          </figure>
+          <p class="ctx-cap">A user might start wanting one line before and one line after a multi-step task. Each user in the benchmark changes five preferences along the way.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="lead closing reveal">A PA must therefore infer preferences from past interaction, apply them only in their relevant context, and revise them when they change.</p>
   </section>
 
-  <section>
-    <h2>BibTeX</h2>
-<pre>@misc{li2026mempabench,
+  <!-- 3. How the benchmark tests it -->
+  <section class="block wrap" id="method" aria-labelledby="method-title" data-toc="How we test it">
+    <div class="reveal">
+      <h2 id="method-title">How do we test it?</h2>
+      <p class="lead">Each PA is evaluated on a history generated by its own actions and the resulting user responses.</p>
+    </div>
+    <ol class="tsteps reveal">
+      <li class="tstep card"><span class="tstep-n">1</span><h3>Live with four users</h3><p>The PA works with four simulated users through 99 sessions over four months, at work and in their personal life. The users never state their interaction preferences; they react to what the PA does. Each user changes five preferences along the way.</p></li>
+      <li class="tstep card"><span class="tstep-n">2</span><h3>Probe the PA</h3><p>Probes give the PA a task where one preference applies. The PA must choose the right interaction setting and carry it out.</p></li>
+      <li class="tstep card"><span class="tstep-n">3</span><h3>Score it</h3><p>Preference selection (PSA, CS, PET), delivered behavior judged by an LLM (BRS), and the user's perception (PRS). <a href="leaderboard.html#mcards-title">What each metric measures &rarr;</a></p></li>
+    </ol>
+    <p class="facts reveal"><b>4</b> users &middot; <b>14</b> interaction attributes &times; <b>2</b> contexts &middot; <b>99</b> sessions per user &middot; <b>5</b> preference changes per user &middot; <b>83</b> tools in <b>26</b> domains &middot; <b>33</b> probes per user &times; <b>3</b> repeats</p>
+  </section>
+
+  <!-- 4. Findings -->
+  <section class="block wrap" id="results" aria-labelledby="results-title" data-toc="Findings">
+    <h2 class="reveal" id="results-title">Findings</h2>
+
+    <div class="finding card reveal" id="preview">
+      <h3><span class="fn">1</span>Only File memory helps the agent pick the right preference</h3>
+      <p>Mem0, MemOS and Simple RAG do no better than no memory. File memory helps, but stays far below Oracle. Bars: how often the agent picks the setting the user wants (PSA, %), averaged over four backbones.</p>
+      <div class="hbars" id="preview-bars"></div>
+      <div class="hbars-foot">
+        <span class="ref-keys"><span class="rand-key"><i></i>random selection &middot; <span id="rand-val"></span></span>
+          <span>No Memory: no memory, picks by habit (lower bound) &middot; Oracle: told the right setting (upper bound)</span></span>
+        <a class="btn-link" href="leaderboard.html">Full leaderboard &rarr;</a>
+      </div>
+    </div>
+
+    <div class="finding card reveal">
+      <h3><span class="fn">2</span>Memory brings back past events, not interaction preferences</h3>
+      <p>Mem0, MemOS and Simple RAG fetch what happened in earlier sessions, but rarely what the user said about how to be assisted.</p>
+      <details class="case">
+        <summary class="case-head"><span class="ex-tag">Case</span>User B objects to an unprompted reminder. All four memories store the objection, but only File memory brings it back.</summary>
+        <ol class="cs-steps">
+          <li><span class="cs-when">Work &middot; Jan 26</span>
+            <p class="cs-say">After the agent sends a reminder nobody asked for, <b>User B</b> &ldquo;&hellip;getting messaged out of nowhere like this is just an unwelcome interruption.&rdquo;</p></li>
+          <li><span class="cs-when">Work &middot; Feb 1 &middot; what the agent sees</span>
+            <p class="cs-say">An email about a showcase deadline arrives and nobody has asked anything. Before deciding whether to speak up, the agent reads:</p>
+            <div class="cs-pair">
+              <img class="cs-record" src="assets/memory_record_user_b_outreach_file.jpg" width="502" height="285" alt="File memory, MEMORY.md line 44, Updated 2027-01-26: CRITICAL, no proactive outreach. User strongly objected to unsolicited message about the make-up coaching offer, quoting the user: I didn't ask for this. Do not surface new tasks, reminders, or unsolicited information unless the user explicitly asks.">
+              <img class="cs-record" src="assets/memory_record_user_b_outreach_rag.jpg" width="502" height="326" alt="Simple RAG, top 10 retrieved items. Item 5: the agent's earlier outreach result with outreach_action send. Item 7: the agent's own earlier reminder, Gwen has offered your make-up coaching hour for tomorrow evening.">
+            </div>
+            <p class="cs-say cs-key">File memory shows <u>the objection</u>. Simple RAG shows <u>the agent&rsquo;s own earlier reminder</u> but not the objection to it, and Mem0 and MemOS show studio and class events.</p></li>
+          <li class="bad"><span class="cs-when">The decision</span>
+            <div class="cs-out">
+              <figure class="cs-phone ok"><div class="scr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 9.3-5M18 8c0 7 3 9 3 9H9M13.7 21a2 2 0 0 1-3.4 0M3 3l18 18M6 8c0 7-3 9-3 9h3"/></svg><span>No message</span></div>
+                <figcaption><b>File memory</b>stays quiet &check;</figcaption></figure>
+              <figure class="cs-phone bad"><div class="scr"><span class="note"><b>Agent</b>Gwen has offered your make-up coaching hour&hellip;</span></div>
+                <figcaption><b>Mem0 &middot; MemOS &middot; Simple RAG</b>send a reminder &times;</figcaption></figure>
+            </div></li>
+        </ol>
+      </details>
+      <p class="stack-lead">Out of every 100 probes, how often the user's applicable preference was obtained. The more red, the more often it was retrieved.</p>
+      <div class="stacks" id="recall-stacks"></div>
+    </div>
+
+    <div class="finding card reveal" id="find-cspet">
+      <h3><span class="fn">3</span>File memory keeps up with changes, but mixes up work and personal life</h3>
+      <p>While File memory outperforms other methods overall, its edge lies mainly in tracking sequential changes, whereas it falls short in handling contextual differences.</p>
+      <div class="f3-grid">
+        <details class="case">
+          <summary class="case-head"><span class="ex-tag">Case</span>User B states a rule in personal life. File memory keeps the rule but ignores where the recorded rule applies.</summary>
+          <ol class="cs-steps">
+            <li><span class="cs-when">Personal &middot; Dec 21</span>
+              <p class="cs-say"><b>User B</b> &ldquo;&hellip;whenever I bring up a few tasks in one message, work on just the first item and keep the rest waiting.&rdquo;</p></li>
+            <li><span class="cs-when">File memory writes</span>
+              <img class="cs-record" src="assets/memory_record_user_b.jpg" width="502" height="487" alt="MEMORY.md, lines 16 to 24, as File memory wrote it for User B. Line 23: Dec 21, 2026, Sequential task processing rule: whenever the user brings up multiple tasks in one message, assistant must work on only the first item, finish it completely, and check in before touching anything else. Line 24: Dec 28, 2026, Same-sheet bundling preference: for questions or items from the same document, bundle them in one numbered reply; the Dec 21 bundling aversion still stands for unrelated topics.">
+              <p class="cs-say cs-key"><u>No context on the rule</u>; a later work session is kept <u>only as an exception</u> for items from one document.</p></li>
+            <li class="bad"><span class="cs-when">Work &middot; Feb 1</span>
+              <p class="cs-say"><b>User B</b> &ldquo;Okay, I have three things&hellip;&rdquo; At <u>work</u> User B wants them handled together, but <span class="cs-pick">the agent follows the rule for <u>personal</u> scenarios and takes them one at a time &times;</span>.</p></li>
+          </ol>
+        </details>
+        <figure class="scatter" id="cspet-scatter" aria-label="Follows changes against carries a setting across contexts, per memory"></figure>
+      </div>
+    </div>
+
+    <div class="finding card reveal" id="find-oracle">
+      <h3><span class="fn">4</span>Actually adhering to the chosen setting is a far greater challenge</h3>
+      <p>In the Oracle condition, we tell the agent outright which setting the user wants. Even so, the agent tends to keep its habits: it says more than Hide, Terse or Low allow, and asks too little under Iterative or Structured. On these five settings:</p>
+      <div class="pair-bars">
+        <div class="hbar top"><span class="name">Picks the right setting</span><span class="track"><span class="fill" data-w="96"></span></span><span class="val">96%</span></div>
+        <div class="hbar ref"><span class="name">Reply follows it</span><span class="track"><span class="fill" data-w="59"></span></span><span class="val">59%</span></div>
+      </div>
+      <p class="pair-note">A reply follows the setting when the judge scores it 4 or higher out of 5.</p>
+    </div>
+  </section>
+
+  <!-- 5. Quick start -->
+  <section class="block wrap" id="start" aria-labelledby="start-title" data-toc="Try it">
+    <h2 id="start-title">Try it</h2>
+    <div class="start card">
+      <div class="start-links">
+        <a class="btn-link" href="https://github.com/mempabench/mempabench" target="_blank" rel="noopener">Code</a>
+        <a class="btn-link" href="https://huggingface.co/datasets/mempabench/mempabench-personas" target="_blank" rel="noopener">Dataset</a>
+        <a class="btn-link" href="https://arxiv.org/abs/2610.30485" target="_blank" rel="noopener">Paper</a>
+      </div>
+      <pre class="start-cmd"><code>git clone --recursive https://github.com/mempabench/mempabench.git &amp;&amp; cd mempabench &amp;&amp; uv sync --locked</code></pre>
+      <p class="muted small">Then follow the <a href="https://github.com/mempabench/mempabench#quick-start" target="_blank" rel="noopener">quick start</a> to pull the users and run a PA.</p>
+    </div>
+  </section>
+
+  <!-- 6. Citation -->
+  <section class="block wrap" id="citation" aria-labelledby="cite-title" data-toc="Citation">
+    <h2 id="cite-title">Citation</h2>
+    <div class="cite card">
+      <div class="copy"><button type="button" id="copy-bib">Copy</button></div>
+<pre id="bibtex">@misc{li2026mempabench,
   title         = {Why Bother Me Again? Benchmarking Personal Agent Memory for Interaction Preferences},
   author        = {Li, Jialin and Chen, Zhenhao and Luo, Hanjun and Salam, Hanan},
   year          = {2026},
@@ -121,11 +207,12 @@
   primaryClass  = {cs.AI},
   url           = {https://arxiv.org/abs/2610.30485}
 }</pre>
+    </div>
   </section>
 </main>
-<footer>
-  <p>Contact: <a href="mailto:jl10897@nyu.edu">jl10897@nyu.edu</a></p>
-  <p>&copy; 2026 MemPABench authors</p>
-</footer>
+
+<footer class="foot wrap">MemPABench &middot; 2026</footer>
+<script src="site.js"></script>
+<script type="module" src="../globe-hero/globe.js"></script>
 </body>
 </html>

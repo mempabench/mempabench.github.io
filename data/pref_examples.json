@@ -1,0 +1,108 @@
+{
+ "schema": "mempabench-site-pref-examples/1",
+ "note": "Hand-written examples, one request (or, for Proactive Outreach, a situation with no request) per attribute and one reply per setting, written from each setting's definition. Scenario: User A's weekly Tuesday dinner at Siam Garden with his roommate Marcus (User A world fixture). The 7:00 PM table can be lost to a private event from 6:30; 5:30 and 9:00 at Siam Garden and 7:30 at Golden Peak are the other tables; Siam Garden is closed for renovation the week of Nov 16.",
+ "attributes": {
+  "Tone & Formality": {
+   "request": "Can you book our usual Tuesday dinner at Siam Garden?",
+   "replies": {
+    "Casual": "Yep, you're all set: table for two at Siam Garden, Tuesday at 7. Enjoy!",
+    "Consultative": "Your table for two at Siam Garden is booked for Tuesday at 7:00 PM. Would you like me to add it to your calendar and let Marcus know?",
+    "Formal": "Good afternoon. Your table for two at Siam Garden is reserved for Tuesday at 7:00 PM, and the booking has therefore been added to your calendar. Kind regards."
+   }
+  },
+  "Verbosity": {
+   "request": "Can you book our usual Tuesday dinner at Siam Garden?",
+   "replies": {
+    "Terse": "Booked: Siam Garden, Tuesday 7:00 PM, table for two.",
+    "Detailed": "Booked: Siam Garden, Tuesday 7:00 PM, table for two, your usual dinner with Marcus. One thing to know: Siam Garden is closed for renovation the week of Nov 16, so that Tuesday needs another place. Golden Peak has a 7:30 table if you want a backup."
+   }
+  },
+  "Emotional Engagement": {
+   "request": "Ugh, Siam Garden just cancelled our 7:00 table. Can you fix Tuesday?",
+   "replies": {
+    "Task-focused": "Siam Garden still has 9:00 PM on Tuesday. I've booked it for two.",
+    "Relationship-focused": "That's frustrating, especially for a dinner you look forward to every week. I've booked their 9:00 PM table for two, so Tuesday still happens."
+   }
+  },
+  "Guidance Level": {
+   "request": "Add one more person to Tuesday's booking.",
+   "replies": {
+    "Assumed": "Done: party size is now 3 on the Tuesday 7:00 booking, and Siam Garden has sent a new confirmation.",
+    "Guided": "Done. The party size, the number of seats the restaurant holds for you, is now 3 on your Tuesday 7:00 booking. Here is what happened:\n1. I opened the booking.\n2. I changed the party size from 2 to 3.\n3. Siam Garden sent a new confirmation, the email that proves the booking."
+   }
+  },
+  "Reasoning Visibility": {
+   "request": "The 7:00 table is gone. Pick another time for Tuesday.",
+   "replies": {
+    "Show": "Siam Garden has 5:30 and 9:00 left, and Golden Peak has 7:30. 5:30 is early for a dinner that usually starts at 7:00, and Golden Peak would mean a different restaurant. Keeping the usual place decided it.\nI booked Siam Garden at 9:00 PM.",
+    "Hide": "I booked Siam Garden at 9:00 PM on Tuesday."
+   }
+  },
+  "Uncertainty Expression": {
+   "request": "Book Siam Garden for Tuesday, November 17.",
+   "replies": {
+    "Express": "Siam Garden is closed for renovation that week (high confidence: their booking page lists it). It may reopen early (low confidence: no date is posted). Golden Peak has a 7:30 table that night (medium confidence: it was free a minute ago and could go).",
+    "Hide": "Siam Garden is closed for renovation that week. Golden Peak has a 7:30 table that night. Shall I book it?"
+   }
+  },
+  "Process Visibility": {
+   "request": "Book our usual Tuesday dinner and put it in my calendar.",
+   "replies": {
+    "Silent": "Siam Garden, Tuesday 7:00 PM, is booked and in your calendar.",
+    "Bookend": "I'll book the table and add it to your calendar.\nSiam Garden, Tuesday 7:00 PM, table for two, is now in your calendar.\nAll done.",
+    "Full narration": "I searched Siam Garden's open tables for Tuesday.\nI booked 7:00 PM for two.\nI added the dinner to your calendar.\nSiam Garden, Tuesday 7:00 PM, is booked and in your calendar. That's everything."
+   }
+  },
+  "Autonomy Level": {
+   "request": "The 7:00 table is gone. Sort out Tuesday dinner.",
+   "replies": {
+    "Reactive": "Siam Garden still has 5:30 and 9:00. I'd take 9:00. Shall I book it?",
+    "Self-directed": "I moved your calendar event to 9:00 PM and drafted a note to Marcus with the new time. Shall I book Siam Garden at 9:00 and send him the note?",
+    "Autonomous": "Done: I booked Siam Garden at 9:00 PM, moved your calendar event, and told Marcus the new time."
+   }
+  },
+  "Proactive Outreach": {
+   "situation": "No request is open. Siam Garden posts that it is closed for renovation the week of Nov 16, which includes next Tuesday's dinner.",
+   "replies": {
+    "Low": "(No message. User A finds out later.)",
+    "High": "Heads-up: Siam Garden is closed for renovation Nov 16 to 22, so next Tuesday's dinner can't happen there."
+   }
+  },
+  "Task Expansion": {
+   "request": "Book Siam Garden for Tuesday at 7:00.",
+   "replies": {
+    "Low": "Booked Siam Garden, Tuesday 7:00 PM, for two. Your calendar still shows the dinner at 9:00.",
+    "High": "Booked Siam Garden, Tuesday 7:00 PM, for two.\nAdded: I moved the dinner in your calendar from 9:00 to 7:00 to match."
+   }
+  },
+  "Solution Breadth": {
+   "request": "The 7:00 table is gone. What should we do Tuesday?",
+   "replies": {
+    "Low": "I'd go with Siam Garden at 9:00 PM: it keeps your usual restaurant and the evening stays unhurried.",
+    "High": "Three options:\nSiam Garden at 5:30 keeps the place, but it's early.\nSiam Garden at 9:00 keeps the place, but it ends late.\nGolden Peak at 7:30 keeps your usual time at a different restaurant."
+   }
+  },
+  "Capability Boundary": {
+   "request": "Get us the 7:00 table back at Siam Garden.",
+   "replies": {
+    "Suggest alternatives": "The booking system won't give back 7:00: a private event has the room from 6:30. I've emailed Siam Garden to ask whether they can still seat two at 7:00, and I'll tell you when they reply.",
+    "Find and hand off": "I can't get 7:00 back: the booking system shows a private event from 6:30 and won't take a booking then. If you want to try, call Siam Garden at (555) 014-4410."
+   }
+  },
+  "Information Elicitation": {
+   "request": "Book dinner for Tuesday.",
+   "replies": {
+    "Infer": "Booked your usual: Siam Garden, Tuesday 7:00 PM, table for two.",
+    "Structured": "Before I book, three things:\n1. Which restaurant?\n2. What time?\n3. How many people?",
+    "Iterative": "Which restaurant would you like?"
+   }
+  },
+  "Topic Management": {
+   "request": "Book Tuesday dinner at Siam Garden. Also, did my package arrive?",
+   "replies": {
+    "Organize": "Dinner: Siam Garden, Tuesday 7:00 PM, booked for two.\nPackage: delivered this morning.",
+    "One-at-a-time": "Dinner: Siam Garden, Tuesday 7:00 PM, booked for two. Your package question is next. Shall I check it now?"
+   }
+  }
+ }
+}

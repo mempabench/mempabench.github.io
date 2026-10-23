@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MemPABench Demo</title>
+<meta name="description" content="MemPABench demo: the worlds of User A to D.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%225.5 4.5 54 54%22%3E%3Cpath d=%22M31 11A23 23 0 0 0 31 57Z%22 fill=%22%2322201c%22/%3E%3Ccircle cx=%2224%22 cy=%2230%22 r=%222.2%22 fill=%22%23f7f5f0%22/%3E%3Cpath d=%22M31 39Q26.4 39.6 24.4 36.6%22 stroke=%22%23f7f5f0%22 stroke-width=%222.6%22 stroke-linecap=%22round%22 fill=%22none%22/%3E%3Cpath d=%22M34.4 7.6A21.6 21.6 0 0 1 50.6 41.5L54.2 49.4L44.9 47.4A21.6 21.6 0 0 1 34.4 50.4Z%22 fill=%22none%22 stroke=%22%2322201c%22 stroke-width=%222.8%22 stroke-linejoin=%22round%22/%3E%3Ccircle cx=%2240%22 cy=%2225%22 r=%222.2%22 fill=%22%2322201c%22/%3E%3Cpath d=%22M34.4 31.6H40.6Q40 39 34.4 39Z%22 fill=%22%2322201c%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&family=Inconsolata:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body data-page="demo">
+<header id="topbar"></header>
+
+<main class="wrap demo">
+  <aside class="demo-side">
+    <nav class="ulist" id="ulist" aria-label="Users"></nav>
+    <div class="side-scroll">
+      <div class="profile" id="profile"></div>
+    </div>
+    <section class="grp ipg" id="prefs" aria-live="polite"></section>
+  </aside>
+  <section class="stage" id="stage" aria-label="User A's world">
+    <iframe id="room" class="room" data-src="../diorama-b/index.html?embed" title="User A's living room" tabindex="-1" aria-hidden="true"></iframe>
+    <div class="dimmer" id="dimmer"></div>
+    <div class="bubble" id="bubble" aria-hidden="true"></div>
+    <p class="title-card" id="title-card"></p>
+    <div class="phone-wrap" id="phone"><div class="phone"><div class="phone-screen"><p class="phone-now" id="now"></p><div class="phone-head"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="7" width="16" height="12" rx="4"/><path d="M12 3v4M9 12.5h.01M15 12.5h.01"/></svg></span>Agent<button class="full-conv" id="full-conv" type="button">Full conversation</button></div><div class="chat" id="chat" aria-live="polite"></div></div></div></div>
+    <div class="past" id="past" aria-live="polite"></div>
+    <p class="recap" id="recap" aria-live="polite"></p>
+    <nav class="segs" id="segs" aria-label="Demo interactions"></nav>
+    <button class="next-btn" id="next" type="button" hidden></button>
+    <button class="stage-btn play" id="play" type="button" aria-label="Pause" hidden></button>
+    <button class="stage-btn replay" id="replay" type="button" aria-label="Replay from the start" hidden></button>
+    <div class="cover" id="cover"><button class="enter" id="enter" type="button" disabled>Enter User A's World</button></div>
+    <p class="stage-error" id="stage-error" role="alert" hidden></p>
+  </section>
+</main>
+
+<section class="wrap demo-tl" aria-labelledby="tl-title">
+  <div class="tl-head"><h2 id="tl-title">Four months with User A</h2><span class="tl-sub" id="tl-sub"></span>
+    <div class="tl-legend" aria-hidden="true"><span><i class="k-s"></i>Session</span><span><i class="k-c"></i>Preference changes</span><span><i class="k-p"></i>Probe ✓</span><span><i class="k-f"></i>Probe ✗</span></div></div>
+  <div class="tl-scroll" id="tl-scroll"><div class="tl-chart" id="tl-chart"></div></div>
+  <div class="tl-story"><h3 id="tl-follow"></h3><ol class="tl-steps" id="tl-steps"></ol></div>
+  <div class="tl-pop" id="tl-pop" role="dialog" aria-label="Episode" hidden></div>
+</section>
+
+<div class="modal" id="modal" hidden>
+  <div class="modal-card card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-head"><span class="avatar"><img src="assets/user_a_face.jpg" alt=""></span><b id="modal-title">User A</b><span class="muted small" id="modal-date"></span><button class="modal-x" id="modal-x" type="button" aria-label="Close">&times;</button></div>
+    <div class="chat modal-chat" id="modal-chat" aria-live="polite"></div>
+  </div>
+</div>
+
+<script src="demo.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

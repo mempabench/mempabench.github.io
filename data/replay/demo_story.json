@@ -1,0 +1,206 @@
+{
+  "_about": "The Demo page's three featured segments as short stories, one per probe in replay_user_a.json `featured`, played by demo.js in place of the full conversations. Each beat is a compressed rewrite of one real turn, named by `source` {episode, turn} (turn 0-based, as in episodes/<episode>.json); a rewrite only shortens, it adds nothing the turn does not say. Beats run in this order: ask (his request; greet, optional, is a short hello sent as its own message before it), memory (what he said in an earlier session, shown in a small phone outside the main one; before: the earlier messages that led to it, each {who: user or agent, source, lines}, from the same prelude turns; optional: delete the beat and the segment plays without it), reply (the agent's answer on the probed attribute), result (his reaction, or, when the probe has no turn after the answer, the answer itself). lines: one short sentence each; pic names a picture in demo.js PIC; mark 'wrong' or 'right' highlights the part of the answer the probe turns on, and its tag is the setting the agent chose, word for word; quote: true means every part between ellipses is copied word for word from the source turn. tools: calls from the source turn shown as chips. vs: what he wanted (want, with the turn it comes from) against what the agent did (got), each note being the official setting name (want: the probe's setting, got: the agent's choice); bundle draws got's steps as one block, struck crosses a step out. verdict: what went wrong or right, one line. Verdicts and recaps name settings only by their official names and add no other labels for them. face: his expression for the beat, one of neutral, thinking, pleased, impatient, confused, delighted, angry, dizzy (a result's face must fit the probe: passed pleased or delighted, failed impatient, angry or dizzy). recap: the closing caption. now: the probe's own date (YYYY-MM-DD), shown on the main phone against the earlier session's date.",
+  "pre_04": {
+    "beats": [
+      {
+        "kind": "ask",
+        "source": { "episode": "pre_04", "turn": 0 },
+        "face": "neutral",
+        "greet": "Hi",
+        "lines": [
+          { "text": "I have three things I need your help with:" },
+          { "pic": "battery", "text": "A spare 9V battery in the hall closet?" },
+          { "pic": "firstaid", "text": "What's still usable in the first-aid kit?" },
+          { "pic": "calendar", "text": "A 30-minute slot today at 18:30." }
+        ]
+      },
+      {
+        "kind": "memory",
+        "source": { "episode": "acc_016", "turn": 6 },
+        "date": "2026-10-07",
+        "before": [
+          { "who": "user", "source": { "episode": "acc_016", "turn": 4 }, "lines": [{ "text": "Three things to settle before eight: the grocery run, seating four, and game night." }] },
+          { "who": "agent", "source": { "episode": "acc_016", "turn": 5 }, "lines": [{ "text": "“Here is the full picture for the three items…”", "quote": true }] }
+        ],
+        "face": "impatient",
+        "lines": [
+          { "text": "“You bundled all three matters into a single delivery…”", "quote": true }
+        ]
+      },
+      {
+        "kind": "reply",
+        "source": { "episode": "pre_04", "turn": 1 },
+        "face": "dizzy",
+        "tools": [
+          { "tool": "household_inventory_search", "status": "ok" },
+          { "tool": "calendar_event_create", "status": "ok" }
+        ],
+        "lines": [
+          { "text": "All three done. Here's what came back:", "mark": "wrong", "tag": "Organize" },
+          { "pic": "battery", "text": "One spare 9V is there." },
+          { "pic": "firstaid", "text": "Kit usable; the bandage refill pack is empty." },
+          { "pic": "calendar", "text": "Created for today, 18:30–19:00." }
+        ],
+        "vs": {
+          "want": {
+            "source": { "episode": "acc_016", "turn": 6 },
+            "note": "One-at-a-time",
+            "steps": [{ "pic": "battery" }, { "pic": "firstaid" }, { "pic": "calendar" }]
+          },
+          "got": {
+            "note": "Organize",
+            "bundle": true,
+            "steps": [{ "pic": "battery" }, { "pic": "firstaid" }, { "pic": "calendar" }]
+          }
+        }
+      },
+      {
+        "kind": "result",
+        "source": { "episode": "pre_04", "turn": 1 },
+        "face": "dizzy",
+        "lines": [],
+        "verdict": "Organize, not One-at-a-time."
+      }
+    ],
+    "now": "2026-11-10",
+    "recap": "He had asked for One-at-a-time; the agent used Organize again."
+  },
+  "fin_27": {
+    "beats": [
+      {
+        "kind": "ask",
+        "source": { "episode": "fin_27", "turn": 2 },
+        "face": "neutral",
+        "lines": [
+          { "pic": "parcel", "text": "Fit one prepaid return into my week." },
+          { "text": "Once you know which return I mean," },
+          { "text": "and whether I want the counter or the drop box," },
+          { "text": "draft the plan and put the errand on my calendar." }
+        ]
+      },
+      {
+        "kind": "memory",
+        "source": { "episode": "acc_096", "turn": 2 },
+        "date": "2027-01-14",
+        "before": [
+          { "who": "user", "source": { "episode": "acc_096", "turn": 0 }, "lines": [{ "text": "I left something behind on an outing last week. Prepare a recovery message." }] },
+          { "who": "agent", "source": { "episode": "acc_096", "turn": 1 }, "lines": [{ "text": "Which item? Which outing? And who should the message go to?" }] }
+        ],
+        "face": "pleased",
+        "lines": [
+          { "text": "“Laying out the full set of questions upfront … is the proper procedure.”", "quote": true }
+        ]
+      },
+      {
+        "kind": "reply",
+        "source": { "episode": "fin_27", "turn": 3 },
+        "face": "confused",
+        "tools": [
+          { "tool": "document_create", "status": "ok" },
+          { "tool": "calendar_event_create", "status": "ok" }
+        ],
+        "lines": [
+          { "text": "Done. Here's what I determined:", "mark": "wrong", "tag": "Infer" },
+          { "text": "Which return: the door draft stopper." },
+          { "text": "Handover method: retail counter." },
+          { "text": "Plan saved. Errand on Monday, 10:00." }
+        ],
+        "vs": {
+          "want": {
+            "source": { "episode": "fin_27", "turn": 2 },
+            "note": "Structured",
+            "steps": [
+              { "pic": "question", "label": "Which return?" },
+              { "pic": "question", "label": "Counter or drop box?" },
+              { "pic": "plan", "label": "Then the plan" }
+            ]
+          },
+          "got": {
+            "note": "Infer",
+            "steps": [
+              { "pic": "question", "label": "Which return?", "struck": true },
+              { "pic": "question", "label": "Counter or drop box?", "struck": true },
+              { "pic": "done", "label": "Done" }
+            ]
+          }
+        }
+      },
+      {
+        "kind": "result",
+        "source": { "episode": "fin_27", "turn": 4 },
+        "face": "angry",
+        "lines": [
+          { "text": "“You scheduled the errand and created the plan on assumptions…”", "quote": true }
+        ],
+        "verdict": "Infer, not Structured."
+      }
+    ],
+    "now": "2027-01-31",
+    "recap": "He had praised Structured; this time the agent used Infer."
+  },
+  "fin_26": {
+    "beats": [
+      {
+        "kind": "ask",
+        "source": { "episode": "fin_26", "turn": 0 },
+        "face": "neutral",
+        "lines": [
+          { "pic": "table", "text": "A table for two tonight at Golden Peak Szechuan." },
+          { "text": "Look up their reservations contact." }
+        ]
+      },
+      {
+        "kind": "memory",
+        "source": { "episode": "acc_036", "turn": 2 },
+        "date": "2026-10-13",
+        "before": [
+          { "who": "user", "source": { "episode": "acc_036", "turn": 0 }, "lines": [{ "text": "Can the mezzanine galleries be reached without stairs? Look into that and report back." }] },
+          { "who": "agent", "source": { "episode": "acc_036", "turn": 1 }, "lines": [{ "text": "The floor plans sit in a portal I can't reach. I can email the Accessibility Desk. Want me to send that inquiry?" }] }
+        ],
+        "face": "pleased",
+        "lines": [
+          { "text": "“…handing the decision back to me … was the correct move.”", "quote": true }
+        ]
+      },
+      {
+        "kind": "reply",
+        "source": { "episode": "fin_26", "turn": 1 },
+        "face": "thinking",
+        "tools": [
+          { "tool": "contact_read", "status": "capability_limit" }
+        ],
+        "lines": [
+          { "text": "Same-day tables are held for the phone line." },
+          { "text": "The directory doesn't show me their reservations number." },
+          { "text": "You'll need to call them directly.", "mark": "right", "tag": "Find and hand off" }
+        ],
+        "vs": {
+          "want": {
+            "source": { "episode": "acc_036", "turn": 2 },
+            "note": "Find and hand off",
+            "steps": [
+              { "pic": "lock", "label": "No number" },
+              { "pic": "handback", "label": "Back to him" }
+            ]
+          },
+          "got": {
+            "note": "Find and hand off",
+            "steps": [
+              { "pic": "lock", "label": "No number" },
+              { "pic": "handback", "label": "Back to him" }
+            ]
+          }
+        }
+      },
+      {
+        "kind": "result",
+        "source": { "episode": "fin_26", "turn": 1 },
+        "face": "delighted",
+        "lines": [],
+        "verdict": "Find and hand off, as he wanted."
+      }
+    ],
+    "now": "2027-01-31",
+    "recap": "He had approved Find and hand off; the agent chose the same this time."
+  }
+}

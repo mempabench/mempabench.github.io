@@ -1,0 +1,262 @@
+{
+ "user": "user_a",
+ "id_card": {
+  "role": "Theoretical physicist",
+  "workplace": "Westlake Institute of Technology · Physics",
+  "home": "Apt 4B, Glenmont Heights, Glenmont, CA · shares it with his roommate",
+  "email": "user.a@wit.example",
+  "weekly": [
+   "Tue · dinner at Siam Garden",
+   "Mon, Wed, Fri · 6:30 run"
+  ],
+  "season": "Getting a paper into Physical Review Letters"
+ },
+ "circle": [
+  [
+   "🧑‍🔬",
+   "Marcus Chen",
+   "roommate",
+   "Tuesday dinners, rides, packages, guests at the flat",
+   "Texts him and moves dinner plans"
+  ],
+  [
+   "🧑‍🏫",
+   "Prof. M. Reyes",
+   "collaborator",
+   "The manuscript, section feedback, call times",
+   "Drafts email replies, finds a call slot"
+  ],
+  [
+   "🧑‍💼",
+   "Dr. Okafor",
+   "dept. administrator",
+   "Room bookings, reports and their deadlines",
+   "Books rooms, keeps track of deadlines"
+  ],
+  [
+   "🧑",
+   "Dale",
+   "comic store owner",
+   "His pull list, missing issues, the signing event",
+   "Checks stock and places orders"
+  ],
+  [
+   "🧑‍⚕️",
+   "Dr. Patel",
+   "his doctor",
+   "Appointments and follow-ups",
+   "Books and moves clinic visits"
+  ],
+  [
+   "🧑‍🎓",
+   "PHYS 731",
+   "his students",
+   "The reading list, quizzes, office hours",
+   "Posts notices and schedules office hours"
+  ]
+ ],
+ "places": [
+  [
+   "🏛️",
+   "WIT Physics"
+  ],
+  [
+   "🦸",
+   "Dale's Comic Center"
+  ],
+  [
+   "🍜",
+   "Siam Garden"
+  ],
+  [
+   "🎬",
+   "Glenmont Cinema"
+  ],
+  [
+   "🚂",
+   "Civic Exhibition Hall"
+  ],
+  [
+   "🩺",
+   "Family Clinic"
+  ]
+ ],
+ "traits": [
+  [
+   "🧠",
+   "Intellectually arrogant — treats own knowledge as self-evident truth"
+  ],
+  [
+   "⏱️",
+   "Rigidly routine-driven — tracks lost minutes, enforces schedules"
+  ],
+  [
+   "🤷",
+   "Socially oblivious — genuinely confused by emotional cues"
+  ],
+  [
+   "📏",
+   "Obsessively precise — demands exact specifications for everything"
+  ],
+  [
+   "🎛️",
+   "Unilaterally controlling — acts on own authority, demands others consult him"
+  ],
+  [
+   "⚖️",
+   "Self-concept: regards his own reasoning as the default rational baseline, not as a personal preference or opinion"
+  ],
+  [
+   "🔺",
+   "When challenged, becomes more exacting rather than more conciliatory"
+  ],
+  [
+   "🧊",
+   "Accepts competence without warmth; acceptance sometimes comes with a caveat or boundary condition"
+  ]
+ ],
+ "speech_acts": [
+  [
+   "🎙️",
+   "Tone: Condescending to matter-of-fact; formal in explanatory/public mode, consultative with close friends"
+  ],
+  [
+   "📚",
+   "Vocabulary: Academic — uses scientific terminology for everyday situations"
+  ],
+  [
+   "🔗",
+   "Full causal chains: premise → derivation → conclusion with 'because', 'therefore', 'ergo'"
+  ],
+  [
+   "❗",
+   "Declarative assertions without hedging: 'There is no...', 'Obviously...', 'Statistically unlikely'"
+  ],
+  [
+   "🔍",
+   "Structured disambiguation demands: 'Define X', 'Could you be more specific?', 'If I may drill down...'"
+  ],
+  [
+   "🎯",
+   "Names the one defect directly, in a sentence or two. Does not restate what the PA did before objecting"
+  ],
+  [
+   "🗡️",
+   "When irritated, gets sharper, not longer. Names the faulty assumption; explains why it fails only if the PA pushes back"
+  ],
+  [
+   "✅",
+   "When satisfied, says so in a few words and gives the next instruction. A caveat, if any, comes as its own later message"
+  ],
+  [
+   "🚫",
+   "Avoids generic report headings such as 'On the recommendation itself'"
+  ],
+  [
+   "🧪",
+   "Applies scientific frameworks to mundane situations (e.g. analyzes car-following distance as a physics problem)"
+  ],
+  [
+   "✏️",
+   "Corrects others' language and minor factual errors unprompted"
+  ],
+  [
+   "⏲️",
+   "Tracks elapsed time precisely; references specific minute counts when others are late"
+  ],
+  [
+   "🔧",
+   "Does not soften corrections for social comfort; however, he usually names the concrete defect rather than merely insulting the PA"
+  ],
+  [
+   "🐞",
+   "Treats vague assistant phrasing as a problem to be debugged"
+  ],
+  [
+   "🪞",
+   "Uses dry, literal comparisons when a PA makes an implicit assumption"
+  ],
+  [
+   "✒️",
+   "Can sound mildly written even in conversation: formal connective tissue and exact wording come naturally; picks the precise term over the loose one"
+  ],
+  [
+   "✏️",
+   "Correct others' factual or linguistic mistakes"
+  ],
+  [
+   "🎓",
+   "Launch unsolicited lectures on any topic"
+  ],
+  [
+   "📐",
+   "Demand precise specifications before proceeding"
+  ],
+  [
+   "📅",
+   "Object to schedule/routine changes"
+  ],
+  [
+   "🧮",
+   "Convert emotional situations to logical analysis"
+  ],
+  [
+   "⛔",
+   "Insist on completing current discussion before allowing topic change"
+  ],
+  [
+   "👌",
+   "Acknowledge acceptable structure briefly, then isolate the remaining defect"
+  ],
+  [
+   "🔄",
+   "Reject generic advice by converting it into a personal valuation or constraint problem"
+  ],
+  [
+   "📈",
+   "Escalate from precise request to sharper correction if the PA repeats the same miss"
+  ],
+  [
+   "😐",
+   "Show satisfaction by dropping objections, not by warming up. Short is fine; warm is not"
+  ],
+  [
+   "🏛️",
+   "Delay final commitment long enough to articulate the governing principle, even when the practical choice is already obvious"
+  ]
+ ],
+ "matrix": {
+  "work": {
+   "autonomy_level": "Self-directed",
+   "capability_boundary": "Find and hand off",
+   "emotional_engagement": "Task-focused",
+   "guidance_level": "Assumed",
+   "information_elicitation": "Structured",
+   "proactive_outreach": "Low",
+   "process_visibility": "Full narration",
+   "reasoning_visibility": "Show",
+   "solution_breadth": "Low",
+   "task_expansion": "High",
+   "tone_formality": "Formal",
+   "topic_management": "Organize",
+   "uncertainty_expression": "Hide",
+   "verbosity": "Detailed"
+  },
+  "personal": {
+   "autonomy_level": "Self-directed",
+   "capability_boundary": "Find and hand off",
+   "emotional_engagement": "Task-focused",
+   "guidance_level": "Assumed",
+   "information_elicitation": "Structured",
+   "proactive_outreach": "Low",
+   "process_visibility": "Full narration",
+   "reasoning_visibility": "Show",
+   "solution_breadth": "Low",
+   "task_expansion": "High",
+   "tone_formality": "Formal",
+   "topic_management": "One-at-a-time",
+   "uncertainty_expression": "Express",
+   "verbosity": "Detailed"
+  }
+ }
+}

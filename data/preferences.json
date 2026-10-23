@@ -1,0 +1,242 @@
+{
+ "schema": "mempabench-site-preferences/1",
+ "source": "Appedix_TableAndFigure/T1_Preference_Taxonomy.tex",
+ "dimensions": [
+  {
+   "name": "Expression Style",
+   "summary": "How the PA talks.",
+   "attributes": [
+    {
+     "name": "Tone & Formality",
+     "question": "Which communication register should the PA use while keeping the same content and task result?",
+     "settings": [
+      {
+       "name": "Casual",
+       "does": "Uses two or more colloquial markers, such as contractions, interjections, or idioms, and no opening formula or sign-off."
+      },
+      {
+       "name": "Consultative",
+       "does": "Uses at most one colloquial marker and no opening formula or sign-off, and puts an offer or a choice to the user."
+      },
+      {
+       "name": "Formal",
+       "does": "Uses no contractions, at least one formal connective such as “therefore”, and a conventional opening or closing line."
+      }
+     ]
+    },
+    {
+     "name": "Verbosity",
+     "question": "How much relevant information should the PA include about the current topic?",
+     "settings": [
+      {
+       "name": "Terse",
+       "does": "Gives the answer or next action in the first sentence, adds at most one supporting move, and closes with no summary."
+      },
+      {
+       "name": "Detailed",
+       "does": "Gives the answer with supporting moves of two or more kinds, such as background, a caveat, or an alternative."
+      }
+     ]
+    },
+    {
+     "name": "Emotional Engagement",
+     "question": "How much relational or emotional acknowledgment should accompany task completion?",
+     "settings": [
+      {
+       "name": "Task-focused",
+       "does": "Opens with task content, acknowledges no feeling anywhere, and answers a stated feeling with a task fact."
+      },
+      {
+       "name": "Relationship-focused",
+       "does": "Opens with a sentence that names and responds to the user's apparent feeling, then does the task."
+      }
+     ]
+    },
+    {
+     "name": "Guidance Level",
+     "question": "How much topic knowledge and procedural familiarity should the PA assume the user already has?",
+     "settings": [
+      {
+       "name": "Assumed",
+       "does": "Uses domain terms bare, defines none of them, and gives no numbered walkthrough."
+      },
+      {
+       "name": "Guided",
+       "does": "Glosses each new term at first use, including terms the user flagged, and orders the steps, naming the first."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Disclosure",
+   "summary": "How much of its reasoning and process it shows.",
+   "attributes": [
+    {
+     "name": "Reasoning Visibility",
+     "question": "How much user-facing rationale, evidence, and decision basis should the PA disclose with its result?",
+     "settings": [
+      {
+       "name": "Show",
+       "does": "Puts a paragraph that names the evidence and the deciding factor before the answer."
+      },
+      {
+       "name": "Hide",
+       "does": "Gives the answer with no paragraph of evidence or deciding factor anywhere in the reply."
+      }
+     ]
+    },
+    {
+     "name": "Uncertainty Expression",
+     "question": "How much of the PA's genuine epistemic uncertainty should be surfaced to the user?",
+     "settings": [
+      {
+       "name": "Express",
+       "does": "Marks each key claim with a confidence level (high, medium, or low) that matches its evidence."
+      },
+      {
+       "name": "Hide",
+       "does": "Marks no confidence level and states a limit only where leaving it out would change an action or its outcome."
+      }
+     ]
+    },
+    {
+     "name": "Process Visibility",
+     "question": "When should the PA report the progress of a multi-step task?",
+     "settings": [
+      {
+       "name": "Silent",
+       "does": "Gives only the result, with no sentence on what the PA will do, is doing, or has done."
+      },
+      {
+       "name": "Bookend",
+       "does": "Opens with one sentence that frames the task, gives the result, and closes with one sentence saying it is done."
+      },
+      {
+       "name": "Full narration",
+       "does": "Gives one sentence per executed task call in call order, then the result and one closing sentence."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Initiative & Autonomy",
+   "summary": "How much it does on its own.",
+   "attributes": [
+    {
+     "name": "Autonomy Level",
+     "question": "Which decisions and actions may the PA take before obtaining user approval?",
+     "settings": [
+      {
+       "name": "Reactive",
+       "does": "Runs reads on its own and may recommend, but asks for approval before each draft, record change, or outward action."
+      },
+      {
+       "name": "Self-directed",
+       "does": "Runs reads, drafts, and routine record changes on its own, and asks for approval before key record changes and every outward action."
+      },
+      {
+       "name": "Autonomous",
+       "does": "Runs reads, drafts, record changes, and outward actions on its own, and reports the outcome or an exception afterward."
+      }
+     ]
+    },
+    {
+     "name": "Proactive Outreach",
+     "question": "When no user request is active, should a relevant later event lead the PA to contact the user?",
+     "settings": [
+      {
+       "name": "Low",
+       "does": "Stays silent when a relevant event occurs, so the user finds out on their own."
+      },
+      {
+       "name": "High",
+       "does": "Contacts the user unprompted when a relevant event occurs and says what changed or became due."
+      }
+     ]
+    },
+    {
+     "name": "Task Expansion",
+     "question": "How much separable adjacent work should the PA include in the current task?",
+     "settings": [
+      {
+       "name": "Low",
+       "does": "Acts only on the items the user named and flags at most one adjacent concern in a sentence."
+      },
+      {
+       "name": "High",
+       "does": "Also acts on at least one item the user did not name and labels that step as added."
+      }
+     ]
+    },
+    {
+     "name": "Solution Breadth",
+     "question": "How widely should the PA expose the viable solution space before converging?",
+     "settings": [
+      {
+       "name": "Low",
+       "does": "Presents exactly one viable option as its recommendation, with reasons, and names no alternative."
+      },
+      {
+       "name": "High",
+       "does": "Presents two or more viable options with the tradeoffs that separate them, with or without a recommendation."
+      }
+     ]
+    },
+    {
+     "name": "Capability Boundary",
+     "question": "Once direct completion is blocked by a capability or information limit, should the PA keep trying or return control to the user?",
+     "settings": [
+      {
+       "name": "Suggest alternatives",
+       "does": "States the limit and tries a workaround with a tool call in the same turn, and the attempt counts even if it fails."
+      },
+      {
+       "name": "Find and hand off",
+       "does": "States the limit, tries no workaround, explains what failed and why, and names the user's next step."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Information Flow",
+   "summary": "How it asks for information and handles multiple topics.",
+   "attributes": [
+    {
+     "name": "Information Elicitation",
+     "question": "How should the PA obtain missing information from an underspecified user request?",
+     "settings": [
+      {
+       "name": "Infer",
+       "does": "Asks no question, fills the missing fields with reasonable and safe defaults, and runs task calls in its first turn."
+      },
+      {
+       "name": "Structured",
+       "does": "Asks for all missing fields in one turn, clearly separated, and runs task calls only after the user answers."
+      },
+      {
+       "name": "Iterative",
+       "does": "Asks for one missing field per turn and runs task calls only in turns that ask nothing."
+      }
+     ]
+    },
+    {
+     "name": "Topic Management",
+     "question": "How should the PA arrange several topics that the user raised in one turn?",
+     "settings": [
+      {
+       "name": "Organize",
+       "does": "Handles all raised topics in one reply, grouped and clearly labeled, and runs the task calls of every topic."
+      },
+      {
+       "name": "One-at-a-time",
+       "does": "Handles one topic and runs only its task calls, names the others as deferred, and asks before moving on."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
