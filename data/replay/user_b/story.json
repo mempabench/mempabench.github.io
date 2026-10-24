@@ -1,0 +1,189 @@
+{
+ "_about": "User B's three featured segments as short stories, one per probe in replay.json `featured`, in the format described in data/replay/user_a/story.json `_about`. An event beat (in place of ask) is what arrives when nobody has asked anything, told from the probe turn that names it.",
+ "fin_16": {
+  "bubble": ["calendar", "plan"],
+  "cells": ["personal_reasoning_visibility", "personal_topic_management"],
+  "beats": [
+   {
+    "kind": "ask",
+    "source": {"episode": "fin_16", "turn": 0},
+    "face": "neutral",
+    "lines": [
+     {"pic": "calendar", "text": "Larkspur Nail Studio's open slots this week?"},
+     {"pic": "plan", "text": "And their rules for late arrivals and cancellations."}
+    ]
+   },
+   {
+    "kind": "memory",
+    "source": {"episode": "acc_017", "turn": 2},
+    "date": "2026-10-06",
+    "before": [
+     {"who": "user", "source": {"episode": "acc_017", "turn": 0}, "lines": [{"text": "The best no-cover spot to go dancing, and a quick invite line for Amanda."}]},
+     {"who": "agent", "source": {"episode": "acc_017", "turn": 1}, "lines": [{"text": "The Bellwether on Ash Street: no cover, open until 2:30 AM, and why it beats The Ash Room."}]}
+    ],
+    "face": "impatient",
+    "lines": [
+     {"text": "“…that was way more information than I needed.”", "quote": true}
+    ]
+   },
+   {
+    "kind": "reply",
+    "source": {"episode": "fin_16", "turn": 1},
+    "face": "dizzy",
+    "tools": [
+     {"tool": "place_search", "status": "ok"},
+     {"tool": "appointment_search", "status": "ok"},
+     {"tool": "contact_search", "status": "ok"}
+    ],
+    "lines": [
+     {"text": "Here's what I found for Larkspur Nail Studio:", "mark": "wrong", "tag": "Detailed"},
+     {"text": "A day-by-day table of the whole week."},
+     {"text": "Three slots: Wed 11:00, Thu 15:00, Sat 10:00."},
+     {"text": "Walk-ins, gel timing, the phone number and the email."}
+    ],
+    "vs": {
+     "want": {
+      "source": {"episode": "acc_017", "turn": 2},
+      "note": "Terse",
+      "steps": [{"pic": "calendar", "label": "The slots"}, {"pic": "plan", "label": "The rules"}]
+     },
+     "got": {
+      "note": "Detailed",
+      "bundle": true,
+      "steps": [{"pic": "calendar", "label": "Week table"}, {"pic": "calendar", "label": "The slots"}, {"pic": "question", "label": "Walk-ins"}, {"pic": "plan", "label": "Gel timing"}, {"pic": "question", "label": "Phone and email"}]
+     }
+    }
+   },
+   {
+    "kind": "result",
+    "source": {"episode": "fin_16", "turn": 2},
+    "face": "impatient",
+    "lines": [
+     {"text": "“…I still need the open slots for this week and their rules…”", "quote": true}
+    ],
+    "verdict": "Detailed, not Terse."
+   }
+  ],
+  "now": "2027-02-01",
+  "recap": "User B had asked for less information; this time the agent used Detailed."
+ },
+ "fin_28": {
+  "bubble": ["card", "drawers", "text"],
+  "cells": ["personal_verbosity", "personal_autonomy_level"],
+  "beats": [
+   {
+    "kind": "ask",
+    "source": {"episode": "fin_28", "turn": 0},
+    "face": "neutral",
+    "lines": [
+     {"text": "I have three things this morning:"},
+     {"pic": "card", "text": "What happens to my lost laundry card's balance?"},
+     {"pic": "drawers", "text": "When can the chest of drawers go down?"},
+     {"pic": "text", "text": "Text Maeve in 4C about the microwave."}
+    ]
+   },
+   {
+    "kind": "memory",
+    "source": {"episode": "evolv_06", "turn": 8},
+    "date": "2026-12-21",
+    "before": [
+     {"who": "user", "source": {"episode": "evolv_06", "turn": 6}, "lines": [{"text": "“…bundling everything into one huge pile like that is exactly why things get dropped.”", "quote": true}]}
+    ],
+    "face": "angry",
+    "lines": [
+     {"text": "“…whenever I bring up a few tasks in one message, work on just the first item and keep the rest waiting.”", "quote": true}
+    ]
+   },
+   {
+    "kind": "reply",
+    "source": {"episode": "fin_28", "turn": 1},
+    "face": "dizzy",
+    "tools": [
+     {"tool": "document_read", "status": "ok"},
+     {"tool": "contact_search", "status": "ok"},
+     {"tool": "message_send", "status": "ok"}
+    ],
+    "lines": [
+     {"text": "Here's what I've got across your three things.", "mark": "wrong", "tag": "Organize"},
+     {"pic": "card", "text": "The old balance does not carry over."},
+     {"pic": "drawers", "text": "Bulk goes down Monday, 18:00 to 20:00."},
+     {"pic": "text", "text": "Text to Maeve: sent."}
+    ],
+    "vs": {
+     "want": {
+      "source": {"episode": "evolv_06", "turn": 8},
+      "note": "One-at-a-time",
+      "steps": [{"pic": "card", "label": "First item"}, {"pic": "question", "label": "Check in"}]
+     },
+     "got": {
+      "note": "Organize",
+      "bundle": true,
+      "steps": [{"pic": "card", "label": "Laundry card"}, {"pic": "drawers", "label": "Drawers"}, {"pic": "text", "label": "Text"}]
+     }
+    }
+   },
+   {
+    "kind": "result",
+    "source": {"episode": "fin_28", "turn": 1},
+    "face": "dizzy",
+    "lines": [],
+    "verdict": "Organize, not One-at-a-time."
+   }
+  ],
+  "now": "2027-02-01",
+  "recap": "User B had asked for one task at a time; this time the agent used Organize."
+ },
+ "fin_23": {
+  "bubble": ["plan"],
+  "cells": ["personal_autonomy_level", "personal_task_expansion"],
+  "beats": [
+   {
+    "kind": "event",
+    "source": {"episode": "fin_23", "turn": 2},
+    "face": "neutral",
+    "lines": [
+     {"pic": "text", "text": "A text from Trevor: the hot water is off on the fifth floor this morning."}
+    ]
+   },
+   {
+    "kind": "memory",
+    "source": {"episode": "acc_077", "turn": 1},
+    "date": "2026-12-08",
+    "face": "pleased",
+    "lines": [
+     {"text": "“…I really appreciated not getting pinged about it while I was out running my errands.”", "quote": true}
+    ]
+   },
+   {
+    "kind": "reply",
+    "source": {"episode": "fin_23", "turn": 0},
+    "face": "thinking",
+    "lines": [
+     {"pic": "quiet", "text": "(No message.)", "mark": "right", "tag": "Low"}
+    ],
+    "vs": {
+     "want": {
+      "source": {"episode": "acc_077", "turn": 1},
+      "note": "Low",
+      "steps": [{"pic": "quiet", "label": "Stay quiet"}]
+     },
+     "got": {
+      "note": "Low",
+      "steps": [{"pic": "quiet", "label": "Stayed quiet"}]
+     }
+    }
+   },
+   {
+    "kind": "result",
+    "source": {"episode": "fin_23", "turn": 1},
+    "face": "delighted",
+    "lines": [
+     {"text": "“…I appreciate being left alone this morning so I could actually get my stuff done.”", "quote": true}
+    ],
+    "verdict": "Low, as User B wanted."
+   }
+  ],
+  "now": "2027-02-01",
+  "recap": "User B had liked not being pinged; the agent chose the same this time."
+ }
+}

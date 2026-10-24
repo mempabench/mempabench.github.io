@@ -217,7 +217,7 @@ p { margin: 0; }
 .reactor { display: flex; flex-direction: column; align-items: center; text-align: center; }
 .reactor .face-wrap { position: relative; }
 .reactor .face { width: 112px; height: 112px; border-radius: 50%; overflow: hidden; border: 4px solid var(--paper); box-shadow: var(--shadow); background: var(--bg-deep); }
-.reactor .face img, .reactor .face svg { width: 100%; height: 100%; object-fit: cover; }
+.reactor .face img { width: 100%; height: 100%; object-fit: cover; }
 .reactor .who { font-family: var(--font-display); font-weight: 600; font-size: 20px; margin-top: 10px; }
 .thought { position: relative; margin-bottom: 30px; padding: 12px 16px; border-radius: 22px; font-weight: 600; font-size: 16px; line-height: 1.35; max-width: 240px; background: var(--paper); border: 2px solid var(--line); animation: pop .45s cubic-bezier(.2, .9, .3, 1.3); }
 .thought::after, .thought::before { content: ""; position: absolute; left: 50%; border-radius: 50%; background: inherit; border: inherit; }
@@ -447,6 +447,11 @@ p { margin: 0; }
 }
 
 /* ---------- demo ---------- */
+/* demo.js sets --accent / --accent-edge to the user's pair on these; the shades made from them are re-derived here,
+   since :root's were computed from the site's own accent */
+.demo, .demo-tl, .modal { --accent-soft: color-mix(in srgb, var(--accent) 30%, var(--paper));
+  --chip-bg: color-mix(in srgb, var(--accent) 26%, var(--paper)); --bar: color-mix(in srgb, var(--accent) 40%, var(--paper));
+  --bar-edge: color-mix(in srgb, var(--accent-edge) 45%, var(--paper)); }
 .demo { max-width: 1600px; padding-left: 120px; padding-right: 40px;
   /* a landscape stage: about 1.45 wide to 1 tall, never taller than the window allows (352px = left column + gap) */
   --stage-w: calc(min(100vw, 1600px) - 160px - 352px);
@@ -460,10 +465,9 @@ p { margin: 0; }
 /* the user switcher: a pill hanging in the left gutter; avatars only, the name shows beside the one under the pointer */
 .ulist { position: absolute; z-index: 6; right: calc(100% + 26px); top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 14px 9px; background: var(--paper); border: 1px solid var(--line); border-radius: 999px; box-shadow: var(--shadow); }
 .ulist .u { position: relative; display: block; padding: 0; border: 0; background: none; border-radius: 50%; cursor: pointer; }
-.ulist .u[aria-disabled] { cursor: default; }
 .ulist .avatar { display: block; width: 38px; height: 38px; border-radius: 50%; overflow: hidden; background: var(--bg-deep); opacity: .55; filter: grayscale(.4); transition: opacity .2s, filter .2s; }
 .ulist .u[aria-current] .avatar { width: 46px; height: 46px; opacity: 1; filter: none; box-shadow: 0 0 0 2.5px var(--accent-edge); }
-.ulist .avatar img, .ulist .avatar svg { width: 100%; height: 100%; display: block; object-fit: cover; }
+.ulist .avatar img { width: 100%; height: 100%; display: block; object-fit: cover; }
 .ulist .tip { position: absolute; left: calc(100% + 12px); top: 50%; transform: translateY(-50%); white-space: nowrap; padding: 4px 9px; border-radius: var(--r-tag); background: var(--ink); color: var(--paper); font-size: 13px; font-weight: 600; opacity: 0; pointer-events: none; transition: opacity .15s; }
 .ulist .u:hover .tip, .ulist .u:focus-visible .tip { opacity: 1; }
 .ulist .u:hover .avatar { opacity: .85; }
@@ -906,3 +910,5 @@ summary.case-head:hover::after, summary.case-head:focus-visible::after { color: 
   .lb th.m:hover .tip, .lb th.m:focus .tip { width: auto; }
   .lb th.m .tip img { width: 150px; height: 150px; }
 }
+/* an event in the Demo chat: what arrives when nobody has asked anything */
+.ev { align-self: center; max-width: 92%; padding: 8px 12px; border-radius: 12px; background: var(--paper); border: 1px dashed var(--line-strong); font-size: 13.5px; color: var(--ink-soft); animation: pop .4s cubic-bezier(.2, .9, .3, 1.2); }

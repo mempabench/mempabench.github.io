@@ -22,8 +22,8 @@
     </div>
     <section class="grp ipg" id="prefs" aria-live="polite"></section>
   </aside>
-  <section class="stage" id="stage" aria-label="User A's world">
-    <iframe id="room" class="room" data-src="../diorama-b/index.html?embed" title="User A's living room" tabindex="-1" aria-hidden="true"></iframe>
+  <section class="stage" id="stage">
+    <iframe id="room" class="room" tabindex="-1" aria-hidden="true"></iframe>
     <div class="dimmer" id="dimmer"></div>
     <div class="bubble" id="bubble" aria-hidden="true"></div>
     <p class="title-card" id="title-card"></p>
@@ -34,13 +34,13 @@
     <button class="next-btn" id="next" type="button" hidden></button>
     <button class="stage-btn play" id="play" type="button" aria-label="Pause" hidden></button>
     <button class="stage-btn replay" id="replay" type="button" aria-label="Replay from the start" hidden></button>
-    <div class="cover" id="cover"><button class="enter" id="enter" type="button" disabled>Enter User A's World</button></div>
+    <div class="cover" id="cover"><button class="enter" id="enter" type="button" disabled></button></div>
     <p class="stage-error" id="stage-error" role="alert" hidden></p>
   </section>
 </main>
 
 <section class="wrap demo-tl" aria-labelledby="tl-title">
-  <div class="tl-head"><h2 id="tl-title">Four months with User A</h2><span class="tl-sub" id="tl-sub"></span>
+  <div class="tl-head"><h2 id="tl-title"></h2><span class="tl-sub" id="tl-sub"></span>
     <div class="tl-legend" aria-hidden="true"><span><i class="k-s"></i>Session</span><span><i class="k-c"></i>Preference changes</span><span><i class="k-p"></i>Probe ✓</span><span><i class="k-f"></i>Probe ✗</span></div></div>
   <div class="tl-scroll" id="tl-scroll"><div class="tl-chart" id="tl-chart"></div></div>
   <div class="tl-story"><h3 id="tl-follow"></h3><ol class="tl-steps" id="tl-steps"></ol></div>
@@ -49,7 +49,7 @@
 
 <div class="modal" id="modal" hidden>
   <div class="modal-card card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <div class="modal-head"><span class="avatar"><img src="assets/user_a_face.jpg" alt=""></span><b id="modal-title">User A</b><span class="muted small" id="modal-date"></span><button class="modal-x" id="modal-x" type="button" aria-label="Close">&times;</button></div>
+    <div class="modal-head"><span class="avatar"><img id="modal-avatar" alt=""></span><b id="modal-title"></b><span class="muted small" id="modal-date"></span><button class="modal-x" id="modal-x" type="button" aria-label="Close">&times;</button></div>
     <div class="chat modal-chat" id="modal-chat" aria-live="polite"></div>
   </div>
 </div>

@@ -13,15 +13,17 @@
     smile: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-10"/></svg>',
     frown: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg>',
   };
-  // Neutral silhouette for users who have no art yet.
-  const SILHOUETTE = (tint) => `<svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" fill="${tint}"/><circle cx="32" cy="25" r="11" fill="#fffdf8" opacity=".85"/><path d="M12 64c1.5-13 9.5-20 20-20s18.5 7 20 20z" fill="#fffdf8" opacity=".85"/></svg>`;
   const USERS = [
-    { id: "A", img: "assets/user_a_face.jpg", front: "assets/user_a_front.jpg", photo: "assets/user_a_id.jpg" },   // front / photo: straight-on, for the Demo avatars and the ID card
-    { id: "B", tint: "#e4d3ce" },
-    { id: "C", tint: "#cfdccf" },
-    { id: "D", tint: "#d4dbea" },
+    // the one list of users: key names their data folder (data/replay/<key>/); front is the straight-on avatar, photo
+    // the ID card picture, room the 3D room page the Demo embeds, accent the [fill, edge] colour pair their Demo page
+    // is drawn in, taken from what they wear (A: the site's sand-rose; B: the mustard vest; C: the navy-grey suit;
+    // D: the dusty-pink cardigan).
+    { id: "A", key: "user_a", front: "assets/user_a_front.jpg", photo: "assets/user_a_id.jpg", room: "../diorama-b/index.html", accent: ["#d2b7b2", "#a8756b"] },
+    { id: "B", key: "user_b", front: "assets/user_b_front.jpg", photo: "assets/user_b_id.jpg", room: "../room-user_b/index.html", accent: ["#e2c98e", "#a3802f"] },
+    { id: "C", key: "user_c", front: "assets/user_c_front.jpg", photo: "assets/user_c_id.jpg", room: "../room-office/index.html", accent: ["#bcc6d6", "#566a8c"] },
+    { id: "D", key: "user_d", front: "assets/user_d_front.jpg", photo: "assets/user_d_id.jpg", room: "../room-office/index.html", accent: ["#e3bdca", "#a65f7c"] },
   ];
-  const avatar = (u) => (u.img ? `<img src="${u.img}" alt="">` : SILHOUETTE(u.tint));
+  const avatar = (u) => `<img src="${u.front}" alt="">`;
 
   const store = {
     get(k) { try { return JSON.parse(localStorage.getItem("mpb." + k)); } catch (e) { return null; } },

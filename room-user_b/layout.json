@@ -1,0 +1,472 @@
+{
+ "source": "work/set_refs/b_apartment/ (set photos, LAYOUT.md), laid out by hand",
+ "generator": "work/gen/b_room/make_layout.py",
+ "units": "metres; plan x right, plan y away from the camera-side wall, z up; yaw_deg counter-clockwise seen from above, front = local -y",
+ "crop": [
+  -0.12,
+  -0.12,
+  7.32,
+  6.12
+ ],
+ "origin": [
+  3.6,
+  3.0
+ ],
+ "floor": {
+  "outline": [
+   [
+    0,
+    0
+   ],
+   [
+    7.2,
+    0
+   ],
+   [
+    7.2,
+    6.0
+   ],
+   [
+    0,
+    6.0
+   ]
+  ]
+ },
+ "walls": [
+  {
+   "id": "camera",
+   "role": "camera",
+   "a": [
+    7.26,
+    -0.06
+   ],
+   "b": [
+    -0.06,
+    -0.06
+   ],
+   "thickness": 0.12,
+   "height": 3.0,
+   "normal": [
+    0,
+    1
+   ],
+   "length": 7.32,
+   "openings": [],
+   "free_spans": [
+    [
+     0.0,
+     7.32
+    ]
+   ]
+  },
+  {
+   "id": "kitchen",
+   "role": "wall",
+   "a": [
+    -0.06,
+    -0.06
+   ],
+   "b": [
+    -0.06,
+    6.06
+   ],
+   "thickness": 0.12,
+   "height": 3.0,
+   "normal": [
+    1,
+    0
+   ],
+   "length": 6.12,
+   "openings": [],
+   "free_spans": [
+    [
+     0.0,
+     6.12
+    ]
+   ]
+  },
+  {
+   "id": "window",
+   "role": "window",
+   "a": [
+    -0.06,
+    6.06
+   ],
+   "b": [
+    7.26,
+    6.06
+   ],
+   "thickness": 0.12,
+   "height": 3.0,
+   "normal": [
+    0,
+    -1
+   ],
+   "length": 7.32,
+   "openings": [],
+   "free_spans": [
+    [
+     0.0,
+     7.32
+    ]
+   ]
+  },
+  {
+   "id": "right",
+   "role": "wall",
+   "a": [
+    7.26,
+    6.06
+   ],
+   "b": [
+    7.26,
+    -0.06
+   ],
+   "thickness": 0.12,
+   "height": 3.0,
+   "normal": [
+    -1,
+    0
+   ],
+   "length": 6.12,
+   "openings": [
+    {
+     "kind": "opening",
+     "from": 0.45,
+     "to": 1.35,
+     "bottom": 0.0,
+     "top": 2.1
+    },
+    {
+     "kind": "door",
+     "from": 4.65,
+     "to": 5.55,
+     "bottom": 0.0,
+     "top": 2.1
+    }
+   ],
+   "free_spans": [
+    [
+     0.0,
+     0.45
+    ],
+    [
+     1.35,
+     4.65
+    ],
+    [
+     5.55,
+     6.12
+    ]
+   ]
+  }
+ ],
+ "joints": [
+  {
+   "outline": [
+    [
+     -0.12,
+     -0.12
+    ],
+    [
+     0.0,
+     -0.12
+    ],
+    [
+     0.0,
+     0.0
+    ],
+    [
+     -0.12,
+     0.0
+    ]
+   ],
+   "height": 3.0,
+   "roles": [
+    "camera",
+    "wall"
+   ]
+  },
+  {
+   "outline": [
+    [
+     -0.12,
+     6.0
+    ],
+    [
+     0.0,
+     6.0
+    ],
+    [
+     0.0,
+     6.12
+    ],
+    [
+     -0.12,
+     6.12
+    ]
+   ],
+   "height": 3.0,
+   "roles": [
+    "wall",
+    "window"
+   ]
+  },
+  {
+   "outline": [
+    [
+     7.2,
+     6.0
+    ],
+    [
+     7.32,
+     6.0
+    ],
+    [
+     7.32,
+     6.12
+    ],
+    [
+     7.2,
+     6.12
+    ]
+   ],
+   "height": 3.0,
+   "roles": [
+    "wall",
+    "window"
+   ]
+  },
+  {
+   "outline": [
+    [
+     7.2,
+     -0.12
+    ],
+    [
+     7.32,
+     -0.12
+    ],
+    [
+     7.32,
+     0.0
+    ],
+    [
+     7.2,
+     0.0
+    ]
+   ],
+   "height": 3.0,
+   "roles": [
+    "camera",
+    "wall"
+   ]
+  }
+ ],
+ "pieces": [
+  {
+   "kind": "sofa",
+   "x": 3.9,
+   "y": 3.55,
+   "z": 0.0,
+   "yaw_deg": 0.0,
+   "size": [
+    2.0,
+    0.92,
+    0.86
+   ]
+  },
+  {
+   "kind": "coffee_table",
+   "x": 3.9,
+   "y": 2.3,
+   "z": 0.0,
+   "yaw_deg": 0.0,
+   "size": [
+    1.0,
+    0.62,
+    0.46
+   ]
+  },
+  {
+   "kind": "front_table",
+   "x": 3.3,
+   "y": 1.05,
+   "z": 0.0,
+   "yaw_deg": 0.0,
+   "size": [
+    1.3,
+    0.65,
+    0.46
+   ]
+  },
+  {
+   "kind": "armchair",
+   "x": 2.1,
+   "y": 1.85,
+   "z": 0.0,
+   "yaw_deg": 65.0,
+   "size": [
+    0.85,
+    0.85,
+    1.05
+   ]
+  },
+  {
+   "kind": "chest_side_table",
+   "x": 5.27,
+   "y": 3.6,
+   "z": 0.0,
+   "yaw_deg": 0.0,
+   "size": [
+    0.62,
+    0.55,
+    0.56
+   ]
+  },
+  {
+   "kind": "table_lamp",
+   "x": 5.33,
+   "y": 3.72,
+   "z": 0.0,
+   "yaw_deg": 0.0,
+   "size": [
+    0.36,
+    0.36,
+    0.62
+   ]
+  },
+  {
+   "kind": "dining_set",
+   "x": 3.0,
+   "y": 5.25,
+   "z": 0.0,
+   "yaw_deg": 0.0,
+   "size": [
+    1.75,
+    1.2,
+    0.95
+   ]
+  },
+  {
+   "kind": "low_bookshelf",
+   "x": 5.5,
+   "y": 5.78,
+   "z": 0.0,
+   "yaw_deg": 0.0,
+   "size": [
+    0.95,
+    0.4,
+    0.9
+   ]
+  },
+  {
+   "kind": "potted_plant",
+   "x": 6.55,
+   "y": 5.55,
+   "z": 0.0,
+   "yaw_deg": 0.0,
+   "size": [
+    0.7,
+    0.7,
+    1.25
+   ]
+  },
+  {
+   "kind": "tall_bookshelf",
+   "x": 7.02,
+   "y": 3.35,
+   "z": 0.0,
+   "yaw_deg": -90.0,
+   "size": [
+    0.85,
+    0.34,
+    1.85
+   ]
+  },
+  {
+   "kind": "director_chair",
+   "x": 6.15,
+   "y": 2.15,
+   "z": 0.0,
+   "yaw_deg": -40.0,
+   "size": [
+    0.6,
+    0.55,
+    0.92
+   ]
+  },
+  {
+   "kind": "lower_counter",
+   "x": 0.33,
+   "y": 3.72,
+   "z": 0.0,
+   "yaw_deg": 90.0,
+   "size": [
+    1.7,
+    0.66,
+    0.9
+   ]
+  },
+  {
+   "kind": "upper_cabinets",
+   "x": 0.18,
+   "y": 3.5,
+   "z": 1.45,
+   "yaw_deg": 90.0,
+   "size": [
+    2.15,
+    0.35,
+    0.75
+   ]
+  },
+  {
+   "kind": "fridge",
+   "x": 0.4,
+   "y": 4.98,
+   "z": 0.0,
+   "yaw_deg": 90.0,
+   "size": [
+    0.76,
+    0.72,
+    1.75
+   ]
+  },
+  {
+   "kind": "kitchen_island",
+   "x": 1.75,
+   "y": 3.1,
+   "z": 0.0,
+   "yaw_deg": 90.0,
+   "size": [
+    1.25,
+    0.7,
+    0.92
+   ]
+  },
+  {
+   "kind": "bar_stool",
+   "x": 2.42,
+   "y": 2.78,
+   "z": 0.0,
+   "yaw_deg": -90.0,
+   "size": [
+    0.42,
+    0.42,
+    1.0
+   ]
+  },
+  {
+   "kind": "bar_stool",
+   "x": 2.42,
+   "y": 3.45,
+   "z": 0.0,
+   "yaw_deg": -90.0,
+   "size": [
+    0.42,
+    0.42,
+    1.0
+   ]
+  }
+ ]
+}

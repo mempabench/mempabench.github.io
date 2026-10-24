@@ -1,0 +1,349 @@
+{
+ "source": "hand layout from work/set_refs/cd_office/ (set photos; RoomSketcher plan as a guide)",
+ "generator": "work/gen/cd_office_layout/make_layout.py",
+ "units": "metres; plan x right, plan y away from the open front, z up; yaw_deg counter-clockwise seen from above, front = local -y",
+ "crop": [
+  0.0,
+  0.0,
+  10.0,
+  5.5
+ ],
+ "origin": [
+  5.0,
+  2.75
+ ],
+ "floor": {
+  "outline": [
+   [
+    -0.12,
+    0.0
+   ],
+   [
+    10.12,
+    0.0
+   ],
+   [
+    10.12,
+    5.62
+   ],
+   [
+    -0.12,
+    5.62
+   ]
+  ]
+ },
+ "platforms": [],
+ "walls": [
+  {
+   "id": "back",
+   "role": "wall",
+   "a": [
+    -0.12,
+    5.56
+   ],
+   "b": [
+    10.12,
+    5.56
+   ],
+   "thickness": 0.12,
+   "height": 2.7,
+   "normal": [
+    0,
+    -1
+   ],
+   "length": 10.24,
+   "openings": [
+    {
+     "kind": "window",
+     "from": 7.12,
+     "to": 9.12,
+     "bottom": 0.95,
+     "top": 2.25
+    }
+   ],
+   "free_spans": [
+    [
+     0.0,
+     7.12
+    ],
+    [
+     9.12,
+     10.24
+    ]
+   ]
+  },
+  {
+   "id": "left",
+   "role": "front_door",
+   "a": [
+    -0.06,
+    0.0
+   ],
+   "b": [
+    -0.06,
+    5.5
+   ],
+   "thickness": 0.12,
+   "height": 2.7,
+   "normal": [
+    1,
+    0
+   ],
+   "length": 5.5,
+   "openings": [
+    {
+     "kind": "door",
+     "from": 1.0,
+     "to": 1.95,
+     "bottom": 0.0,
+     "top": 2.1
+    }
+   ],
+   "free_spans": [
+    [
+     0.0,
+     1.0
+    ],
+    [
+     1.95,
+     5.5
+    ]
+   ]
+  },
+  {
+   "id": "right",
+   "role": "wall",
+   "a": [
+    10.06,
+    5.5
+   ],
+   "b": [
+    10.06,
+    0.0
+   ],
+   "thickness": 0.12,
+   "height": 2.7,
+   "normal": [
+    -1,
+    0
+   ],
+   "length": 5.5,
+   "openings": [],
+   "free_spans": [
+    [
+     0.0,
+     5.5
+    ]
+   ]
+  }
+ ],
+ "partition": {
+  "x": 5.7,
+  "y0": 0.9,
+  "y1": 5.5,
+  "height": 2.7,
+  "door": {
+   "from": 0.2,
+   "to": 1.1
+  }
+ },
+ "joints": [],
+ "pieces": [
+  {
+   "kind": "reception_desk",
+   "source": "hand",
+   "x": 2.9,
+   "y": 2.55,
+   "z": 0.0,
+   "yaw_deg": 0.0,
+   "size": [
+    2.6,
+    0.85,
+    1.08
+   ],
+   "zone": "reception"
+  },
+  {
+   "kind": "reception_chair",
+   "source": "hand",
+   "x": 4.05,
+   "y": 3.4,
+   "z": 0.0,
+   "yaw_deg": 0.0,
+   "size": [
+    0.65,
+    0.65,
+    1.05
+   ],
+   "zone": "reception"
+  },
+  {
+   "kind": "binder_shelf",
+   "source": "hand",
+   "x": 1.15,
+   "y": 5.27,
+   "z": 0.0,
+   "yaw_deg": 0.0,
+   "size": [
+    1.2,
+    0.42,
+    1.1
+   ],
+   "zone": "reception"
+  },
+  {
+   "kind": "paper_boxes",
+   "source": "hand",
+   "x": 3.95,
+   "y": 5.15,
+   "z": 0.0,
+   "yaw_deg": 0.0,
+   "size": [
+    0.75,
+    0.55,
+    0.62
+   ],
+   "zone": "reception"
+  },
+  {
+   "kind": "copier",
+   "source": "hand",
+   "x": 4.95,
+   "y": 5.0,
+   "z": 0.0,
+   "yaw_deg": 0.0,
+   "size": [
+    0.72,
+    0.68,
+    1.25
+   ],
+   "zone": "reception"
+  },
+  {
+   "kind": "potted_plant",
+   "source": "hand",
+   "x": 0.45,
+   "y": 4.95,
+   "z": 0.0,
+   "yaw_deg": 0.0,
+   "size": [
+    0.6,
+    0.6,
+    1.6
+   ],
+   "zone": "reception"
+  },
+  {
+   "kind": "coat_rack",
+   "source": "hand",
+   "x": 0.35,
+   "y": 2.35,
+   "z": 0.0,
+   "yaw_deg": 0.0,
+   "size": [
+    0.5,
+    0.5,
+    1.8
+   ],
+   "zone": "reception"
+  },
+  {
+   "kind": "waiting_sofa",
+   "source": "hand",
+   "x": 0.55,
+   "y": 3.55,
+   "z": 0.0,
+   "yaw_deg": 90,
+   "size": [
+    1.6,
+    0.85,
+    0.85
+   ],
+   "zone": "reception"
+  },
+  {
+   "kind": "manager_desk",
+   "source": "hand",
+   "x": 8.1,
+   "y": 3.25,
+   "z": 0.0,
+   "yaw_deg": 0.0,
+   "size": [
+    1.8,
+    0.9,
+    0.78
+   ],
+   "zone": "manager"
+  },
+  {
+   "kind": "manager_chair",
+   "source": "hand",
+   "x": 8.1,
+   "y": 4.0,
+   "z": 0.0,
+   "yaw_deg": 0.0,
+   "size": [
+    0.7,
+    0.7,
+    1.2
+   ],
+   "zone": "manager"
+  },
+  {
+   "kind": "guest_chair",
+   "source": "hand",
+   "x": 7.4,
+   "y": 2.15,
+   "z": 0.0,
+   "yaw_deg": 200,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "zone": "manager"
+  },
+  {
+   "kind": "guest_chair",
+   "source": "hand",
+   "x": 8.8,
+   "y": 2.15,
+   "z": 0.0,
+   "yaw_deg": 160,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "zone": "manager"
+  },
+  {
+   "kind": "manager_bookshelf",
+   "source": "hand",
+   "x": 8.1,
+   "y": 5.28,
+   "z": 0.0,
+   "yaw_deg": 0.0,
+   "size": [
+    1.6,
+    0.4,
+    0.75
+   ],
+   "zone": "manager"
+  },
+  {
+   "kind": "globe",
+   "source": "hand",
+   "x": 8.65,
+   "y": 5.28,
+   "z": 0.75,
+   "yaw_deg": 0.0,
+   "size": [
+    0.36,
+    0.36,
+    0.5
+   ],
+   "zone": "manager"
+  }
+ ]
+}

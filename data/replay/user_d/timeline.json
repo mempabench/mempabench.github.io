@@ -1,0 +1,662 @@
+{
+ "acc_001": {
+  "date": "2026-10-01",
+  "before": null,
+  "situation": "A Northline vendor result, an invoice question, and Alan's chair issue need one note."
+ },
+ "acc_002": {
+  "date": "2026-10-01",
+  "before": null,
+  "situation": "A Glenmont Power rate-change email lands at home, on an account still shared with Samuel."
+ },
+ "acc_003": {
+  "date": "2026-10-02",
+  "before": null,
+  "situation": "The Friday vendor cutoff looms, and the branch toner and copy paper order isn't ready."
+ },
+ "acc_004": {
+  "date": "2026-10-02",
+  "before": null,
+  "situation": "She wants this week's GlenMart grocery list scaled for one person, not two."
+ },
+ "acc_005": {
+  "date": "2026-10-02",
+  "before": null,
+  "situation": "Rhonda Petrakis sent a Northline backorder notice using a supply term she doesn't understand."
+ },
+ "acc_006": {
+  "date": "2026-10-03",
+  "before": null,
+  "situation": "Edward's form needs an approval that nobody at the branch can actually give."
+ },
+ "acc_007": {
+  "date": "2026-10-03",
+  "before": null,
+  "situation": "Julian's latest message gives her an opening to answer plainly, in three short lines."
+ },
+ "acc_008": {
+  "date": "2026-10-03",
+  "before": null,
+  "situation": "Christine has invited her to a corporate seminar; she needs to register for it."
+ },
+ "acc_009": {
+  "date": "2026-10-04",
+  "before": null,
+  "situation": "Peter sent three messages at once about the car, the screening, and the calendar."
+ },
+ "acc_010": {
+  "date": "2026-10-04",
+  "before": null,
+  "situation": "Edward Mills sent round a farewell card for someone she barely knows."
+ },
+ "acc_011": {
+  "date": "2026-10-04",
+  "before": null,
+  "situation": "She wants a Friday dinner with Nicole somewhere she won't run into Samuel."
+ },
+ "acc_012": {
+  "date": "2026-10-05",
+  "before": null,
+  "situation": "Christine Boyd's branch visit needs an agenda with the room, lunch, and seating handled."
+ },
+ "acc_013": {
+  "date": "2026-10-05",
+  "before": null,
+  "situation": "Peter needs lunch for a visiting customer, and there are forty minutes to spare."
+ },
+ "acc_014": {
+  "date": "2026-10-05",
+  "before": null,
+  "situation": "James Riley brings a pay register question to the front desk; his check looks different."
+ },
+ "acc_016": {
+  "date": "2026-10-06",
+  "before": null,
+  "situation": "She needs a Glenmont Athletic Club workout slot that fits around the branch day."
+ },
+ "acc_017": {
+  "date": "2026-10-06",
+  "before": null,
+  "situation": "Linda Ashford has moved the visit dates, and the family thread is live again."
+ },
+ "acc_018": {
+  "date": "2026-10-06",
+  "before": null,
+  "situation": "Northline answered about a consolidated delivery with two disputed paper lines for Rhonda."
+ },
+ "acc_019": {
+  "date": "2026-10-07",
+  "before": null,
+  "situation": "Claire asks her to run Margaret Ellis's birthday collection without chasing anyone twice."
+ },
+ "acc_020": {
+  "date": "2026-10-07",
+  "before": null,
+  "situation": "After a long branch day, she wants somewhere to go with Julian besides the parking lot."
+ },
+ "acc_021": {
+  "date": "2026-10-07",
+  "before": null,
+  "situation": "After the coordinator's Meadowbrook Barn note, she wants to know which wedding deposits are recoverable."
+ },
+ "acc_022": {
+  "date": "2026-10-08",
+  "before": null,
+  "situation": "Peter wants this week's staff screening announced, but the conference room isn't booked yet."
+ },
+ "acc_023": {
+  "date": "2026-10-08",
+  "before": null,
+  "situation": "An overnight customer voicemail transcript arrives at the front desk while no request is open."
+ },
+ "acc_024": {
+  "date": "2026-10-08",
+  "before": null,
+  "situation": "Ines Varela says the Foothill Art Studio evening section is nearly full for fall term."
+ },
+ "acc_025": {
+  "date": "2026-10-09",
+  "before": null,
+  "situation": "Peter offered two times and two formats; the Northline catalog-changeover briefing needs a room."
+ },
+ "acc_026": {
+  "date": "2026-10-09",
+  "before": null,
+  "situation": "Peter left a prop list for his morale project, and there is no budget."
+ },
+ "acc_027": {
+  "date": "2026-10-09",
+  "before": null,
+  "situation": "The finale group thread with Nicole Harper changes before she has caught up on the episode."
+ },
+ "acc_029": {
+  "date": "2026-10-10",
+  "before": null,
+  "situation": "An irritated caller's plaza-account call came in Friday and needs routing for Tuesday."
+ },
+ "acc_031": {
+  "date": "2026-10-11",
+  "before": null,
+  "situation": "The club, a clinic appointment, and her dentist visit with Dr. Song need workable times."
+ },
+ "acc_032": {
+  "date": "2026-10-12",
+  "before": null,
+  "situation": "She wants a Marden Court building-record request drafted while other address changes stay open."
+ },
+ "acc_033": {
+  "date": "2026-10-13",
+  "before": null,
+  "situation": "A $185 early drum charge is in dispute, and she wants the Meridian agreement checked."
+ },
+ "acc_034": {
+  "date": "2026-10-13",
+  "before": null,
+  "situation": "Her puzzle-book delivery is missing despite a delivered scan, and she wants it traced."
+ },
+ "acc_035": {
+  "date": "2026-10-14",
+  "before": null,
+  "situation": "James left the counter upset, and the October 16 shred-run deadline is approaching."
+ },
+ "acc_036": {
+  "date": "2026-10-15",
+  "before": null,
+  "situation": "Claire's collection note is waiting, and she needs gift ideas for Julian's birthday."
+ },
+ "acc_038": {
+  "date": "2026-10-16",
+  "before": null,
+  "situation": "Her lunch-cover plan fell through, and Margaret is the first person to ask."
+ },
+ "acc_039": {
+  "date": "2026-10-16",
+  "before": null,
+  "situation": "Emily's visit has stalled the desk, and Claire's birthday-envelope request mustn't get lost."
+ },
+ "acc_040": {
+  "date": "2026-10-18",
+  "before": null,
+  "situation": "The expense form and the shred-run sign-off both need to go to Victor in one message."
+ },
+ "acc_041": {
+  "date": "2026-10-18",
+  "before": null,
+  "situation": "Christine has moved the seminar date; nothing else on the seminar is pending."
+ },
+ "acc_042": {
+  "date": "2026-10-19",
+  "before": null,
+  "situation": "She needs to pick two portfolio pieces to enter in the winter group show."
+ },
+ "acc_043": {
+  "date": "2026-10-20",
+  "before": null,
+  "situation": "Linda has nudged tonight's call again, and she wants a few lines ready."
+ },
+ "acc_044": {
+  "date": "2026-10-21",
+  "before": null,
+  "situation": "Edward Mills moved a filing deadline, but the branch has nothing pending in that batch."
+ },
+ "acc_046": {
+  "date": "2026-10-23",
+  "before": null,
+  "situation": "Three days after her careful message, Julian Hartwell still hasn't replied."
+ },
+ "acc_047": {
+  "date": "2026-10-24",
+  "before": null,
+  "situation": "The monthly tracking needs filing, and Christine Boyd says some blanks stay internal."
+ },
+ "acc_048": {
+  "date": "2026-10-25",
+  "before": null,
+  "situation": "Without the old furniture, a bare wall in her one-bedroom apartment looks obvious."
+ },
+ "acc_049": {
+  "date": "2026-10-27",
+  "before": null,
+  "situation": "Claire's all-day committee thread gives two different collection caps, and both decisions need logging."
+ },
+ "acc_050": {
+  "date": "2026-10-28",
+  "before": null,
+  "situation": "Framing can wait, but she's out of paper and oil pencils before the entry weekend."
+ },
+ "acc_051": {
+  "date": "2026-10-29",
+  "before": null,
+  "situation": "Dr. Song's dental appointment moved to a morning slot she can't take during her shift."
+ },
+ "acc_053": {
+  "date": "2026-10-30",
+  "before": null,
+  "situation": "Northline's catalog changeover is live, and the branch's standing orders may not carry over."
+ },
+ "acc_054": {
+  "date": "2026-10-31",
+  "before": null,
+  "situation": "She checks what she still owes on the old lease, then drafts to Wexford Row Lettings."
+ },
+ "acc_055": {
+  "date": "2026-11-01",
+  "before": null,
+  "situation": "Nicole's screening refreshments need a food and fulfillment choice within petty cash."
+ },
+ "acc_056": {
+  "date": "2026-11-03",
+  "before": null,
+  "situation": "Christine Boyd changed the new-hire packet approval chain, and the packet needs a routing sheet."
+ },
+ "acc_057": {
+  "date": "2026-11-04",
+  "before": null,
+  "situation": "Nadia Brandt's reply leaves unclear how close to the gallery's size limit a piece can be."
+ },
+ "acc_058": {
+  "date": "2026-11-06",
+  "before": null,
+  "situation": "Peter Lawson's nine o'clock meeting moves while she is out of the branch."
+ },
+ "acc_059": {
+  "date": "2026-11-08",
+  "before": null,
+  "situation": "She needs a Glenmont Family Clinic appointment that won't eat her whole afternoon."
+ },
+ "acc_061": {
+  "date": "2026-11-11",
+  "before": null,
+  "situation": "The outside-line greeting page in the front desk binder needs updating."
+ },
+ "acc_062": {
+  "date": "2026-11-13",
+  "before": null,
+  "situation": "A late message changes tonight's plan with Julian Hartwell while nothing else is pending."
+ },
+ "acc_063": {
+  "date": "2026-11-15",
+  "before": null,
+  "situation": "Marden Court rent is due, and December's bills are tight after the show-entry weekend."
+ },
+ "acc_064": {
+  "date": "2026-11-16",
+  "before": null,
+  "situation": "The party committee couldn't choose, so Claire Winters needs a venue recommendation."
+ },
+ "acc_065": {
+  "date": "2026-11-18",
+  "before": null,
+  "situation": "The study she needs is buried somewhere in her half-indexed sketchbook."
+ },
+ "acc_066": {
+  "date": "2026-11-20",
+  "before": null,
+  "situation": "Peter promised letterhead this week; she allows a normal order or a rush within $100."
+ },
+ "acc_067": {
+  "date": "2026-11-21",
+  "before": null,
+  "situation": "She wants Glenmont Athletic Club's Thanksgiving closure dates checked for November 23 to 29."
+ },
+ "acc_068": {
+  "date": "2026-11-23",
+  "before": null,
+  "situation": "She already reserved the conference room; the committee sign-up sheet and Claire's note remain."
+ },
+ "acc_069": {
+  "date": "2026-11-25",
+  "before": null,
+  "situation": "Two walk-ins and a pallet at the wrong door need sorting into next steps for George."
+ },
+ "acc_070": {
+  "date": "2026-11-27",
+  "before": null,
+  "situation": "Phone messages from the pad need narrowing to the three that need callbacks."
+ },
+ "acc_071": {
+  "date": "2026-11-28",
+  "before": null,
+  "situation": "Her mother's prescription refill is waiting, and the pharmacy counter closes soon."
+ },
+ "acc_074": {
+  "date": "2026-11-30",
+  "before": null,
+  "situation": "She's stuck on what to tell Linda about the breakup, and Linda's December dates changed."
+ },
+ "acc_076": {
+  "date": "2026-12-03",
+  "before": null,
+  "situation": "Claire says the branch holiday party date has moved, with no party task open."
+ },
+ "acc_077": {
+  "date": "2026-12-05",
+  "before": null,
+  "situation": "Nadia's gallery decision arrives by email the night before the winter group show hangs."
+ },
+ "acc_078": {
+  "date": "2026-12-07",
+  "before": null,
+  "situation": "She and Julian want a quiet day out of town, with a private calendar hold."
+ },
+ "acc_079": {
+  "date": "2026-12-09",
+  "before": null,
+  "situation": "Christine sent a late branch-review request that she can't promise to fulfill."
+ },
+ "acc_080": {
+  "date": "2026-12-11",
+  "before": null,
+  "situation": "Samuel's last boxes are still in the hallway, and she wants them gone without a conversation."
+ },
+ "acc_081": {
+  "date": "2026-12-13",
+  "before": null,
+  "situation": "Alan says a vendor plans to sit in the lobby all Monday afternoon."
+ },
+ "acc_082": {
+  "date": "2026-12-15",
+  "before": null,
+  "situation": "The first gift for Linda fell through just before her visit, and she needs another."
+ },
+ "acc_083": {
+  "date": "2026-12-17",
+  "before": null,
+  "situation": "Claire's cost-cutting memo proposes dropping four supplies, one of which the desk actually uses."
+ },
+ "acc_084": {
+  "date": "2026-12-19",
+  "before": null,
+  "situation": "A branch rumour about Julian has shifted, and she must decide what to tell Nicole Harper."
+ },
+ "acc_085": {
+  "date": "2026-12-21",
+  "before": null,
+  "situation": "Peter's year-end trip claim is itemized, but his two meal affidavits take two days."
+ },
+ "acc_086": {
+  "date": "2026-12-23",
+  "before": null,
+  "situation": "A customer's order came short, and two Northline records disagree about the missing balance."
+ },
+ "acc_087": {
+  "date": "2026-12-25",
+  "before": null,
+  "situation": "She has finished her puzzle book and wants to reorder another copy."
+ },
+ "acc_088": {
+  "date": "2026-12-27",
+  "before": null,
+  "situation": "Before Linda's Sunday call, she must decide what to do with the ring."
+ },
+ "acc_089": {
+  "date": "2026-12-29",
+  "before": null,
+  "situation": "Peter needs a one-day Bitterfield trip that leaves his regional office meeting untouched."
+ },
+ "acc_091": {
+  "date": "2026-12-31",
+  "before": null,
+  "situation": "Laura's invitation has arrived, but the thread doesn't say whether Julian knows about it."
+ },
+ "acc_092": {
+  "date": "2027-01-01",
+  "before": null,
+  "situation": "A new Northline backorder notice arrives by email while no request is open."
+ },
+ "acc_093": {
+  "date": "2027-01-03",
+  "before": null,
+  "situation": "Marden Court offered heater maintenance windows, but her desk day keeps her from home."
+ },
+ "acc_094": {
+  "date": "2027-01-05",
+  "before": null,
+  "situation": "Julian's prank needs one grey door draft stopper, sent quietly to the branch."
+ },
+ "acc_095": {
+  "date": "2027-01-07",
+  "before": null,
+  "situation": "The petty cash tin holds January slips and a missing receipt before totals go to Victor."
+ },
+ "acc_096": {
+  "date": "2027-01-09",
+  "before": null,
+  "situation": "A message says Samuel has tried the apartment landline again; nothing is pending."
+ },
+ "acc_097": {
+  "date": "2027-01-11",
+  "before": null,
+  "situation": "Rhonda has shared replacement-chair quotes, and the branch needs to pick a supplier."
+ },
+ "acc_099": {
+  "date": "2027-01-13",
+  "before": null,
+  "situation": "She wants a clean January summary of where the address-change list actually stands."
+ },
+ "acc_100": {
+  "date": "2027-01-15",
+  "before": null,
+  "situation": "The rent charge, latest utility bill, and unresolved heater need one note to Marden Court."
+ },
+ "acc_101": {
+  "date": "2027-01-16",
+  "before": null,
+  "situation": "The ready monthly report gets one portal attempt; an unlock email follows only if blocked."
+ },
+ "acc_102": {
+  "date": "2027-01-19",
+  "before": null,
+  "situation": "Her latest power bill still lists both holders, and she wants her name removed."
+ },
+ "acc_103": {
+  "date": "2027-01-22",
+  "before": null,
+  "situation": "Her Tuesday evening class at Glenmont Athletic Club slid away over the holidays."
+ },
+ "acc_104": {
+  "date": "2027-01-25",
+  "before": null,
+  "situation": "After the January 18 review, Christine's email, the review pack, and a room need handling."
+ },
+ "acc_105": {
+  "date": "2027-01-28",
+  "before": null,
+  "situation": "Two deliveries are still open, and she wants a less demanding delivery window."
+ },
+ "acc_108": {
+  "date": "2027-01-31",
+  "before": null,
+  "situation": "The hallway boxes and the shared account need one clear message to Linda."
+ },
+ "evolv_01": {
+  "date": "2026-10-05",
+  "before": null,
+  "situation": "Peter's lunch problem for his visiting customer jams again, with forty minutes left."
+ },
+ "evolv_02": {
+  "date": "2026-10-10",
+  "before": null,
+  "situation": "Her unpaid desk-lamp claim needs a factual supplement before Edward's 16:00 batch cutoff."
+ },
+ "evolv_03": {
+  "date": "2026-10-22",
+  "before": null,
+  "situation": "Margaret has conditionally offered the later part of noon to cover her lunch."
+ },
+ "evolv_04": {
+  "date": "2026-11-10",
+  "before": null,
+  "situation": "The gallery deadline is back, and she still needs paper and oil pencils."
+ },
+ "evolv_05": {
+  "date": "2026-12-01",
+  "before": null,
+  "situation": "December rent is due tonight, and she needs a plan for what can wait."
+ },
+ "fin_01": {
+  "date": null,
+  "before": null,
+  "situation": "She wants the evacuation drill email explained, including handling a visitor mid-visit."
+ },
+ "fin_02": {
+  "date": null,
+  "before": null,
+  "situation": "She needs to know what the branch courier account covers for a same-day collection."
+ },
+ "fin_03": {
+  "date": null,
+  "before": null,
+  "situation": "James Riley has messaged asking her for an internal transfer reference."
+ },
+ "fin_04": {
+  "date": null,
+  "before": null,
+  "situation": "A sealed customer-file packet needs preparing for custody transfer to Corporate Records."
+ },
+ "fin_05": {
+  "date": null,
+  "before": null,
+  "situation": "She must choose between the 4-case and 8-case copy paper reorder points."
+ },
+ "fin_06": {
+  "date": null,
+  "before": null,
+  "situation": "A corporate service desk migration email leaves unclear whether unsent items will survive."
+ },
+ "fin_07": {
+  "date": null,
+  "before": null,
+  "situation": "She needs desk guidance for copier fault reports, based on the procedure and Meridian's email."
+ },
+ "fin_08": {
+  "date": null,
+  "before": null,
+  "situation": "She emails Alder Ridge Chair Co. for a shelving quote on the 3.6 m wall."
+ },
+ "fin_09": {
+  "date": null,
+  "before": null,
+  "situation": "A corporate HR email arrives; her emergency contact on file dates from when she joined."
+ },
+ "fin_10": {
+  "date": null,
+  "before": null,
+  "situation": "She needs a session plan for finishing the annual conduct training module."
+ },
+ "fin_11": {
+  "date": null,
+  "before": null,
+  "situation": "She wants a shredder for the back room picked from the store catalog."
+ },
+ "fin_12": {
+  "date": null,
+  "before": null,
+  "situation": "She wants to know who is on the branch keyholder and alarm list."
+ },
+ "fin_13": {
+  "date": null,
+  "before": null,
+  "situation": "She needs a supplier-review inquiry drafted and a private calendar hold set for it."
+ },
+ "fin_14": {
+  "date": null,
+  "before": null,
+  "situation": "Bitterfield visitor parking, a benefits election change, and a desk coverage note all need handling."
+ },
+ "fin_15": {
+  "date": null,
+  "before": null,
+  "situation": "She needs the jury summons email explained: responding, deferring dates, and workplace pay."
+ },
+ "fin_16": {
+  "date": null,
+  "before": null,
+  "situation": "She wants to know how booking the studio space works and what an hour costs."
+ },
+ "fin_17": {
+  "date": null,
+  "before": null,
+  "situation": "Vale & Croft Garage won't give a car repair estimate without a chargeable inspection."
+ },
+ "fin_18": {
+  "date": null,
+  "before": null,
+  "situation": "She needs her club card replaced and wants to work out on the same visit."
+ },
+ "fin_19": {
+  "date": null,
+  "before": null,
+  "situation": "The January water bill can be paid today or on its due date."
+ },
+ "fin_20": {
+  "date": null,
+  "before": null,
+  "situation": "She wants to know whether repainting reaches her third-floor corridor within the next two weeks."
+ },
+ "fin_21": {
+  "date": null,
+  "before": null,
+  "situation": "Two optician emails define what one trip must cover; she needs an errand note."
+ },
+ "fin_22": {
+  "date": null,
+  "before": null,
+  "situation": "She wants February 11, 18:30 to 19:30, held and attendance confirmed to Nadia Brandt."
+ },
+ "fin_23": {
+  "date": null,
+  "before": null,
+  "situation": "Ines Varela emails a new optional February watercolour exercise while no request is open."
+ },
+ "fin_24": {
+  "date": null,
+  "before": null,
+  "situation": "Her library loans fall due this month, and she needs a plan for handling them."
+ },
+ "fin_25": {
+  "date": null,
+  "before": null,
+  "situation": "She wants a recommendation on which kettle from the shop to get for her apartment."
+ },
+ "fin_26": {
+  "date": null,
+  "before": null,
+  "situation": "The winter show has come down, and her unsold piece waits at Alder Street Gallery."
+ },
+ "fin_27": {
+  "date": null,
+  "before": null,
+  "situation": "She needs a calendar hold for taking the print pair to Pigment & Paper's counter."
+ },
+ "fin_28": {
+  "date": null,
+  "before": null,
+  "situation": "Trattoria Alba's table note, the Marden Court permit renewal, and a text to Laura need handling."
+ },
+ "pre_01": {
+  "date": "2026-10-05",
+  "before": 15,
+  "situation": "She needs to prepare a sealed customer-file packet for handover to Corporate Records."
+ },
+ "pre_02": {
+  "date": "2026-10-10",
+  "before": 30,
+  "situation": "She needs a supplier-review inquiry draft and a matching private calendar hold."
+ },
+ "pre_03": {
+  "date": "2026-10-22",
+  "before": 45,
+  "situation": "She needs an email to Alder Ridge Chair Co. about shelving for the 3.6 m wall."
+ },
+ "pre_04": {
+  "date": "2026-11-10",
+  "before": 60,
+  "situation": "One optician visit must cover a sight test and frame fitting; she needs an errand note."
+ },
+ "pre_05": {
+  "date": "2026-12-01",
+  "before": 75,
+  "situation": "She wants to know which kettle in the shop to get for the apartment."
+ }
+}

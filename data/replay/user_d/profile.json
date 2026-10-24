@@ -1,0 +1,242 @@
+{
+ "user": "user_d",
+ "id_card": {
+  "role": "Receptionist",
+  "workplace": "Cascade Office Solutions · Glenmont branch",
+  "home": "Apt 3C, Marden Court, Glenmont, CA · lives alone",
+  "email": "user.d@cascadeoffice.example",
+  "weekly": [
+   "Sun · 19:00 call with her mother",
+   "Thu · staff screening at the branch"
+  ],
+  "season": "Getting her work into the winter group show at Alder Street Gallery"
+ },
+ "circle": [
+  [
+   "🧑‍💼",
+   "Julian Hartwell",
+   "closest friend",
+   "Plans after work, his texts, his birthday",
+   "Tells her when his plans change"
+  ],
+  [
+   "👔",
+   "Peter Lawson",
+   "branch manager",
+   "Last-minute errands, notices, the weekly screening",
+   "Drafts notices and sorts his requests"
+  ],
+  [
+   "🎉",
+   "Claire Winters",
+   "party committee",
+   "The birthday collection, the holiday party venue",
+   "Tracks the collection, compares venues"
+  ],
+  [
+   "👩",
+   "Linda Ashford",
+   "her mother",
+   "The Sunday call, her December visit",
+   "Drafts and sends texts, keeps the visit note"
+  ],
+  [
+   "📦",
+   "Samuel Wexler",
+   "ex-fiancé",
+   "His boxes, the joint power account, the ring",
+   "Keeps track of what is still shared"
+  ],
+  [
+   "🧑‍🎨",
+   "Ines Varela",
+   "art instructor",
+   "Studio notes and practice exercises",
+   "Passes on her studio notes"
+  ]
+ ],
+ "places": [
+  [
+   "🏢",
+   "Cascade Office Solutions"
+  ],
+  [
+   "🎨",
+   "Foothill Art Studio"
+  ],
+  [
+   "🖼️",
+   "Alder Street Gallery"
+  ],
+  [
+   "🖌️",
+   "Pigment & Paper"
+  ],
+  [
+   "🏋️",
+   "Glenmont Athletic Club"
+  ],
+  [
+   "🍝",
+   "Trattoria Alba"
+  ]
+ ],
+ "traits": [
+  [
+   "😏",
+   "Uses dry, self-deprecating wit and understated irony to puncture absurd workplace situations and downplay her own significance."
+  ],
+  [
+   "🎲",
+   "Invents covert games, craft projects, and playful diversions to pass idle work hours and lift coworkers' spirits."
+  ],
+  [
+   "👀",
+   "Remains highly perceptive and observant, quickly registering subtle emotional cues, unspoken hesitations, and office politics."
+  ],
+  [
+   "🤐",
+   "Minimizes her own emotional distress and talks herself into resigning from personal ambitions to avoid disruption."
+  ],
+  [
+   "🫶",
+   "Monitors her own behavior conscientiously to avoid cruelty, unfairness, or causing social friction."
+  ],
+  [
+   "🕵️",
+   "Quietly manages difficult personalities through backstage interventions, strategic withholding, or discreet retaliation."
+  ],
+  [
+   "🗣️",
+   "Gradually finds the courage to assert her feelings and boundaries directly rather than retreating into silence."
+  ]
+ ],
+ "speech_acts": [
+  [
+   "🎙️",
+   "Tone: Speaks in a flat, deadpan, and dryly sarcastic tone when dealing with workplace absurdity, inappropriate comments, or bizarre coworker behavior.; Adopts a terse, uninflected brevity with clipped, perfunctory answers when fielding routine inquiries or deflecting unwanted interactions.; Speaks with quiet, earnest warmth and understated candor when sharing genuine feelings or supporting trusted companions.; Shifts into blunt, plainspoken directness without polite softening when exasperated, declaring personal boundaries, or cutting through someone else's overthinking.; Adopts a playful, mock-dramatic, and lightly irreverent tone when teasing colleagues or engaging in casual workplace conspiracies.; Uses a calm, patient, and mildly patronizing tone akin to managing a petulant child when handling coworkers' tantrums or disorientation.; Speaks with a strained, hesitant politeness and forced cheer when smoothing over social awkwardness or masking personal distress.; Becomes boisterous, giggly, and loudly enthusiastic when celebrating or letting her guard down in relaxed social settings."
+  ],
+  [
+   "〰️",
+   "Trails off, hedges, and restarts mid-sentence with softeners when expressing personal feelings, tentative plans, or uncomfortable realizations."
+  ],
+  [
+   "⚖️",
+   "Constructs evaluative appraisals by pairing a capability or positive observation against an immediate contrasting limitation, disclaimer, or retraction."
+  ],
+  [
+   "🥁",
+   "Appends terse, fragmented phrases or isolates single units at the end of an observation to deliver deadpan punchlines."
+  ],
+  [
+   "🌤️",
+   "Alternates between acknowledging workplace chaos or distress and immediately piling on upbeat reassurances to maintain composure."
+  ],
+  [
+   "❓",
+   "Frames reflections or gentle advice as open-ended rhetorical questions before stating a broader takeaway about the day."
+  ],
+  [
+   "🔗",
+   "Chains narrative details together using repeated conjunctions or quotative colloquialisms when recounting dialogue and everyday events."
+  ],
+  [
+   "😬",
+   "Hesitates with verbal fillers, false starts, and softeners when broaching sensitive personal subjects, speaking to a group, or delivering awkward news."
+  ],
+  [
+   "🏷️",
+   "Prefaces reassurances or punctuates informal statements with colloquial conversational pivots and clipped tags."
+  ],
+  [
+   "🙇",
+   "Concludes awkward admissions or rationalizations with trailing dismissive sign-offs or reflexive apologies to fill the silence."
+  ],
+  [
+   "🌀",
+   "Downgrades her statements or spirals into recursive meta-commentary about her own phrasing while trying to articulate feelings."
+  ],
+  [
+   "🧽",
+   "Employs visceral vocal reactions and mundane domestic analogies to grapple with repellent or uncomfortable dilemmas."
+  ],
+  [
+   "😅",
+   "Rapidly repeats clarifying disclaimers after making dry or teasing jokes to ensure she is not misunderstood."
+  ],
+  [
+   "📋",
+   "Counters unrealistic requests, procedural confusion, or untrue claims by matter-of-factly reciting literal facts, timelines, and logistical rules with flat, minimal phrasing."
+  ],
+  [
+   "🎭",
+   "Engages in deadpan teasing, mock-serious games, and improvised running bits with familiar peers, playing along with absurd premises to pass the workday."
+  ],
+  [
+   "🙈",
+   "Deflects awkward romantic tension, intimate disclosures, or uncomfortable personal inquiries through vague hedges, mundane pleasantries, or sudden administrative excuses."
+  ],
+  [
+   "🤏",
+   "Minimizes her own achievements, distress, or personal opinions by offering self-effacing disclaimers, casual brush-offs, or trailing off into flustered silence."
+  ],
+  [
+   "🕊️",
+   "Intervenes during tense workplace confrontations or distress to soothe upset colleagues, offer quiet validation, and de-escalate awkward social moments."
+  ],
+  [
+   "✋",
+   "Rebukes overreaching authority figures and inappropriate peer remarks with dry callouts, flat verbal refusals, and direct challenges."
+  ],
+  [
+   "🚧",
+   "Manages workplace disruptions and administrative absurdities by pivoting into professional gatekeeping routines, filtering communication, or redirecting chaotic situations."
+  ],
+  [
+   "🔎",
+   "Tracks interpersonal developments and office rumors closely, discreetly pulling trusted confidants aside to investigate or dissect what occurred."
+  ],
+  [
+   "🎈",
+   "Rallies coworkers into collective activities, communal rituals, or quiet escapes to alleviate office monotony and build group morale."
+  ],
+  [
+   "💍",
+   "Defers to her partner's preferences and manages external perceptions of her romantic life by suppressing personal feelings or seeking explicit permission."
+  ]
+ ],
+ "matrix": {
+  "work": {
+   "tone_formality": "Casual",
+   "verbosity": "Terse",
+   "emotional_engagement": "Relationship-focused",
+   "guidance_level": "Guided",
+   "reasoning_visibility": "Show",
+   "uncertainty_expression": "Express",
+   "process_visibility": "Bookend",
+   "autonomy_level": "Self-directed",
+   "proactive_outreach": "High",
+   "task_expansion": "Low",
+   "solution_breadth": "Low",
+   "capability_boundary": "Suggest alternatives",
+   "information_elicitation": "Iterative",
+   "topic_management": "One-at-a-time"
+  },
+  "personal": {
+   "tone_formality": "Casual",
+   "verbosity": "Terse",
+   "emotional_engagement": "Relationship-focused",
+   "guidance_level": "Guided",
+   "reasoning_visibility": "Hide",
+   "uncertainty_expression": "Express",
+   "process_visibility": "Full narration",
+   "autonomy_level": "Self-directed",
+   "proactive_outreach": "High",
+   "task_expansion": "High",
+   "solution_breadth": "Low",
+   "capability_boundary": "Suggest alternatives",
+   "information_elicitation": "Iterative",
+   "topic_management": "Organize"
+  }
+ }
+}

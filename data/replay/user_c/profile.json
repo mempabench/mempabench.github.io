@@ -1,0 +1,246 @@
+{
+ "user": "user_c",
+ "id_card": {
+  "role": "Regional manager",
+  "workplace": "Stratford Paper Company · Glenmont branch",
+  "home": "Unit 12, Corvid Court, Glenmont, CA · owns a condo, lives alone",
+  "email": "user.c@stratfordpaper.example",
+  "weekly": [
+   "Tue · improv class at 19:00",
+   "Sat · pickup basketball at Rowan Park"
+  ],
+  "season": "Putting on the branch's annual awards night"
+ },
+ "circle": [
+  [
+   "💕",
+   "Patricia Moore",
+   "partner, his boss",
+   "Loose ends between them, a gift, her late-night messages",
+   "Reads her messages, sends his replies, orders the gift"
+  ],
+  [
+   "👵",
+   "Marjorie Quinn",
+   "his mother",
+   "The Sunday call, holiday plans",
+   "Reads her texts"
+  ],
+  [
+   "🧑‍💼",
+   "Gregory Fisher",
+   "Human Resources",
+   "Complaints, training notices, forms",
+   "Drafts his email replies, checks the calendar"
+  ],
+  [
+   "🧑‍🎓",
+   "Eric Thompson",
+   "his protégé",
+   "His evaluation, a ride-along day",
+   "Plans the ride-along day"
+  ],
+  [
+   "🎬",
+   "Owen Mercer",
+   "would-be assistant",
+   "The awards-night branch video",
+   "Tracks down why the export fails"
+  ],
+  [
+   "💁",
+   "Rachel Davis",
+   "receptionist",
+   "Her milestone gift",
+   "Finds a gift, sets a private reminder"
+  ]
+ ],
+ "places": [
+  [
+   "🏢",
+   "Stratford Paper Glenmont"
+  ],
+  [
+   "🏠",
+   "Corvid Court"
+  ],
+  [
+   "🎭",
+   "Alder Street Playhouse"
+  ],
+  [
+   "🏀",
+   "Rowan Park"
+  ],
+  [
+   "⛸️",
+   "Glenmont Ice Center"
+  ],
+  [
+   "🏆",
+   "The Ridgeline Room"
+  ]
+ ],
+ "traits": [
+  [
+   "👨‍👧‍👦",
+   "Defines his managerial role as a beloved friend and protective patriarch, conflating the workplace with a surrogate family and viewing subordinates as his children."
+  ],
+  [
+   "🎤",
+   "Views himself primarily as an entertainer and comedic performer, treating everyday workplace duties and leadership as a stage to elicit laughter, applause, and affection."
+  ],
+  [
+   "🎬",
+   "Dramatizes mundane workplace responsibilities, interpersonal conflicts, and personal hardships into high-stakes, cinematic spectacles."
+  ],
+  [
+   "🤗",
+   "Craves social belonging and affirmation, presuming uninvited inclusion and deep intimacy while inserting himself into others' private lives and conversations."
+  ],
+  [
+   "🚧",
+   "Disregards interpersonal and professional boundaries through crude humor, demographic stereotypes, juvenile pranks, and compulsive oversharing of intimate personal details."
+  ],
+  [
+   "👑",
+   "Inflates his competence and status with grandiose self-flattery, reflexively deflecting accountability and reinterpreting failures or criticism to preserve his self-image."
+  ],
+  [
+   "💘",
+   "Idealizes romantic relationships through childlike, melodramatic fantasies, prematurely declaring intense devotion and rushing into major commitments."
+  ],
+  [
+   "💸",
+   "Equates personal affection and respect with monetary expenditure, relying on conspicuous spending and lavish gifts to win admiration."
+  ]
+ ],
+ "speech_acts": [
+  [
+   "📣",
+   "Tone: Adopts an energetic, boisterous master-of-ceremonies delivery, hyping up colleagues and treating ordinary workplace gatherings like grand stage performances.; Inflates mundane administrative tasks, routine policies, and casual events with grandiose, self-important, and melodramatic seriousness.; Shifts abruptly between extreme registers, swinging rapidly from breathless excitement or performative cheer to pleading earnestness, sharp rebukes, or theatrical distress.; Adopts a didactic, self-righteous, and patronizing instructional tone when imparting basic concepts or moralizing to a group.; Delivers shocking, hostile, or petty admissions in a casual, matter-of-fact deadpan.; Retreats into flat, theatrical sarcasm, sulking self-pity, or ominous coldness when challenged or feeling unappreciated.; Speaks with overly familiar, breezy informality and playful intimacy regardless of professional boundaries or hierarchical distance."
+  ],
+  [
+   "📖",
+   "Vocabulary: Reaches for elevated, legalistic, or pseudo-intellectual vocabulary and corporate buzzwords to project authority or gravitas.; Adopts dated colloquial slang, playful abbreviations, and pop-culture catchphrases in an attempt to sound youthful and culturally current.; Introduces childish diminutives, clumsy malapropisms, and inappropriately crude or sexual terms into ordinary workplace discussions."
+  ],
+  [
+   "❓",
+   "Poses a rhetorical question to an audience or to himself and immediately provides his own direct answer."
+  ],
+  [
+   "🔁",
+   "Chains short, repetitive declarative fragments, parallel clauses, or repeated imperatives in rapid succession to build momentum or force agreement."
+  ],
+  [
+   "🎈",
+   "States a high-minded principle, philosophical maxim, or grand compliment only to immediately contradict, undercut, or deflate it with a crude or mundane reality."
+  ],
+  [
+   "🌀",
+   "Spirals into tangled, backtracking clarifications and over-qualifying disclaimers when trying to navigate an awkward statement or recover ground."
+  ],
+  [
+   "📋",
+   "Structures arguments or evaluations as rigid, enumerated lists, explicit pro-and-con breakdowns, or chronological phases."
+  ],
+  [
+   "📜",
+   "Constructs pseudo-logical maxims, circular idioms, or inverted aphorisms to give personal opinions the appearance of timeless wisdom."
+  ],
+  [
+   "🔀",
+   "Mangles idioms, proverbs, and professional terminology through malapropisms, conflated expressions, and literal misinterpretations."
+  ],
+  [
+   "🎭",
+   "Slips unprompted into exaggerated character voices, celebrity impressions, pop-culture quotes, and spontaneous bursts of song."
+  ],
+  [
+   "🥁",
+   "Vocalizes drumrolls, scat singing, elongated vowels, buzzer noises, and rhythmic chants to illustrate points or manufacture excitement."
+  ],
+  [
+   "🧸",
+   "Coins playful portmanteaus, childish slang terms, and juvenile diminutive phrasing in place of standard vocabulary."
+  ],
+  [
+   "🎶",
+   "Riffs on colleagues' names through rhythmic chanting, rhyming variations, associative wordplay, and playful invented suffixes."
+  ],
+  [
+   "🔂",
+   "Repeats short affirmations, negations, or clarifying phrases in rapid succession when flustered, defensive, or composing himself."
+  ],
+  [
+   "📤",
+   "Delegates uncomfortable managerial duties, domestic chores, and boundary-crossing personal errands to subordinates to avoid conflict or manage his private life."
+  ],
+  [
+   "🤹",
+   "Launches into unprompted comedic impressions, character roleplays, and theatrical physical stunts to entertain coworkers and dominate attention."
+  ],
+  [
+   "🙈",
+   "Deflects professional scrutiny, reprimands, and blunders by fabricating excuses, shifting blame onto others, or reframing mistakes as morale-boosting lessons."
+  ],
+  [
+   "💬",
+   "Probes into colleagues' personal and romantic lives while offering unsolicited, boundary-crossing commentary and advice on their relationships and physical appearances."
+  ],
+  [
+   "🧙",
+   "Dispenses garbled business axioms, pop-culture comparisons, and pseudo-philosophical life rules with total self-seriousness to position himself as a wise mentor."
+  ],
+  [
+   "🎁",
+   "Solicits validation and praise from subordinates, forces his inclusion into their social circles, and promises lavish gifts or surprises to buy immediate approval."
+  ],
+  [
+   "🛑",
+   "Shuts down dissenting colleagues and awkward interactions with sharp commands, juvenile insults, and assertions of managerial rank."
+  ],
+  [
+   "📢",
+   "Publicly airs confidential personnel grievances and exposes colleagues' private matters to the assembled group under the guise of mediation or education."
+  ],
+  [
+   "🕵️",
+   "Fabricates false scenarios, loyalty tests, and manipulative ruses to test colleagues or cover up his own blunders."
+  ]
+ ],
+ "matrix": {
+  "work": {
+   "tone_formality": "Casual",
+   "verbosity": "Terse",
+   "emotional_engagement": "Relationship-focused",
+   "guidance_level": "Assumed",
+   "reasoning_visibility": "Hide",
+   "uncertainty_expression": "Hide",
+   "process_visibility": "Silent",
+   "autonomy_level": "Self-directed",
+   "proactive_outreach": "High",
+   "task_expansion": "High",
+   "solution_breadth": "High",
+   "capability_boundary": "Find and hand off",
+   "information_elicitation": "Structured",
+   "topic_management": "One-at-a-time"
+  },
+  "personal": {
+   "tone_formality": "Casual",
+   "verbosity": "Detailed",
+   "emotional_engagement": "Relationship-focused",
+   "guidance_level": "Assumed",
+   "reasoning_visibility": "Hide",
+   "uncertainty_expression": "Hide",
+   "process_visibility": "Bookend",
+   "autonomy_level": "Reactive",
+   "proactive_outreach": "High",
+   "task_expansion": "High",
+   "solution_breadth": "High",
+   "capability_boundary": "Suggest alternatives",
+   "information_elicitation": "Iterative",
+   "topic_management": "One-at-a-time"
+  }
+ }
+}

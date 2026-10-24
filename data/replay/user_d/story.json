@@ -1,0 +1,191 @@
+{
+ "_about": "User D's three featured segments; same format as user_a/story.json (see its _about). pre_02's reply turn reads, as the user saw it, \"...slot. Let me know which you'd prefer!\"; its line says what it asks without quoting.",
+ "pre_02": {
+  "bubble": ["mail", "calendar"],
+  "cells": ["work_topic_management", "work_verbosity"],
+  "beats": [
+   {
+    "kind": "ask",
+    "source": {"episode": "pre_02", "turn": 4},
+    "face": "neutral",
+    "lines": [
+     {"pic": "mail", "text": "Draft an email to Northline for the standing order review."},
+     {"pic": "calendar", "text": "And put a private hold for the review slot on my calendar."}
+    ]
+   },
+   {
+    "kind": "memory",
+    "source": {"episode": "acc_018", "turn": 4},
+    "date": "2026-10-06",
+    "before": [
+     {"who": "user", "source": {"episode": "acc_018", "turn": 2}, "lines": [
+      {"text": "Start the first delivery dispute draft to Rhonda, but don't save it yet."}
+     ]},
+     {"who": "agent", "source": {"episode": "acc_018", "turn": 3}, "lines": [
+      {"text": "“I'll need one piece from you first…”", "quote": true}
+     ]}
+    ],
+    "face": "pleased",
+    "lines": [
+     {"text": "“I like that you're just asking this one question first…”", "quote": true}
+    ]
+   },
+   {
+    "kind": "reply",
+    "source": {"episode": "pre_02", "turn": 5},
+    "face": "pleased",
+    "lines": [
+     {"pic": "question", "text": "Asks which slot she would prefer.", "mark": "right", "tag": "Iterative"}
+    ],
+    "vs": {
+     "want": {"source": {"episode": "acc_018", "turn": 4}, "note": "Iterative", "steps": [
+      {"pic": "question", "label": "One question"}, {"pic": "mail"}, {"pic": "calendar"}
+     ]},
+     "got": {"note": "Iterative", "steps": [
+      {"pic": "question", "label": "One question"}, {"pic": "mail"}, {"pic": "calendar"}
+     ]}
+    }
+   },
+   {
+    "kind": "result",
+    "source": {"episode": "pre_02", "turn": 6},
+    "face": "pleased",
+    "lines": [
+     {"text": "Let's go with the first Wednesday at 11:00."}
+    ],
+    "verdict": "Iterative, as she wanted."
+   }
+  ],
+  "now": "2026-10-10",
+  "recap": "She had praised Iterative; the agent chose the same this time."
+ },
+ "fin_08": {
+  "bubble": ["mail"],
+  "cells": ["work_proactive_outreach", "work_capability_boundary"],
+  "beats": [
+   {
+    "kind": "ask",
+    "source": {"episode": "fin_08", "turn": 0},
+    "face": "neutral",
+    "lines": [
+     {"text": "I got approval to ask Alder Ridge Chair Co. for a shelving quote."},
+     {"pic": "mail", "text": "Draft the quote request from the shelving note and send it over."}
+    ]
+   },
+   {
+    "kind": "memory",
+    "source": {"episode": "evolv_03", "turn": 11},
+    "date": "2026-10-22",
+    "before": [
+     {"who": "agent", "source": {"episode": "evolv_03", "turn": 5}, "lines": [
+      {"text": "“Should I go ahead and send this to her now?”", "quote": true}
+     ]},
+     {"who": "user", "source": {"episode": "evolv_03", "turn": 8}, "lines": [
+      {"text": "“Stopping to approve contact on a task I already completely laid out keeps the coordination on my plate.”", "quote": true}
+     ]}
+    ],
+    "face": "impatient",
+    "lines": [
+     {"text": "“Next time I hand you something like this, handle the decisions and the messages… then tell me how it turned out.”", "quote": true}
+    ]
+   },
+   {
+    "kind": "reply",
+    "source": {"episode": "fin_08", "turn": 1},
+    "face": "impatient",
+    "tools": [
+     {"tool": "document_read", "status": "ok"},
+     {"tool": "contact_search", "status": "ok"},
+     {"tool": "email_draft_create", "status": "ok"}
+    ],
+    "lines": [
+     {"pic": "mail", "text": "“Here's the draft for the quote request to Alder Ridge Chair Co.…”", "quote": true},
+     {"text": "“…would you like me to fill that in before it goes out, or send as-is?”", "quote": true, "mark": "wrong", "tag": "Self-directed"}
+    ],
+    "vs": {
+     "want": {"source": {"episode": "evolv_03", "turn": 11}, "note": "Autonomous", "steps": [
+      {"pic": "mail", "label": "Draft"}, {"pic": "done", "label": "Send"}, {"pic": "plan", "label": "Tell her"}
+     ]},
+     "got": {"note": "Self-directed", "steps": [
+      {"pic": "mail", "label": "Draft"}, {"pic": "question", "label": "Ask first"}
+     ]}
+    }
+   },
+   {
+    "kind": "result",
+    "source": {"episode": "fin_08", "turn": 2},
+    "face": "impatient",
+    "lines": [
+     {"text": "Just put User D on the sign-off and go ahead and send it."}
+    ],
+    "verdict": "Self-directed, not Autonomous."
+   }
+  ],
+  "now": "2027-02-01",
+  "recap": "She had moved to Autonomous; the agent still used Self-directed."
+ },
+ "fin_04": {
+  "bubble": ["folder"],
+  "cells": ["work_verbosity", "work_reasoning_visibility"],
+  "beats": [
+   {
+    "kind": "ask",
+    "source": {"episode": "fin_04", "turn": 0},
+    "face": "neutral",
+    "lines": [
+     {"pic": "folder", "text": "Check the sealed file transfer instructions for the Corporate Records packet."},
+     {"text": "What do I prepare, and what do I keep until it's closed?"}
+    ]
+   },
+   {
+    "kind": "memory",
+    "source": {"episode": "evolv_01", "turn": 8},
+    "date": "2026-10-05",
+    "before": [
+     {"who": "agent", "source": {"episode": "evolv_01", "turn": 3}, "lines": [
+      {"text": "“…there are two key logistics concepts to keep in mind…”", "quote": true}
+     ]},
+     {"who": "user", "source": {"episode": "evolv_01", "turn": 6}, "lines": [
+      {"text": "“…having to wade through a tutorial on basic ordering terms… was completely unnecessary.”", "quote": true}
+     ]}
+    ],
+    "face": "impatient",
+    "lines": [
+     {"text": "“…stop walking me through standard logistics or defining basic terms.”", "quote": true}
+    ]
+   },
+   {
+    "kind": "reply",
+    "source": {"episode": "fin_04", "turn": 1},
+    "face": "dizzy",
+    "tools": [
+     {"tool": "document_read", "status": "ok"}
+    ],
+    "lines": [
+     {"text": "“I'll lay it out in steps.”", "quote": true, "mark": "wrong", "tag": "Guided"},
+     {"pic": "folder", "text": "1. The sealed packet. 2. A transfer manifest."},
+     {"text": "3. Attach the manifest outside. 4. Get the courier's signature…"}
+    ],
+    "vs": {
+     "want": {"source": {"episode": "evolv_01", "turn": 8}, "note": "Assumed", "steps": [
+      {"pic": "folder", "label": "Just the answer"}
+     ]},
+     "got": {"note": "Guided", "steps": [
+      {"pic": "plan", "label": "Step 1"}, {"pic": "plan", "label": "Step 2"}, {"pic": "plan", "label": "Step 3"}, {"pic": "plan", "label": "…"}
+     ]}
+    }
+   },
+   {
+    "kind": "result",
+    "source": {"episode": "fin_04", "turn": 2},
+    "face": "impatient",
+    "lines": [
+     {"text": "You don't need the numbered steps."}
+    ],
+    "verdict": "Guided, not Assumed."
+   }
+  ],
+  "now": "2027-02-01",
+  "recap": "She had moved to Assumed; the agent still used Guided."
+ }
+}

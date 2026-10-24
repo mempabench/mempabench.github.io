@@ -106,7 +106,8 @@ const DIZZY_EYES = { eyes: [[163, 178, 47, 42], [327, 182, 36, 40]], turns: 3.2,
   white: '#f3efe8', ink: '#221c1b' };
 // Effects over his head, flat cards always facing the camera, in metres from his face centre (the decal's
 // middle): `up` above it, `near` towards the camera (the fire stands in front of his hair, not inside it).
-//   fire (angry): flames `size` [w, h], bottom `up` above the face centre, `flicker` ms per sway.
+//   fire (angry): flames `size` [w, h], bottom `up` above the face centre, `flicker` ms per sway, at most `opacity`
+//   (small and faint: a reserved man quietly fuming, not his head on fire).
 //   orbit (dizzy): stars and question marks circling `up` above the face centre, radius `radius`, `period` ms
 //   a turn, each card `size` metres high.
 //   sweat (confused): a drop `size` metres high at `at` on his near temple (a point of the face picture as
@@ -114,7 +115,7 @@ const DIZZY_EYES = { eyes: [[163, 178, 47, 42], [327, 182, 36, 40]], turns: 3.2,
 //   slide (confused): a second drop sliding from `from` to `to` (face picture fractions) every `period` ms, down
 //   the side of his face, fading in and out at the ends.
 const FACE_FX = {
-  fire: { size: [0.2, 0.24], up: 0.1, near: 0.1, flicker: 260, canvas: [128, 160] },
+  fire: { size: [0.1, 0.12], up: 0.14, near: 0.1, flicker: 260, canvas: [128, 160], opacity: 0.7 },
   orbit: { up: 0.16, radius: 0.15, tilt: 0.025, period: 1700, size: 0.055, items: ['star', 'question', 'star', 'question', 'star'] },
   sweat: { at: [-0.02, 0.32], near: 0.02, size: 0.045, bob: 0.004, period: 1400 },
   slide: { from: [0.0, 0.4], to: [0.1, 0.72], near: 0.025, size: 0.04, period: 1800 },
@@ -993,7 +994,7 @@ function updateFaceFx(now) {
     const f = FACE_FX.fire;
     drawFire(fire.material.map.image, now);
     fire.material.map.needsUpdate = true;
-    fire.material.opacity = wf;
+    fire.material.opacity = wf * f.opacity;
     const pop = 0.55 + 0.45 * wf;
     fire.scale.setScalar(pop);
     fxToCamera.subVectors(camera.position, fxCentre).setY(0).normalize();

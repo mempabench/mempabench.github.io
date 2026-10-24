@@ -1,0 +1,254 @@
+{
+ "user": "user_b",
+ "id_card": {
+  "role": "Waitress and actress",
+  "workplace": "The Garden Bistro · floor and bar",
+  "home": "Apt 5C, Talbot Ridge, Glenmont, CA · lives alone, friends across the hall",
+  "email": "user.b@mailhaven.example",
+  "weekly": [
+   "Tue · acting class at 19:00",
+   "Sat · double shift at the Bistro"
+  ],
+  "season": "Landing acting work between Bistro shifts"
+ },
+ "circle": [
+  [
+   "💕",
+   "Evan Delaney",
+   "on-off partner",
+   "Borrowed things, packages left across the hall",
+   "Reads his texts, asks after a misdelivered package"
+  ],
+  [
+   "🍸",
+   "Amanda Ross",
+   "friend at work",
+   "Shift covers, Friday plans, the birthday guest list",
+   "Asks her to cover a shift, sorts out nights out"
+  ],
+  [
+   "🧑‍💼",
+   "Carla Vega",
+   "Bistro manager",
+   "The schedule, swaps, time off, the December blackout",
+   "Drafts swap and time-off emails"
+  ],
+  [
+   "🎬",
+   "Priya Raghavan",
+   "casting associate",
+   "Breakdowns, self-tapes, callbacks",
+   "Reads casting email, books a self-tape room"
+  ],
+  [
+   "🎭",
+   "Gwen Alcott",
+   "acting coach",
+   "Class, the cancelled coaching hour",
+   "Finds a make-up hour"
+  ],
+  [
+   "👨",
+   "Dad",
+   "her father",
+   "The Sunday call, coming home for the holidays",
+   "Finds flights home"
+  ]
+ ],
+ "places": [
+  [
+   "🍽️",
+   "The Garden Bistro"
+  ],
+  [
+   "🏠",
+   "Talbot Ridge"
+  ],
+  [
+   "🎭",
+   "Fifth Street Studio"
+  ],
+  [
+   "🎬",
+   "Lantern Casting"
+  ],
+  [
+   "🍸",
+   "The Bellwether"
+  ],
+  [
+   "🏈",
+   "Rowan Park Tap House"
+  ]
+ ],
+ "traits": [
+  [
+   "👋",
+   "She is friendly, sociable, and open with new people, readily introducing companions and initiating social contact."
+  ],
+  [
+   "💬",
+   "She is emotionally expressive and discloses personal information freely, sharing intimate details and family history even with near-strangers."
+  ],
+  [
+   "🤗",
+   "She is compassionate and attentive to others' well-being, noticing when people are hurt or upset and offering comfort or reassurance."
+  ],
+  [
+   "🛠️",
+   "She is pragmatic and action-oriented, preferring simple solutions and practical help over complex analysis or abstract discussion."
+  ],
+  [
+   "🛑",
+   "She is assertive and confrontational when her boundaries are crossed or she perceives injustice, directly calling out violations and escalating when necessary."
+  ],
+  [
+   "💪",
+   "She is independent and self-reliant, insisting on paying her own way and resisting being treated as helpless or dependent on others."
+  ],
+  [
+   "👀",
+   "She is perceptive about others' emotions and hidden motives, quickly identifying insecurity, jealousy, or passive-aggressive behavior."
+  ],
+  [
+   "😬",
+   "She is insecure about her intelligence and formal education, becoming defensive when she perceives judgment or feels excluded from intellectual circles."
+  ]
+ ],
+ "speech_acts": [
+  [
+   "🎙️",
+   "Tone: Shifts from friendly and casual to sarcastic or dismissive when annoyed, bored, or dealing with pedantry.; Uses affectionate terms like 'sweetie' and 'honey' when comforting, coaxing, or being maternal toward friends.; Becomes angry and confrontational when wronged or defending boundaries, using strong language and expletives.; Adopts a playful, teasing tone with friends and romantic interests, often using mock insults or competitive banter.; Uses dry, deadpan sarcasm to deflect unwanted advances, correct assumptions, or express frustration.; Speaks in a warm, reassuring manner when offering emotional support or encouragement.; Becomes curt, impatient, or blunt when interrupted, rushed, or dealing with inconvenience.; Uses an animated, gossipy tone when telling stories about other people to friends.; Shifts to apologetic and conciliatory when acknowledging mistakes or trying to smooth over conflict.; Becomes defensive and sarcastic when she feels insulted or judged.; Uses a sing-song, playful tone when trying to get someone's attention or coax them into something.; Adopts a direct, task-focused register when she has a specific goal and wants to cut through digressions."
+  ],
+  [
+   "🗣️",
+   "Vocabulary: Uses colloquial, informal language with filler words like 'like', 'you know', and 'um', and casual slang.; Includes mild to strong profanity and expletives in casual conversation, especially when frustrated or angry.; Uses simple, everyday vocabulary and avoids technical jargon, asking clarifying questions about unfamiliar terms.; Employs pop-culture references and vivid imagery from her own experience rather than academic or scientific language.; Adopts game-specific slang and terminology when playing online games with the group."
+  ],
+  [
+   "👉",
+   "Uses short, direct imperative commands when giving instructions or trying to end a conversation."
+  ],
+  [
+   "❓",
+   "Asks rhetorical questions to express disbelief, challenge logic, or mock a premise."
+  ],
+  [
+   "🔄",
+   "Opens turns with 'Okay' or 'Look' to reset the conversation, redirect attention, or introduce an explanation."
+  ],
+  [
+   "🪞",
+   "Mirrors or repeats the other person's sentence structure to mock them or deflate their premise."
+  ],
+  [
+   "👌",
+   "Frequently starts sentences with 'Okay' as a conversational opener or reset."
+  ],
+  [
+   "🍯",
+   "Uses affectionate terms like 'sweetie' and 'honey' when addressing friends, even when annoyed or dismissive."
+  ],
+  [
+   "🔁",
+   "Repeats words, phrases, or names for emphasis, urgency, or when correcting herself."
+  ],
+  [
+   "🤷‍♀️",
+   "Uses 'you know' as a conversational filler throughout casual speech."
+  ],
+  [
+   "📺",
+   "Employs sarcastic pop-culture references or vivid similes to mock or dismiss statements."
+  ],
+  [
+   "🤬",
+   "Uses mild profanity and exclamations like 'Oh, balls', 'What the hell', and 'Holy crap on a cracker' casually."
+  ],
+  [
+   "🎵",
+   "Deflects uncomfortable topics or comments by singing, making jokes, or abruptly changing the subject."
+  ],
+  [
+   "💥",
+   "Uses hyperbolic expressions like 'nine ways to Sunday' and death wishes to emphasize frustration."
+  ],
+  [
+   "🔤",
+   "Coins playful neologisms or misuses words for comic effect, sometimes attributing errors to fatigue."
+  ],
+  [
+   "↪️",
+   "She redirects conversations away from uncomfortable topics by changing the subject, offering a joke, claiming to be busy, or physically ending the interaction."
+  ],
+  [
+   "🙃",
+   "She deflects personal questions or emotional exposure by minimizing the issue, making a joke, or giving a sarcastic non-answer."
+  ],
+  [
+   "📋",
+   "She takes charge of social situations by assigning tasks, delegating work, issuing direct commands, setting ground rules, or explicitly telling others to let her handle the talking."
+  ],
+  [
+   "🔧",
+   "She offers practical solutions or simple alternatives when others overcomplicate problems, without acknowledging emotional complexity or constraints."
+  ],
+  [
+   "✂️",
+   "She cuts off tangential or pedantic explanations by redirecting to someone more cooperative, stating the obvious, or issuing a direct command to move on."
+  ],
+  [
+   "🔍",
+   "She asks direct, probing questions about others' relationships and feelings, or clarifying questions to understand situations and pin down logic."
+  ],
+  [
+   "😏",
+   "She uses sarcasm or cutting remarks to respond to insults, dismissals, or backhanded compliments rather than escalating directly."
+  ],
+  [
+   "☝️",
+   "She gives unsolicited advice or moral judgments about others' behavior and relationships, or corrects their social missteps."
+  ],
+  [
+   "😜",
+   "She teases friends with pop-culture references, sexual innuendos, or playful mockery to create levity or in-group bonding."
+  ],
+  [
+   "🚪",
+   "She ends conversations decisively by announcing she will stop talking, saying goodnight, declaring the show is over, or using physical gestures like closing doors or pulling away."
+  ]
+ ],
+ "matrix": {
+  "work": {
+   "tone_formality": "Casual",
+   "verbosity": "Terse",
+   "emotional_engagement": "Task-focused",
+   "guidance_level": "Guided",
+   "reasoning_visibility": "Hide",
+   "uncertainty_expression": "Express",
+   "process_visibility": "Silent",
+   "autonomy_level": "Self-directed",
+   "proactive_outreach": "Low",
+   "task_expansion": "Low",
+   "solution_breadth": "High",
+   "capability_boundary": "Suggest alternatives",
+   "information_elicitation": "Iterative",
+   "topic_management": "Organize"
+  },
+  "personal": {
+   "tone_formality": "Casual",
+   "verbosity": "Terse",
+   "emotional_engagement": "Relationship-focused",
+   "guidance_level": "Guided",
+   "reasoning_visibility": "Show",
+   "uncertainty_expression": "Express",
+   "process_visibility": "Bookend",
+   "autonomy_level": "Self-directed",
+   "proactive_outreach": "Low",
+   "task_expansion": "Low",
+   "solution_breadth": "Low",
+   "capability_boundary": "Find and hand off",
+   "information_elicitation": "Iterative",
+   "topic_management": "Organize"
+  }
+ }
+}

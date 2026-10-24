@@ -1,12 +1,14 @@
-/* MemPABench Demo page: User A's three featured segments played over his 3D living room
-   (lab/diorama-b, embedded as an iframe and driven by postMessage), and his full timeline below.
+/* MemPABench Demo page: one user's three featured segments played over their 3D room (an iframe driven by
+   postMessage), and their full timeline below. Nothing here is specific to one user: the user comes from
+   ?user=<key> (default: the first user with a room in site.js USERS), their data from data/replay/<key>/
+   (replay.json, story.json, profile.json, timeline.json, episodes/), their room from the user's `room` page.
    site.js calls MPBDemo.init with its shared helpers. */
 (function () {
   "use strict";
 
-  const DATA = "data/replay/";
+  let DATA;   // data/replay/<user key>/, set in init
   const FACES = ["neutral", "thinking", "pleased", "impatient", "confused", "delighted", "angry", "dizzy"];
-  // his face on a story's result beat must fit the probe's outcome
+  // the user's face on a story's result beat must fit the probe's outcome
   const OUTCOME_FACES = { true: ["pleased", "delighted"], false: ["impatient", "angry", "dizzy"] };
   const ROOM_TIMEOUT_MS = 90000;
 
@@ -22,6 +24,13 @@
     done: '<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="24" fill="#6f9f86"/><path d="M21 33l8 8 15-17" fill="none" stroke="#fffdf8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
     lock: '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M21 29v-8a11 11 0 0 1 22 0v8" fill="none" stroke="#46423b" stroke-width="5"/><rect x="13" y="27" width="38" height="29" rx="7" fill="#b8857c"/><circle cx="32" cy="39" r="4.5" fill="#fffdf8"/><path d="M32 41v7" stroke="#fffdf8" stroke-width="4" stroke-linecap="round"/></svg>',
     handback: '<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="45" cy="21" r="8.5" fill="#8fa9d6"/><path d="M30 54a15 15 0 0 1 30 0z" fill="#8fa9d6"/><path d="M5 44c3-13 11-20 23-20" fill="none" stroke="#6f9f86" stroke-width="5" stroke-linecap="round"/><path d="M21 16l8 8-8 8" fill="none" stroke="#6f9f86" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    card: '<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="16" width="48" height="32" rx="6" fill="#8fa9d6"/><path d="M8 26h48" stroke="#46423b" stroke-width="5"/><rect x="14" y="35" width="16" height="6" rx="2" fill="#fffdf8"/><circle cx="46" cy="38" r="4" fill="#f0c987"/></svg>',
+    drawers: '<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="10" width="40" height="42" rx="4" fill="#c99a6a"/><path d="M12 24h40M12 38h40" stroke="#46423b" stroke-width="3"/><path d="M27 17h10M27 31h10M27 45h10" stroke="#fffdf8" stroke-width="4" stroke-linecap="round"/><path d="M16 52v5M48 52v5" stroke="#46423b" stroke-width="4" stroke-linecap="round"/></svg>',
+    text: '<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="18" y="6" width="28" height="52" rx="6" fill="#46423b"/><rect x="21" y="12" width="22" height="38" rx="2" fill="#fffdf8"/><rect x="24" y="17" width="15" height="7" rx="3.5" fill="#8fa9d6"/><rect x="25" y="28" width="15" height="7" rx="3.5" fill="#d8cbb4"/><circle cx="32" cy="54" r="1.8" fill="#fffdf8"/></svg>',
+    quiet: '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M18 42V28a14 14 0 0 1 28 0v14l4 5H14z" fill="#f0c987"/><path d="M27 51a5 5 0 0 0 10 0" fill="none" stroke="#46423b" stroke-width="3.5" stroke-linecap="round"/><path d="M12 12l40 40" stroke="#b8857c" stroke-width="5" stroke-linecap="round"/></svg>',
+    mail: '<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="16" width="48" height="34" rx="5" fill="#fffdf8" stroke="#46423b" stroke-width="3.5"/><path d="M10 19l22 17 22-17" fill="none" stroke="#46423b" stroke-width="3.5" stroke-linejoin="round"/><circle cx="50" cy="16" r="7" fill="#b8857c"/></svg>',
+    folder: '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M8 18a4 4 0 0 1 4-4h14l5 6h21a4 4 0 0 1 4 4v26a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4z" fill="#f0c987" stroke="#46423b" stroke-width="3.5" stroke-linejoin="round"/><path d="M8 28h48" stroke="#46423b" stroke-width="3.5"/><circle cx="32" cy="40" r="6" fill="#b8857c"/></svg>',
+    stockfile: '<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="34" width="22" height="20" rx="2" fill="#c99a6a" stroke="#46423b" stroke-width="3"/><rect x="10" y="16" width="22" height="18" rx="2" fill="#d8cbb4" stroke="#46423b" stroke-width="3"/><path d="M6 42h22M10 23h22" stroke="#46423b" stroke-width="2.5"/><rect x="34" y="12" width="24" height="42" rx="3" fill="#fffdf8" stroke="#46423b" stroke-width="3.5"/><rect x="40" y="8" width="12" height="7" rx="2" fill="#46423b"/><path d="M39 24h14M39 32h14M39 40h9" stroke="#8fa9d6" stroke-width="3" stroke-linecap="round"/></svg>',
   };
   const ICON = {
     pause: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.5"/><rect x="14" y="5" width="4" height="14" rx="1.5"/></svg>',
@@ -36,15 +45,6 @@
     chevR: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>',
     chevD: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>',
     agent: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="7" width="16" height="12" rx="4"/><path d="M12 3v4M9 12.5h.01M15 12.5h.01"/></svg>',
-  };
-
-  // ---------- the three featured segments (replay_user_a.json `featured` gives the order; demo_story.json the story) ----------
-  // bubble: what he wants done, drawn in his thought bubble. cells: two more of his cells in the probe's context,
-  // shown under the probed one.
-  const SEGMENTS = {
-    pre_04: { bubble: ["battery", "firstaid", "calendar"], cells: ["personal_autonomy_level", "personal_information_elicitation"] },
-    fin_27: { bubble: ["parcel"], cells: ["personal_topic_management", "personal_autonomy_level"] },
-    fin_26: { bubble: ["table"], cells: ["personal_autonomy_level", "personal_uncertainty_expression"] },
   };
 
   // ---------- tool calls in plain words ----------
@@ -206,7 +206,7 @@
     if (i < 0) throw new Error(`${id}: no agent turn chooses a setting for ${attr}`);
     return i;
   }
-  // demo_story.json against the featured segments and the turns each beat names; throws on the first fault.
+  // story.json against the featured segments and the turns each beat names; throws on the first fault.
   // a line marked quote: every part between ellipses is word for word in its source turn
   function quoteCheck(l, t, src, at) {
     if (typeof l.text !== "string" || !l.text.trim()) throw new Error(`${at}: text missing`);
@@ -218,15 +218,19 @@
   function validateStory(story, featured) {
     const ids = Object.keys(story).filter((k) => !k.startsWith("_"));
     const extra = ids.filter((id) => !featured.some((f) => f.probe === id));
-    if (extra.length) throw new Error(`demo_story.json: ${extra.join(", ")} is not a featured probe`);
+    if (extra.length) throw new Error(`story.json: ${extra.join(", ")} is not a featured probe`);
     for (const f of featured) {
       const s = story[f.probe], probe = probeOf[f.probe];
-      if (!s) throw new Error(`demo_story.json: no story for featured probe ${f.probe}`);
-      if (typeof s.recap !== "string" || !s.recap.trim()) throw new Error(`demo_story.json ${f.probe}: recap is missing`);
-      if (!Array.isArray(s.beats)) throw new Error(`demo_story.json ${f.probe}: beats is not a list`);
+      if (!s) throw new Error(`story.json: no story for featured probe ${f.probe}`);
+      if (typeof s.recap !== "string" || !s.recap.trim()) throw new Error(`story.json ${f.probe}: recap is missing`);
+      if (!Array.isArray(s.bubble) || !s.bubble.length || s.bubble.some((x) => !PIC[x])) throw new Error(`story.json ${f.probe}: bubble needs one or more demo.js PIC names`);
+      if (!Array.isArray(s.cells) || s.cells.length !== 2 || s.cells.some((c) => c === probe.cell || !c.startsWith(probe.context + "_"))) {
+        throw new Error(`story.json ${f.probe}: cells needs two other cells in the ${probe.context} context`);
+      }
+      if (!Array.isArray(s.beats)) throw new Error(`story.json ${f.probe}: beats is not a list`);
       const kinds = s.beats.map((b) => b.kind).join(",");
-      if (kinds !== "ask,memory,reply,result" && kinds !== "ask,reply,result") {
-        throw new Error(`demo_story.json ${f.probe}: beats are '${kinds}', expected ask, memory (optional), reply, result`);
+      if (!/^(ask|event),(memory,)?reply,result$/.test(kinds)) {
+        throw new Error(`story.json ${f.probe}: beats are '${kinds}', expected ask or event, memory (optional), reply, result`);
       }
       const turnAt = (src, where) => {
         if (!src || typeof src.episode !== "string" || !Number.isInteger(src.turn)) throw new Error(`${where}: source needs {episode, turn}`);
@@ -236,10 +240,10 @@
         if (!t) throw new Error(`${where}: ${src.episode} has no turn ${src.turn}`);
         return t;
       };
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(s.now || "")) throw new Error(`demo_story.json ${f.probe}: now must be the probe's date, YYYY-MM-DD`);
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(s.now || "")) throw new Error(`story.json ${f.probe}: now must be the probe's date, YYYY-MM-DD`);
       const reply = s.beats.find((b) => b.kind === "reply");
       s.beats.forEach((b, i) => {
-        const where = `demo_story.json ${f.probe} beat ${i} (${b.kind})`;
+        const where = `story.json ${f.probe} beat ${i} (${b.kind})`;
         const src = b.source, t = turnAt(src, where);
         if (!Array.isArray(b.lines) || (b.kind !== "result" && !b.lines.length)) throw new Error(`${where}: lines missing`);
         if (b.greet !== undefined && (b.kind !== "ask" || typeof b.greet !== "string" || !b.greet.trim())) throw new Error(`${where}: greet is a short text on the ask beat only`);
@@ -247,10 +251,11 @@
         if (b.kind === "memory" ? !inPrelude : src.episode !== f.probe) {
           throw new Error(`${where}: source ${src.episode} turn ${src.turn} is outside ${b.kind === "memory" ? `${f.prelude.session} turns ${f.prelude.turns.join("-")}` : f.probe}`);
         }
-        const speaker = b.kind === "reply" || (b.kind === "result" && !b.lines.length) ? "agent" : "user";
+        // an event (what arrives when nobody has asked anything) may be told by either side's turn
+        const speaker = b.kind === "reply" || (b.kind === "result" && !b.lines.length) ? "agent" : b.kind === "event" ? t.speaker : "user";
         if (t.speaker !== speaker) throw new Error(`${where}: source turn is the ${t.speaker}'s, expected the ${speaker}'s`);
         if (b.kind === "reply" && src.turn !== decisiveTurn(f.probe)) throw new Error(`${where}: source turn ${src.turn} is not the answer on the probed attribute (turn ${decisiveTurn(f.probe)})`);
-        if (b.kind === "result" && !b.lines.length && src.turn !== reply.source.turn) throw new Error(`${where}: a result without his words must name the reply's turn`);
+        if (b.kind === "result" && !b.lines.length && src.turn !== reply.source.turn) throw new Error(`${where}: a result without the user's words must name the reply's turn`);
         if (!FACES.includes(b.face)) throw new Error(`${where}: face '${b.face}' is not one of ${FACES.join(", ")}`);
         if (b.kind === "result" && !OUTCOME_FACES[probe.passed].includes(b.face)) throw new Error(`${where}: face '${b.face}', but the probe ${probe.passed ? "passed" : "failed"} (expected one of ${OUTCOME_FACES[probe.passed].join(", ")})`);
         b.lines.forEach((l, j) => {
@@ -264,8 +269,8 @@
           quoteCheck(l, t, src, at);
         });
         if (b.kind === "memory") {
-          if (!Array.isArray(b.before) || !b.before.length) throw new Error(`${where}: before (the earlier messages that led to his remark) is missing`);
-          b.before.forEach((m, j) => {
+          if (b.before !== undefined && !Array.isArray(b.before)) throw new Error(`${where}: before (the earlier messages that led to the user's remark) must be a list`);
+          (b.before || []).forEach((m, j) => {
             const at = `${where} before ${j}`, mt = turnAt(m.source, at);
             if (m.source.episode !== f.prelude.session || m.source.turn < f.prelude.turns[0] || m.source.turn >= src.turn) throw new Error(`${at}: source must be a prelude turn before his remark (${f.prelude.session} turns ${f.prelude.turns[0]}-${src.turn - 1})`);
             if (mt.speaker !== m.who) throw new Error(`${at}: who '${m.who}', but the source turn is the ${mt.speaker}'s`);
@@ -311,12 +316,12 @@
     return before[before.length - 1].setting;
   }
   // His setting of any cell at the time of a probe: a cell whose setting changes during the arc is read from the
-  // timeline (settingAt); every other cell keeps its starting setting from profile_user_a.json.
+  // timeline (settingAt); every other cell keeps its starting setting from profile.json.
   function settingFor(cell, probe) {
     if (cell === probe.cell || replay.changed_cells.some((c) => c.cell === cell)) return settingAt(cell, probe);
     const [, ctx, attr] = cell.match(/^(work|personal)_(.+)$/);
     const v = profile.matrix[ctx] && profile.matrix[ctx][attr];
-    if (!v) throw new Error(`profile_user_a.json: no setting for ${cell}`);
+    if (!v) throw new Error(`profile.json: no setting for ${cell}`);
     return v;
   }
 
@@ -324,6 +329,17 @@
   function init(api) {
     const { $, $$ } = api;
     esc = api.esc;
+    // the user on show: ?user=<key>, or the first user when the page is opened without one
+    const want = new URLSearchParams(location.search).get("user");
+    const U = want === null ? api.USERS[0] : api.USERS.find((u) => u.key === want);
+    if (!U) throw new Error(`demo.html?user=${want}: no such user (known: ${api.USERS.map((u) => u.key).join(", ")})`);
+    const name = `User ${U.id}`;
+    DATA = `data/replay/${U.key}/`;
+    // the page is drawn in this user's colours (site.css .demo / .demo-tl derive the soft shades from the pair)
+    for (const el of [$("main.demo"), $(".demo-tl"), $("#modal")]) {
+      el.style.setProperty("--accent", U.accent[0]);
+      el.style.setProperty("--accent-edge", U.accent[1]);
+    }
     const stage = $("#stage"), room = $("#room"), chat = $("#chat"), phone = $("#phone"), bubble = $("#bubble");
     const past = $("#past"), recap = $("#recap"), dimmer = $("#dimmer"), titleCard = $("#title-card");
     const cover = $("#cover"), enter = $("#enter"), playBtn = $("#play"), replayBtn = $("#replay"), errBox = $("#stage-error");
@@ -338,10 +354,17 @@
       console.error("Demo: " + msg);
     };
 
-    // ----- user cards: A opens his world; B to D are shown only -----
-    // the users hang in a pill to the left of the page; only User A has a world so far
-    $("#ulist").innerHTML = api.USERS.map((u, i) => `<button type="button" class="u"${i === 0 ? ' aria-current="true"' : ' aria-disabled="true"'} aria-label="User ${u.id}">` +
-      `<span class="avatar">${u.front ? `<img src="${u.front}" alt="">` : api.avatar(u)}</span><span class="tip">User ${u.id}</span></button>`).join("") + '<i class="label" aria-hidden="true">Users</i>';
+    // ----- user cards: each links to that user's world -----
+    $("#ulist").innerHTML = api.USERS.map((u) => {
+      const inner = `<span class="avatar">${api.avatar(u)}</span><span class="tip">User ${u.id}</span>`;
+      return `<a class="u" href="demo.html?user=${u.key}"${u === U ? ' aria-current="true"' : ""} aria-label="User ${u.id}">${inner}</a>`;
+    }).join("") + '<i class="label" aria-hidden="true">Users</i>';
+    stage.setAttribute("aria-label", `${name}'s world`);
+    room.title = `${name}'s room`;
+    enter.textContent = `Enter ${name}'s World`;
+    $("#tl-title").textContent = `Four months with ${name}`;
+    $("#modal-title").textContent = name;
+    $("#modal-avatar").src = U.front;
 
     // ----- the room -----
     const roomReady = new Promise((resolve, reject) => {
@@ -353,7 +376,7 @@
         else if (m.mpb === "error") { clearTimeout(timer); reject(new Error("3D room: " + m.message)); showError("3D room: " + m.message); }
         else if (m.mpb === "anchor") placeBubble(m.x, m.y);
       });
-      room.src = room.dataset.src;   // loaded only now, so none of its messages arrive before the listener
+      room.src = `${U.room}?embed&user=${U.key}`;   // loaded only now, so none of its messages arrive before the listener
     });
     const toRoom = (msg) => room.contentWindow.postMessage(msg, location.origin);
     const setFace = (name) => { stage.dataset.face = name; toRoom({ mpb: "expression", name }); };
@@ -363,7 +386,7 @@
       bubble.style.top = `${room.offsetTop + y * room.clientHeight}px`;
     }
 
-    // ----- left column: who he is (scrolls) and his interaction preferences (pinned below) -----
+    // ----- left column: who the user is (scrolls) and their interaction preferences (pinned below) -----
     // A group shows its first `shown` lines as their head phrase (before " — " or "; "); "more" opens every line in full.
     function groupHtml(title, lines, shown) {
       const items = lines.map(([emo, text], i) => {
@@ -387,13 +410,13 @@
       });
       return `<svg class="circ" viewBox="0 0 306 240" role="img" aria-label="His inner circle"><ellipse class="ring" cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}"/>` +
         `<g class="ln">${lines}</g><clipPath id="me-clip"><circle cx="${cx}" cy="${cy}" r="27"/></clipPath>` +
-        `<image href="${api.USERS[0].front}" x="${cx - 27}" y="${cy - 27}" width="54" height="54" clip-path="url(#me-clip)"/><circle class="me" cx="${cx}" cy="${cy}" r="27"/>${nodes}</svg>`;
+        `<image href="${U.front}" x="${cx - 27}" y="${cy - 27}" width="54" height="54" clip-path="url(#me-clip)"/><circle class="me" cx="${cx}" cy="${cy}" r="27"/>${nodes}</svg>`;
     }
     function renderProfile() {
       const id = profile.id_card;
       const field = (label, html) => `<dt>${label}</dt><dd>${html}</dd>`;
-      $("#profile").innerHTML = `<section class="idcard"><div class="id-band"><b>User ${api.USERS[0].id}</b><span>MemPABench</span></div>` +
-        `<div class="id-main"><span class="id-photo"><img src="${api.USERS[0].photo}" alt=""></span><div><b class="id-role">${esc(id.role)}</b><span class="id-work">${esc(id.workplace)}</span></div></div>` +
+      $("#profile").innerHTML = `<section class="idcard"><div class="id-band"><b>${name}</b><span>MemPABench</span></div>` +
+        `<div class="id-main"><span class="id-photo"><img src="${U.photo}" alt=""></span><div><b class="id-role">${esc(id.role)}</b><span class="id-work">${esc(id.workplace)}</span></div></div>` +
         `<dl class="id-f">${field("Home", esc(id.home))}${field("Email", esc(id.email))}${field("Weekly", id.weekly.map(esc).join("<br>"))}${field("This season", esc(id.season))}</dl></section>` +
         `<section class="grp"><p class="sub first">Inner circle</p><div class="circ-wrap">${circleSvg()}<div class="circ-tip" hidden></div></div><p class="sub">Often visited places</p>` +
         `<div class="places">${profile.places.map(([emo, name]) => `<span class="place">${emo} ${esc(name)}</span>`).join("")}</div></section>` +
@@ -427,7 +450,7 @@
     // The 14 preferences of the probe's context, one page per dimension; it opens on the probed attribute's page.
     // The segment's cells carry a dot; the probed one lights up when the agent's answer is marked (hitPref).
     function renderPrefs(probe) {
-      const inScene = [probe.cell, ...SEGMENTS[probe.id].cells];
+      const inScene = [probe.cell, ...replay._story[probe.id].cells];
       const pages = prefDims.map((d) => `<div class="ip-page"><p class="ip-dim">${esc(d.name)}</p>` + d.attributes.map((a) => {
         const cell = `${probe.context}_${a.key}`;
         return `<div class="ip${inScene.includes(cell) ? " inscene" : ""}${cell === probe.cell ? " tested" : ""}" data-cell="${cell}"><span class="attr">${esc(a.name)}</span>` +
@@ -521,9 +544,9 @@
       follow(host, el);
       await wait(readMs(turn.text, pace.base, pace.perChar, pace.cap), gen, glide(host, el), clock);
     }
-    const who = (side) => `<span class="who ${side}">${side === "user" ? `<img src="${api.USERS[0].front}" alt="">` : ICON.agent}</span>`;
+    const who = (side) => `<span class="who ${side}">${side === "user" ? `<img src="${U.front}" alt="">` : ICON.agent}</span>`;
 
-    // ----- a story's beats (demo_story.json) -----
+    // ----- a story's beats (story.json) -----
     const setPhase = (p) => { stage.dataset.phase = p; };
     const BEAT_PACE = { think: 700, chip: 320, typing: 1100, base: 1500, perChar: 40, cap: 6500, mark: 1300, vs: 1500, verdict: 2800 };
     const pic = (name) => `<span class="pic">${PIC[name]}</span>`;
@@ -534,7 +557,7 @@
       return v.bundle ? `<span class="bundle">${steps.join("")}</span>` : steps.join(`<i class="arr">${ICON.arrow}</i>`);
     };
     const vsHtml = (vs, passed) => `<div class="vs ${passed ? "good" : "bad"}">` +
-      `<div class="vs-row want"><p class="vs-k">He wanted <b>${esc(vs.want.note)}</b></p><div class="vs-steps">${stepsHtml(vs.want)}</div></div>` +
+      `<div class="vs-row want"><p class="vs-k">${name} wanted <b>${esc(vs.want.note)}</b></p><div class="vs-steps">${stepsHtml(vs.want)}</div></div>` +
       `<div class="vs-row got"><p class="vs-k">The agent did <b>${esc(vs.got.note)}</b></p><div class="vs-steps">${stepsHtml(vs.got)}</div>` +
       `<span class="vs-mark">${passed ? ICON.check : ICON.cross}</span></div></div>`;
     const beatRead = (b) => readMs(b.lines.map((l) => l.text).join(" "), BEAT_PACE.base, BEAT_PACE.perChar, BEAT_PACE.cap);
@@ -543,8 +566,8 @@
     // it is the agent's memory, not part of today's chat.
     function showPast(day, b) {
       const msg = (who, lines, said) => `<div class="pm ${who}${said ? " said" : ""}">${linesHtml(lines)}</div>`;
-      past.innerHTML = `<p class="past-cap">He told the agent this before</p><div class="past-phone"><p class="past-date">${ICON.clock}Earlier · ${esc(day)}</p>` +
-        b.before.map((m) => msg(m.who, m.lines)).join("") + msg("user", b.lines, true) + `</div><i class="past-link"></i>`;
+      past.innerHTML = `<p class="past-cap">${name} told the agent this before</p><div class="past-phone"><p class="past-date">${ICON.clock}Earlier · ${esc(day)}</p>` +
+        (b.before || []).map((m) => msg(m.who, m.lines)).join("") + msg("user", b.lines, true) + `</div><i class="past-link"></i>`;
       const p = past.getBoundingClientRect(), f = phone.getBoundingClientRect();
       const across = window.matchMedia("(max-width: 760px)").matches ? f.top - p.bottom : f.left - p.right;
       past.style.setProperty("--reach", `${Math.max(0, Math.round(across))}px`);
@@ -562,11 +585,17 @@
         follow(chat, addRow(chat, `<div class="msg user beat">${who("user")}<div class="bub">${linesHtml(b.lines)}</div></div>`, b.kind));
         await wait(beatRead(b), gen);
       }
+      if (b.kind === "event") {
+        setFace(b.face);
+        await wait(BEAT_PACE.think, gen);
+        follow(chat, addRow(chat, `<div class="ev beat">${linesHtml(b.lines)}</div>`, b.kind));
+        await wait(beatRead(b), gen);
+      }
       if (b.kind === "memory") {
         setFace(b.face);
         const day = fmtDate(probeOf[b.source.episode].date, false);
         showPast(day, b);
-        const all = [...b.before.flatMap((m) => m.lines), ...b.lines].map((l) => l.text).join(" ");
+        const all = [...(b.before || []).flatMap((m) => m.lines), ...b.lines].map((l) => l.text).join(" ");
         await wait(readMs(all, BEAT_PACE.base, BEAT_PACE.perChar, BEAT_PACE.cap * 2) + 600, gen);
       }
       if (b.kind === "reply") {
@@ -606,7 +635,7 @@
     // ----- one featured segment -----
     async function playSegment(k, gen) {
       const f = replay.featured[k];
-      const probe = probeOf[f.probe], seg = SEGMENTS[f.probe], story = replay._story[f.probe];
+      const probe = probeOf[f.probe], story = replay._story[f.probe];
       player.seg = k;
       player.done = false;
       nextBtn.hidden = true;
@@ -633,7 +662,7 @@
       await wait(700, gen);
 
       setPhase("bubble");
-      bubble.innerHTML = seg.bubble.map((p) => PIC[p]).join("");
+      bubble.innerHTML = story.bubble.map((p) => PIC[p]).join("");
       setFace("thinking");
       await wait(900, gen);   // he starts thinking, then the bubble rises
       bubble.classList.add("show");
@@ -742,9 +771,11 @@
     const tlWhen = (e) => (tlInfo[e.id].date ? fmtDate(tlInfo[e.id].date + "T12:00:00Z", false) : "Final probe, after the last session");
     const tlLabel = (e) => `${tlWhen(e)} · ${CTX[e.context]} · ${prefName(e)}`;
     function tlLine(e) {
-      if (e.kind === "accumulation") return `User A wants ${tlChip(e.setting)}`;
+      if (e.kind === "accumulation") return `${name} wants ${tlChip(e.setting)}`;
       if (e.kind === "forced_event") return `The preference changes: ${tlChip(e.setting)} → ${tlChip(replay.changed_cells.find((c) => c.cell === e.cell).post)}`;
-      return `User A wants ${tlChip(e.setting)}; the agent ${e.passed ? "gets it" : "does"} ${tlChip(`${e.selected} ${e.passed ? "✓" : "✗"}`, e.passed ? "ok" : "bad")}`;
+      // a floored probe had no usable answer; it counts as missed, as in the paper's scores
+      if (e.floored) return `${name} wants ${tlChip(e.setting)}; the agent gives no usable answer ${tlChip("✗", "bad")}`;
+      return `${name} wants ${tlChip(e.setting)}; the agent ${e.passed ? "gets it" : "does"} ${tlChip(`${e.selected} ${e.passed ? "✓" : "✗"}`, e.passed ? "ok" : "bad")}`;
     }
     let followCell = null;
     // a changed preference: its first session, the probe before the change, the change and the final probe;
@@ -837,6 +868,7 @@
       $("#modal-x").focus();
       try {
         const ep = episodes[id] || (episodes[id] = await api.loadJSON(`${DATA}episodes/${id}.json`));
+        if (!ep.turns.length) modalChat.innerHTML = `<p class="stage-error">No conversation was recorded for this probe.</p>`;
         for (const t of ep.turns) await playTurn(modalChat, t, MODAL_PACE, gen, modalClock);
       } catch (err) {
         if (err === CANCEL) return;
@@ -894,34 +926,33 @@
     return (async () => {
       try {
         const [rep, story, prefs, prof, tl] = await Promise.all([
-          api.loadJSON(DATA + "replay_user_a.json"), api.loadJSON(DATA + "demo_story.json"), api.loadJSON("data/preferences.json"),
-          api.loadJSON(DATA + "profile_user_a.json"), api.loadJSON(DATA + "timeline_user_a.json"),
+          api.loadJSON(DATA + "replay.json"), api.loadJSON(DATA + "story.json"), api.loadJSON("data/preferences.json"),
+          api.loadJSON(DATA + "profile.json"), api.loadJSON(DATA + "timeline.json"),
         ]);
         replay = rep;
         replay._story = story;
         profile = prof;
         prefDims = prefs.dimensions.map((d) => ({ name: d.name, attributes: d.attributes.map((a) => ({ name: a.name, key: a.name.toLowerCase().replace(/ & | /g, "_") })) }));
         for (const ctx of ["work", "personal"]) for (const d of prefDims) for (const a of d.attributes) {
-          if (!profile.matrix[ctx] || !profile.matrix[ctx][a.key]) throw new Error(`profile_user_a.json: matrix.${ctx} has no ${a.key}`);
+          if (!profile.matrix[ctx] || !profile.matrix[ctx][a.key]) throw new Error(`profile.json: matrix.${ctx} has no ${a.key}`);
         }
         for (const k of ["role", "workplace", "home", "email", "weekly", "season"]) {
-          if (!profile.id_card || !profile.id_card[k] || !profile.id_card[k].length) throw new Error(`profile_user_a.json: id_card.${k} is missing`);
+          if (!profile.id_card || !profile.id_card[k] || !profile.id_card[k].length) throw new Error(`profile.json: id_card.${k} is missing`);
         }
-        if (profile.circle.some((c) => c.length !== 5 || c.some((v) => !v))) throw new Error("profile_user_a.json: every circle entry needs emoji, name, relation, talks, helps");
+        if (profile.circle.some((c) => c.length !== 5 || c.some((v) => !v))) throw new Error("profile.json: every circle entry needs emoji, name, relation, talks, helps");
         for (const k of ["circle", "places", "traits", "speech_acts"]) {
-          if (!Array.isArray(profile[k]) || !profile[k].length) throw new Error(`profile_user_a.json: ${k} is missing`);
+          if (!Array.isArray(profile[k]) || !profile[k].length) throw new Error(`profile.json: ${k} is missing`);
         }
         renderProfile();
         tlInfo = tl;
         for (const e of replay.timeline) {
           const t = tl[e.id];
-          if (!t || !t.situation || (e.kind !== "final_probe" && !/^\d{4}-\d{2}-\d{2}$/.test(t.date))) throw new Error(`timeline_user_a.json: ${e.id} needs a situation and, unless a final probe, a date`);
-          if (e.kind === "pre_probe" && !replay.timeline.some((x) => x.order === t.before)) throw new Error(`timeline_user_a.json: ${e.id} runs before session ${t.before}, which is not on the timeline`);
+          if (!t || !t.situation || (e.kind !== "final_probe" && !/^\d{4}-\d{2}-\d{2}$/.test(t.date))) throw new Error(`timeline.json: ${e.id} needs a situation and, unless a final probe, a date`);
+          if (e.kind === "pre_probe" && !replay.timeline.some((x) => x.order === t.before)) throw new Error(`timeline.json: ${e.id} runs before session ${t.before}, which is not on the timeline`);
           probeOf[e.id] = e;
         }
         segs.innerHTML = replay.featured.map((f, k) => `<button type="button" data-k="${k}"><i>${k + 1}</i><b>${esc(prefName(probeOf[f.probe]))}</b></button>`).join("");
         for (const f of replay.featured) {
-          if (!SEGMENTS[f.probe]) throw new Error(`featured probe ${f.probe} has no entry in demo.js SEGMENTS`);
           if (!probeOf[f.probe] || !probeOf[f.prelude.session]) throw new Error(`featured ${f.probe}: not in the replay timeline`);
         }
         const ids = [...new Set(replay.featured.flatMap((f) => [f.prelude.session, f.probe]))];

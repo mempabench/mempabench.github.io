@@ -1,0 +1,662 @@
+{
+ "acc_001": {
+  "date": "2026-10-01",
+  "before": null,
+  "situation": "New servers work from a standing-orders list promising more than the floor's own sheets allow."
+ },
+ "acc_002": {
+  "date": "2026-10-01",
+  "before": null,
+  "situation": "A Talbot Ridge Management notice about hallway work arrives while User B isn't asking for anything."
+ },
+ "acc_003": {
+  "date": "2026-10-01",
+  "before": null,
+  "situation": "Audition parking and headshot envelope receipts need to go into the expense log's acting section."
+ },
+ "acc_004": {
+  "date": "2026-10-02",
+  "before": null,
+  "situation": "User B, Amanda, Brian and Neil need a way home from Ash St at 2 a.m."
+ },
+ "acc_005": {
+  "date": "2026-10-02",
+  "before": null,
+  "situation": "User B needs a follow-up email to Priya Raghavan about the Marlow Street self-tape and availability."
+ },
+ "acc_006": {
+  "date": "2026-10-02",
+  "before": null,
+  "situation": "The paycheck missed Saturday the nineteenth, and Bridgeline Payroll only answers in writing."
+ },
+ "acc_007": {
+  "date": "2026-10-03",
+  "before": null,
+  "situation": "The dental clinic offered Thursday at 4:30 PM, a time that runs into a shift."
+ },
+ "acc_008": {
+  "date": "2026-10-03",
+  "before": null,
+  "situation": "Inspectors could arrive any day, and Carla needs to know what the health-code binder is missing."
+ },
+ "acc_009": {
+  "date": "2026-10-03",
+  "before": null,
+  "situation": "A table walked on its tab in September, and it is still open on the system."
+ },
+ "acc_010": {
+  "date": "2026-10-04",
+  "before": null,
+  "situation": "A shift swap and parking hangtag update need to go to Amanda in one message."
+ },
+ "acc_011": {
+  "date": "2026-10-04",
+  "before": null,
+  "situation": "A credit union note about card holds has User B unsure what it means or wants."
+ },
+ "acc_012": {
+  "date": "2026-10-04",
+  "before": null,
+  "situation": "Carla needs to seat an enquiring party of fourteen and know what it costs the floor."
+ },
+ "acc_013": {
+  "date": "2026-10-05",
+  "before": null,
+  "situation": "A runner dropped an entree on Sunday, and the comp needs recording in the incident log."
+ },
+ "acc_014": {
+  "date": "2026-10-05",
+  "before": null,
+  "situation": "Sunday's bar count shows shortages, and Carla wants the order sheet ready before the Friday rush."
+ },
+ "acc_017": {
+  "date": "2026-10-06",
+  "before": null,
+  "situation": "Friday dancing plans with Amanda stalled over club cover charges; User B wants a no-cover spot."
+ },
+ "acc_018": {
+  "date": "2026-10-06",
+  "before": null,
+  "situation": "One week's kept tip-out column came in light, and User B wants to know why."
+ },
+ "acc_019": {
+  "date": "2026-10-07",
+  "before": null,
+  "situation": "Last night's closing notes need sorting down to what Amanda must act on when she opens."
+ },
+ "acc_020": {
+  "date": "2026-10-07",
+  "before": null,
+  "situation": "Tyler is driving through town tomorrow afternoon, and User B is unsure whether to meet him."
+ },
+ "acc_021": {
+  "date": "2026-10-07",
+  "before": null,
+  "situation": "The afternoon got away, so User B must ask Garrett to hold a package past closing."
+ },
+ "acc_022": {
+  "date": "2026-10-08",
+  "before": null,
+  "situation": "The Marlow Street sides have two roles, and there is time to tape only one."
+ },
+ "acc_023": {
+  "date": "2026-10-08",
+  "before": null,
+  "situation": "User B is sending a first query letter to Hollis Talent, drawn from the acting resume."
+ },
+ "acc_024": {
+  "date": "2026-10-08",
+  "before": null,
+  "situation": "User B wants Derek Walsh gone from the phone contacts and the game-night standing list."
+ },
+ "acc_025": {
+  "date": "2026-10-09",
+  "before": null,
+  "situation": "A Fifth Street Studio invoice notice puts User B's place in Gwen's class at risk."
+ },
+ "acc_026": {
+  "date": "2026-10-09",
+  "before": null,
+  "situation": "User B wants to ask Garrett Rourke to cut a reel from footage for about $75."
+ },
+ "acc_027": {
+  "date": "2026-10-09",
+  "before": null,
+  "situation": "User B wants a nearby sports bar showing the Corvane game this weekend, not staying home."
+ },
+ "acc_028": {
+  "date": "2026-10-10",
+  "before": null,
+  "situation": "October rent on the 5C account comes first among several Saturday apartment and money errands."
+ },
+ "acc_029": {
+  "date": "2026-10-10",
+  "before": null,
+  "situation": "Gwen wants clean résumé wording, and it's unclear if an uncredited shoot day counts."
+ },
+ "acc_031": {
+  "date": "2026-10-11",
+  "before": null,
+  "situation": "Six people picked food for tonight's dinner, but nobody paid User B back last time."
+ },
+ "acc_033": {
+  "date": "2026-10-12",
+  "before": null,
+  "situation": "A Bistro check came in light after that week's board was written over partway through."
+ },
+ "acc_034": {
+  "date": "2026-10-14",
+  "before": null,
+  "situation": "Northline says a delivery was left at the door yesterday, but the hallway is empty."
+ },
+ "acc_036": {
+  "date": "2026-10-15",
+  "before": null,
+  "situation": "Amanda texted that Derek, an ex from a messy breakup, is on Brian's birthday guest list."
+ },
+ "acc_037": {
+  "date": "2026-10-17",
+  "before": null,
+  "situation": "A revised schedule from Carla posts while User B isn't asking for anything."
+ },
+ "acc_038": {
+  "date": "2026-10-19",
+  "before": null,
+  "situation": "Dominique Farr sent availability, and User B needs one rehearsal hour together this week."
+ },
+ "acc_039": {
+  "date": "2026-10-20",
+  "before": null,
+  "situation": "After yesterday's heated fight, User B wants to text Evan across the hall."
+ },
+ "acc_040": {
+  "date": "2026-10-21",
+  "before": null,
+  "situation": "Carla's notice calls User B to a mandatory staff meeting on an unscheduled day."
+ },
+ "acc_041": {
+  "date": "2026-10-23",
+  "before": null,
+  "situation": "During the Friday dinner rush, Gwen sends two texts about cancelling an hour."
+ },
+ "acc_042": {
+  "date": "2026-10-26",
+  "before": null,
+  "situation": "User B is unsure whether to bring Jason, dating three weeks, to game night at Trevor's."
+ },
+ "acc_043": {
+  "date": "2026-10-29",
+  "before": null,
+  "situation": "Trevor's text dropping out of the group plan arrives while User B isn't asking anything."
+ },
+ "acc_044": {
+  "date": "2026-10-31",
+  "before": null,
+  "situation": "Amanda's month-end fixes need adding to the regulars sheet so new servers stop asking her."
+ },
+ "acc_046": {
+  "date": "2026-11-02",
+  "before": null,
+  "situation": "Six people with different tastes arrive at five for game night, and food isn't decided."
+ },
+ "acc_047": {
+  "date": "2026-11-03",
+  "before": null,
+  "situation": "User B needs an hour in a Fifth Street self-tape room before a shift this week."
+ },
+ "acc_048": {
+  "date": "2026-11-04",
+  "before": null,
+  "situation": "Draft four of the screenplay, act three still notes, needs checking against the Cordera contest rules."
+ },
+ "acc_049": {
+  "date": "2026-11-05",
+  "before": null,
+  "situation": "User B wants Bistro pay moved onto credit-union checking before the mid-month payroll run."
+ },
+ "acc_051": {
+  "date": "2026-11-07",
+  "before": null,
+  "situation": "Trevor asks for a ride to Cedarline Sports Bar, and User B doesn't want to drive."
+ },
+ "acc_052": {
+  "date": "2026-11-08",
+  "before": null,
+  "situation": "Amanda asked whether Saturday's double shift changes what Friday night can be."
+ },
+ "acc_053": {
+  "date": "2026-11-09",
+  "before": null,
+  "situation": "Priya Raghavan wants a self-tape by tonight, in a week that's already fully booked."
+ },
+ "acc_054": {
+  "date": "2026-11-10",
+  "before": null,
+  "situation": "November's Talbot Ridge rent is past the fifth with a late fee, and still due."
+ },
+ "acc_055": {
+  "date": "2026-11-11",
+  "before": null,
+  "situation": "The Coldwater shoot is tomorrow at 06:00, and Hal needs the signed start paperwork emailed tonight."
+ },
+ "acc_056": {
+  "date": "2026-11-12",
+  "before": null,
+  "situation": "Hal's email gives a different Coldwater call time from the call sheet and the calendar."
+ },
+ "acc_057": {
+  "date": "2026-11-13",
+  "before": null,
+  "situation": "The Cordera prize reads entries blind; the draft may carry User B's name or contact details."
+ },
+ "acc_058": {
+  "date": "2026-11-14",
+  "before": null,
+  "situation": "Curtis Byrd brings over a table's severe shellfish allergy question about fried dishes."
+ },
+ "acc_059": {
+  "date": "2026-11-15",
+  "before": null,
+  "situation": "Derek Walsh has started texting again, and User B wants to know what he sent."
+ },
+ "acc_061": {
+  "date": "2026-11-15",
+  "before": null,
+  "situation": "Priya's new casting breakdown wants sides after an avail check, which User B has never done."
+ },
+ "acc_062": {
+  "date": "2026-11-16",
+  "before": null,
+  "situation": "User B is wondering whether Evan Delaney should be the first to read the screenplay draft."
+ },
+ "acc_063": {
+  "date": "2026-11-17",
+  "before": null,
+  "situation": "Adrian texts again asking for drinks after tomorrow's shift, and User B wants to say no."
+ },
+ "acc_064": {
+  "date": "2026-11-18",
+  "before": null,
+  "situation": "The Coldwater start paperwork has an unexplained buyout clause that accounting's reply didn't clear up."
+ },
+ "acc_065": {
+  "date": "2026-11-19",
+  "before": null,
+  "situation": "A Ridgeway Auto quote arrived about the car's noise, with about $500 to spend."
+ },
+ "acc_067": {
+  "date": "2026-11-20",
+  "before": null,
+  "situation": "Dad wants a holiday answer tonight, and flights home to Kessler Falls strain the budget."
+ },
+ "acc_068": {
+  "date": "2026-11-21",
+  "before": null,
+  "situation": "Carla's updated schedule puts User B on today's Saturday double, right across an afternoon callback."
+ },
+ "acc_069": {
+  "date": "2026-11-25",
+  "before": null,
+  "situation": "Two audition notices from Priya land on the same morning, across town from each other."
+ },
+ "acc_070": {
+  "date": "2026-11-30",
+  "before": null,
+  "situation": "Garrett agreed to look at cutting the reel; User B can put $50 toward it."
+ },
+ "acc_071": {
+  "date": "2026-12-01",
+  "before": null,
+  "situation": "Two weeks after Ridgeway's quote, User B still doesn't know what the car's noise is."
+ },
+ "acc_072": {
+  "date": "2026-12-02",
+  "before": null,
+  "situation": "A scattered afternoon off: the screenplay draft, a message home to Dad, and rising holiday airfare."
+ },
+ "acc_073": {
+  "date": "2026-12-03",
+  "before": null,
+  "situation": "Priya's follow-up on the submitted Lantern role arrives while User B isn't asking for anything."
+ },
+ "acc_074": {
+  "date": "2026-12-04",
+  "before": null,
+  "situation": "Brian's birthday gift has to come from a board-game hobby User B barely understands."
+ },
+ "acc_076": {
+  "date": "2026-12-07",
+  "before": null,
+  "situation": "Harrow Produce offered a credit note on a mismatched invoice, but Carla wants payments matching invoices."
+ },
+ "acc_077": {
+  "date": "2026-12-08",
+  "before": null,
+  "situation": "A closure notice from The Bellwether on Ash St arrives while User B isn't asking anything."
+ },
+ "acc_079": {
+  "date": "2026-12-09",
+  "before": null,
+  "situation": "The new Coldwater day-player credit needs adding to the profile copy on the acting resume."
+ },
+ "acc_080": {
+  "date": "2026-12-10",
+  "before": null,
+  "situation": "The paycheck came in short, so User B needs one bill that can wait."
+ },
+ "acc_081": {
+  "date": "2026-12-11",
+  "before": null,
+  "situation": "Amanda Ross agreed to take Saturday's double, and the swap form still needs filing."
+ },
+ "acc_082": {
+  "date": "2026-12-12",
+  "before": null,
+  "situation": "User B wants a Sunday-evening table for two with Jason Reed, Italian or Mexican."
+ },
+ "acc_083": {
+  "date": "2026-12-13",
+  "before": null,
+  "situation": "A point-of-sale login locked after the last shift and must be cleared before the next one."
+ },
+ "acc_084": {
+  "date": "2026-12-14",
+  "before": null,
+  "situation": "A navy wrap dress is going back to Northline, and User B wants a card refund."
+ },
+ "acc_085": {
+  "date": "2026-12-15",
+  "before": null,
+  "situation": "Garrett didn't have the headshot print run ready, and the callback is coming up fast."
+ },
+ "acc_086": {
+  "date": "2026-12-17",
+  "before": null,
+  "situation": "Curtis is waiting on the floor note, but the allergen sheet needs checking before tonight's change."
+ },
+ "acc_087": {
+  "date": "2026-12-18",
+  "before": null,
+  "situation": "User B wants a spot on Market St with Jason Reed that's easy to leave early."
+ },
+ "acc_088": {
+  "date": "2026-12-19",
+  "before": null,
+  "situation": "A surprise Talbot Ridge lease renewal arrives, and User B wants the new rates and deadline."
+ },
+ "acc_089": {
+  "date": "2026-12-20",
+  "before": null,
+  "situation": "Carla confirmed the work shoes count as uniform, if the claim is filed before tonight's cutoff."
+ },
+ "acc_091": {
+  "date": "2026-12-24",
+  "before": null,
+  "situation": "The return window closes tonight for a dress that never left the apartment."
+ },
+ "acc_092": {
+  "date": "2026-12-28",
+  "before": null,
+  "situation": "Curtis says servers are confused about menu cautions, so the floor note needs updating."
+ },
+ "acc_093": {
+  "date": "2026-12-31",
+  "before": null,
+  "situation": "Home after closing on New Year's Eve, User B is locked out with no key."
+ },
+ "acc_094": {
+  "date": "2027-01-01",
+  "before": null,
+  "situation": "User B wants to know if the Coldwater day counts toward union eligibility."
+ },
+ "acc_095": {
+  "date": "2027-01-02",
+  "before": null,
+  "situation": "The Coldwater check from November still hasn't arrived, and rent is coming up."
+ },
+ "acc_096": {
+  "date": "2027-01-03",
+  "before": null,
+  "situation": "Sarah Bennett visits Glenmont the 22nd to the 25th and needs somewhere quiet, not the couch."
+ },
+ "acc_097": {
+  "date": "2027-01-04",
+  "before": null,
+  "situation": "Gwen saw the Coldwater résumé line, and 'uncredited' might read like background work to casting."
+ },
+ "acc_098": {
+  "date": "2027-01-05",
+  "before": null,
+  "situation": "About ninety unread group-thread messages bury two questions only User B can answer."
+ },
+ "acc_099": {
+  "date": "2027-01-06",
+  "before": null,
+  "situation": "The Sunday Bellwether tab went on User B's card and won't split evenly across four people."
+ },
+ "acc_101": {
+  "date": "2027-01-07",
+  "before": null,
+  "situation": "User B needs the year-end pay paperwork from Bridgeline Payroll before filing, a first-time chase."
+ },
+ "acc_102": {
+  "date": "2027-01-08",
+  "before": null,
+  "situation": "User B wants somewhere new for Sunday dinner with Evan, away from the usual spots."
+ },
+ "acc_103": {
+  "date": "2027-01-09",
+  "before": null,
+  "situation": "Another cup over a tiny spider sits outside Trevor's door, and the hallway rule needs repeating."
+ },
+ "acc_105": {
+  "date": "2027-01-10",
+  "before": null,
+  "situation": "Neil's raid is set for 8 tonight, with an unconfirmed comment about starting earlier."
+ },
+ "acc_106": {
+  "date": "2027-01-21",
+  "before": null,
+  "situation": "Before the shift, the spare key, Trevor's couch spot and Sunday plans with Evan need settling."
+ },
+ "acc_107": {
+  "date": "2027-01-26",
+  "before": null,
+  "situation": "Gwen's make-up offer for the cancelled October hour arrives while User B isn't asking for anything."
+ },
+ "acc_108": {
+  "date": "2027-01-31",
+  "before": null,
+  "situation": "A Marchmont Supply Co. package shows delivered but never came, and the shop closed the case."
+ },
+ "evolv_01": {
+  "date": "2026-10-05",
+  "before": null,
+  "situation": "Carla handed back the comp note on the ruined halibut at table 12 as too messy."
+ },
+ "evolv_02": {
+  "date": "2026-10-10",
+  "before": null,
+  "situation": "Fifth Street Studio dropped User B from Gwen's class after the invoice lapsed."
+ },
+ "evolv_03": {
+  "date": "2026-11-01",
+  "before": null,
+  "situation": "Dominique's other partner took the Tuesday rehearsal slot, and an hour must be picked today."
+ },
+ "evolv_05": {
+  "date": "2026-12-05",
+  "before": null,
+  "situation": "Adrian Salazar texts asking to come over, and User B needs to turn him down tonight."
+ },
+ "evolv_06": {
+  "date": "2026-12-21",
+  "before": null,
+  "situation": "A message to Dad, a draft deadline and tomorrow's red-eye need sorting before a shift."
+ },
+ "fin_01": {
+  "date": null,
+  "before": null,
+  "situation": "User B wants to know what Gwen's coaching notes say is landing and weak."
+ },
+ "fin_02": {
+  "date": null,
+  "before": null,
+  "situation": "User B wants Fifth Street's self-tape room rules: equipment, arranging a reader, and running late."
+ },
+ "fin_03": {
+  "date": null,
+  "before": null,
+  "situation": "Fourteen weeks after Hollis Talent acknowledged the submission, User B wonders whether to follow up."
+ },
+ "fin_04": {
+  "date": null,
+  "before": null,
+  "situation": "User B wants to know what the spring rotation availability sheet needs before the rotation posts."
+ },
+ "fin_05": {
+  "date": null,
+  "before": null,
+  "situation": "User B wants the latest pickup day for headshot prints before re-filing, held on the calendar."
+ },
+ "fin_06": {
+  "date": null,
+  "before": null,
+  "situation": "Lantern hasn't replied about two Copper Line avail days, and User B wonders if they're held."
+ },
+ "fin_07": {
+  "date": null,
+  "before": null,
+  "situation": "User B wants a new-server reference note drafted from the staff meal and discount policy."
+ },
+ "fin_08": {
+  "date": null,
+  "before": null,
+  "situation": "User B wants Fifth Street's office emailed about holding a weekly hour in Studio B."
+ },
+ "fin_09": {
+  "date": null,
+  "before": null,
+  "situation": "Gwen emails wanting User B in a Fifth Street scene showcase, with no request open."
+ },
+ "fin_10": {
+  "date": null,
+  "before": null,
+  "situation": "User B never refreshed portal materials after Priya's January 13 email, and the round has opened."
+ },
+ "fin_11": {
+  "date": null,
+  "before": null,
+  "situation": "User B wants a Halden desk lamp recommended from the shop listings for home self-tapes."
+ },
+ "fin_12": {
+  "date": null,
+  "before": null,
+  "situation": "User B needs the Lantern Casting callbacks desk's direct number from contacts, about a callback time."
+ },
+ "fin_13": {
+  "date": null,
+  "before": null,
+  "situation": "User B needs a Sawmill Road submission plan note and a 14:00 to 16:00 tape-session hold."
+ },
+ "fin_14": {
+  "date": null,
+  "before": null,
+  "situation": "Three work matters at once: Curtis's spring-menu tasting notice, a portal hold, and Dominique's text."
+ },
+ "fin_15": {
+  "date": null,
+  "before": null,
+  "situation": "For a night-off dinner, User B wants the Mushroom Risotto recipe's ingredients and method."
+ },
+ "fin_16": {
+  "date": null,
+  "before": null,
+  "situation": "User B wants Larkspur Nail Studio's open slots this week and its lateness and cancellation rules."
+ },
+ "fin_17": {
+  "date": null,
+  "before": null,
+  "situation": "Brian Foster's November 30 text has sat unanswered for two months; User B wants to reply."
+ },
+ "fin_18": {
+  "date": null,
+  "before": null,
+  "situation": "An Ironvale patch note changes raid lockouts, and User B wants it explained for raid night."
+ },
+ "fin_19": {
+  "date": null,
+  "before": null,
+  "situation": "The January Glenmont Water bill is due this week; User B must decide when to pay."
+ },
+ "fin_20": {
+  "date": null,
+  "before": null,
+  "situation": "The kitchen tap's aerator sprays everywhere, and User B can't check the spout thread before buying."
+ },
+ "fin_21": {
+  "date": null,
+  "before": null,
+  "situation": "User B needs Monday hours for key cutting and household basics, saved in an errands note."
+ },
+ "fin_22": {
+  "date": null,
+  "before": null,
+  "situation": "Evan lent User B's good chair to Trevor in 5D, to be collected Friday before work."
+ },
+ "fin_23": {
+  "date": null,
+  "before": null,
+  "situation": "Trevor's text about a fifth-floor hot water outage arrives while User B isn't asking for anything."
+ },
+ "fin_24": {
+  "date": null,
+  "before": null,
+  "situation": "Talbot Ridge is holding an oversized parcel for 5C in Suite 1 until February 8."
+ },
+ "fin_25": {
+  "date": null,
+  "before": null,
+  "situation": "User B wants to know which ThermaWave heater to buy for the bedroom."
+ },
+ "fin_26": {
+  "date": null,
+  "before": null,
+  "situation": "A ribbed knit cardigan is due tomorrow; User B wants to know where it is."
+ },
+ "fin_27": {
+  "date": null,
+  "before": null,
+  "situation": "Andrew Cole offered two evenings this week; User B wants dinner with him on the calendar."
+ },
+ "fin_28": {
+  "date": null,
+  "before": null,
+  "situation": "A missing laundry card, a chest of drawers for bulk waste, and a text to Maeve."
+ },
+ "pre_01": {
+  "date": "2026-10-05",
+  "before": 15,
+  "situation": "User B wants Gwen Alcott's coaching notes summarized: what's landing in the scene and what's weak."
+ },
+ "pre_02": {
+  "date": "2026-10-10",
+  "before": 30,
+  "situation": "User B wants a new-server reference note on the staff meal and discount policy before dinner."
+ },
+ "pre_03": {
+  "date": "2026-11-01",
+  "before": 45,
+  "situation": "User B wants help choosing a Halden desk lamp for lighting self-tapes at home."
+ },
+ "pre_04": {
+  "date": "2026-12-05",
+  "before": 75,
+  "situation": "Brian Foster's November 30 text has gone five days unanswered, and it's weighing on User B."
+ },
+ "pre_05": {
+  "date": "2026-12-21",
+  "before": 90,
+  "situation": "A lost laundry card, a chest of drawers to clear, and a text for Maeve Driscoll."
+ }
+}

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Office Set</title>
+  <link rel="icon" href="data:,">
+  <style>
+    :root { --bg: #f4eee4; --ink: #3b332c; --chip: #fffaf2; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; overflow: hidden; background: var(--bg); }
+    #stage { position: fixed; inset: 0; }
+    #stage canvas { display: block; }
+    #toggle {
+      position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%);
+      font: 15px/1.2 system-ui, -apple-system, "Segoe UI", sans-serif;
+      padding: 8px 22px; border-radius: 999px; border: 1.5px solid var(--ink);
+      background: var(--chip); color: var(--ink); cursor: pointer;
+    }
+  </style>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="stage"></div>
+  <button id="toggle" type="button">Enter</button>
+  <script>
+    // Embedded in the site's Demo page (?embed): report a failed room build to that page.
+    if (new URLSearchParams(location.search).has('embed') && parent !== window) {
+      const report = (message) => parent.postMessage({ mpb: 'error', type: 'error', message: String(message) }, location.origin);
+      addEventListener('error', (e) => report(e.message || `could not load ${(e.target && e.target.src) || 'the 3D room'}`), true);
+      addEventListener('unhandledrejection', (e) => report(e.reason && e.reason.message ? e.reason.message : e.reason));
+    }
+  </script>
+  <script type="module" src="./scene.js"></script>
+</body>
+</html>

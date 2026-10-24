@@ -1,0 +1,1491 @@
+{
+ "user": "user_c",
+ "pa_model": "deepseek/deepseek-v4-flash",
+ "memory": "nanobot_file_memory",
+ "round": 2,
+ "changed_cells": [
+  {
+   "cell": "personal_autonomy_level",
+   "pre": "Reactive",
+   "post": "Self-directed",
+   "event_acc": 75
+  },
+  {
+   "cell": "personal_information_elicitation",
+   "pre": "Iterative",
+   "post": "Structured",
+   "event_acc": 60
+  },
+  {
+   "cell": "work_autonomy_level",
+   "pre": "Self-directed",
+   "post": "Autonomous",
+   "event_acc": 45
+  },
+  {
+   "cell": "work_process_visibility",
+   "pre": "Silent",
+   "post": "Bookend",
+   "event_acc": 30
+  },
+  {
+   "cell": "work_tone_formality",
+   "pre": "Casual",
+   "post": "Consultative",
+   "event_acc": 15
+  }
+ ],
+ "featured": [
+  {
+   "probe": "fin_08",
+   "prelude": {
+    "session": "evolv_03",
+    "turns": [
+     6,
+     8
+    ]
+   }
+  },
+  {
+   "probe": "fin_06",
+   "prelude": {
+    "session": "acc_086",
+    "turns": [
+     0,
+     2
+    ]
+   }
+  },
+  {
+   "probe": "fin_02",
+   "prelude": {
+    "session": "acc_076",
+    "turns": [
+     0,
+     2
+    ]
+   }
+  }
+ ],
+ "timeline": [
+  {
+   "id": "acc_001",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-10-01T08:00:00+00:00",
+   "order": 1,
+   "cell": "work_verbosity",
+   "setting": "Terse",
+   "skipped": false
+  },
+  {
+   "id": "acc_002",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-10-01T11:00:00+00:00",
+   "order": 2,
+   "cell": "personal_verbosity",
+   "setting": "Detailed",
+   "skipped": false
+  },
+  {
+   "id": "acc_003",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-10-01T15:00:00+00:00",
+   "order": 3,
+   "cell": "work_emotional_engagement",
+   "setting": "Relationship-focused",
+   "skipped": false
+  },
+  {
+   "id": "acc_004",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-10-02T08:00:00+00:00",
+   "order": 4,
+   "cell": "personal_emotional_engagement",
+   "setting": "Relationship-focused",
+   "skipped": false
+  },
+  {
+   "id": "acc_005",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-10-02T11:00:00+00:00",
+   "order": 5,
+   "cell": "work_tone_formality",
+   "setting": "Casual",
+   "skipped": false
+  },
+  {
+   "id": "acc_006",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-10-02T15:00:00+00:00",
+   "order": 6,
+   "cell": "work_guidance_level",
+   "setting": "Assumed",
+   "skipped": false
+  },
+  {
+   "id": "acc_007",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-10-03T08:00:00+00:00",
+   "order": 7,
+   "cell": "personal_guidance_level",
+   "setting": "Assumed",
+   "skipped": false
+  },
+  {
+   "id": "acc_008",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-10-03T11:00:00+00:00",
+   "order": 8,
+   "cell": "work_process_visibility",
+   "setting": "Silent",
+   "skipped": false
+  },
+  {
+   "id": "acc_009",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-10-03T15:00:00+00:00",
+   "order": 9,
+   "cell": "work_reasoning_visibility",
+   "setting": "Hide",
+   "skipped": false
+  },
+  {
+   "id": "acc_010",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-10-04T08:00:00+00:00",
+   "order": 10,
+   "cell": "work_tone_formality",
+   "setting": "Casual",
+   "skipped": false
+  },
+  {
+   "id": "acc_011",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-10-04T11:00:00+00:00",
+   "order": 11,
+   "cell": "personal_reasoning_visibility",
+   "setting": "Hide",
+   "skipped": false
+  },
+  {
+   "id": "acc_012",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-10-04T15:00:00+00:00",
+   "order": 12,
+   "cell": "work_autonomy_level",
+   "setting": "Self-directed",
+   "skipped": false
+  },
+  {
+   "id": "acc_013",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-10-05T08:00:00+00:00",
+   "order": 13,
+   "cell": "work_tone_formality",
+   "setting": "Casual",
+   "skipped": false
+  },
+  {
+   "id": "acc_014",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-10-05T11:00:00+00:00",
+   "order": 14,
+   "cell": "work_uncertainty_expression",
+   "setting": "Hide",
+   "skipped": false
+  },
+  {
+   "id": "acc_016",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-10-06T08:00:00+00:00",
+   "order": 16,
+   "cell": "personal_information_elicitation",
+   "setting": "Iterative",
+   "skipped": false
+  },
+  {
+   "id": "acc_017",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-10-06T11:00:00+00:00",
+   "order": 17,
+   "cell": "personal_uncertainty_expression",
+   "setting": "Hide",
+   "skipped": false
+  },
+  {
+   "id": "acc_018",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-10-06T15:00:00+00:00",
+   "order": 18,
+   "cell": "work_process_visibility",
+   "setting": "Silent",
+   "skipped": false
+  },
+  {
+   "id": "acc_019",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-10-07T11:00:00+00:00",
+   "order": 19,
+   "cell": "work_proactive_outreach",
+   "setting": "High",
+   "skipped": false
+  },
+  {
+   "id": "acc_020",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-10-07T15:00:00+00:00",
+   "order": 20,
+   "cell": "personal_autonomy_level",
+   "setting": "Reactive",
+   "skipped": true
+  },
+  {
+   "id": "acc_021",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-10-07T20:00:00+00:00",
+   "order": 21,
+   "cell": "personal_process_visibility",
+   "setting": "Bookend",
+   "skipped": false
+  },
+  {
+   "id": "acc_022",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-10-08T11:00:00+00:00",
+   "order": 22,
+   "cell": "work_autonomy_level",
+   "setting": "Self-directed",
+   "skipped": false
+  },
+  {
+   "id": "acc_023",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-10-08T15:00:00+00:00",
+   "order": 23,
+   "cell": "work_task_expansion",
+   "setting": "High",
+   "skipped": false
+  },
+  {
+   "id": "acc_024",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-10-08T20:00:00+00:00",
+   "order": 24,
+   "cell": "personal_proactive_outreach",
+   "setting": "High",
+   "skipped": false
+  },
+  {
+   "id": "acc_025",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-10-09T11:00:00+00:00",
+   "order": 25,
+   "cell": "work_process_visibility",
+   "setting": "Silent",
+   "skipped": false
+  },
+  {
+   "id": "acc_026",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-10-09T15:00:00+00:00",
+   "order": 26,
+   "cell": "work_solution_breadth",
+   "setting": "High",
+   "skipped": false
+  },
+  {
+   "id": "acc_027",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-10-09T20:00:00+00:00",
+   "order": 27,
+   "cell": "personal_task_expansion",
+   "setting": "High",
+   "skipped": false
+  },
+  {
+   "id": "acc_029",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-10-10T11:00:00+00:00",
+   "order": 29,
+   "cell": "work_capability_boundary",
+   "setting": "Find and hand off",
+   "skipped": false
+  },
+  {
+   "id": "acc_031",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-10-11T08:00:00+00:00",
+   "order": 31,
+   "cell": "personal_solution_breadth",
+   "setting": "High",
+   "skipped": false
+  },
+  {
+   "id": "acc_032",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-10-12T20:00:00+00:00",
+   "order": 32,
+   "cell": "personal_information_elicitation",
+   "setting": "Iterative",
+   "skipped": false
+  },
+  {
+   "id": "acc_033",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-10-13T11:00:00+00:00",
+   "order": 33,
+   "cell": "work_information_elicitation",
+   "setting": "Structured",
+   "skipped": false
+  },
+  {
+   "id": "acc_034",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-10-14T08:00:00+00:00",
+   "order": 34,
+   "cell": "personal_capability_boundary",
+   "setting": "Suggest alternatives",
+   "skipped": false
+  },
+  {
+   "id": "acc_035",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-10-15T15:00:00+00:00",
+   "order": 35,
+   "cell": "work_topic_management",
+   "setting": "One-at-a-time",
+   "skipped": false
+  },
+  {
+   "id": "acc_036",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-10-16T20:00:00+00:00",
+   "order": 36,
+   "cell": "personal_topic_management",
+   "setting": "One-at-a-time",
+   "skipped": false
+  },
+  {
+   "id": "acc_038",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-10-17T11:00:00+00:00",
+   "order": 38,
+   "cell": "work_autonomy_level",
+   "setting": "Self-directed",
+   "skipped": false
+  },
+  {
+   "id": "acc_039",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-10-18T08:00:00+00:00",
+   "order": 39,
+   "cell": "personal_tone_formality",
+   "setting": "Casual",
+   "skipped": false
+  },
+  {
+   "id": "acc_040",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-10-19T15:00:00+00:00",
+   "order": 40,
+   "cell": "work_tone_formality",
+   "setting": "Consultative",
+   "skipped": false
+  },
+  {
+   "id": "acc_041",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-10-20T11:00:00+00:00",
+   "order": 41,
+   "cell": "work_verbosity",
+   "setting": "Terse",
+   "skipped": false
+  },
+  {
+   "id": "acc_042",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-10-21T15:00:00+00:00",
+   "order": 42,
+   "cell": "personal_autonomy_level",
+   "setting": "Reactive",
+   "skipped": false
+  },
+  {
+   "id": "acc_043",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-10-22T08:00:00+00:00",
+   "order": 43,
+   "cell": "personal_verbosity",
+   "setting": "Detailed",
+   "skipped": false
+  },
+  {
+   "id": "acc_044",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-10-24T15:00:00+00:00",
+   "order": 44,
+   "cell": "work_emotional_engagement",
+   "setting": "Relationship-focused",
+   "skipped": false
+  },
+  {
+   "id": "acc_046",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-10-27T20:00:00+00:00",
+   "order": 46,
+   "cell": "personal_emotional_engagement",
+   "setting": "Relationship-focused",
+   "skipped": false
+  },
+  {
+   "id": "acc_047",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-10-29T15:00:00+00:00",
+   "order": 47,
+   "cell": "work_guidance_level",
+   "setting": "Assumed",
+   "skipped": false
+  },
+  {
+   "id": "acc_048",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-10-31T08:00:00+00:00",
+   "order": 48,
+   "cell": "personal_guidance_level",
+   "setting": "Assumed",
+   "skipped": false
+  },
+  {
+   "id": "acc_049",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-11-01T11:00:00+00:00",
+   "order": 49,
+   "cell": "work_reasoning_visibility",
+   "setting": "Hide",
+   "skipped": false
+  },
+  {
+   "id": "acc_050",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-11-02T20:00:00+00:00",
+   "order": 50,
+   "cell": "personal_information_elicitation",
+   "setting": "Iterative",
+   "skipped": false
+  },
+  {
+   "id": "acc_051",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-11-04T08:00:00+00:00",
+   "order": 51,
+   "cell": "personal_reasoning_visibility",
+   "setting": "Hide",
+   "skipped": false
+  },
+  {
+   "id": "acc_053",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-11-05T15:00:00+00:00",
+   "order": 53,
+   "cell": "work_uncertainty_expression",
+   "setting": "Hide",
+   "skipped": false
+  },
+  {
+   "id": "acc_054",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-11-07T20:00:00+00:00",
+   "order": 54,
+   "cell": "personal_uncertainty_expression",
+   "setting": "Hide",
+   "skipped": false
+  },
+  {
+   "id": "acc_055",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-11-08T11:00:00+00:00",
+   "order": 55,
+   "cell": "work_process_visibility",
+   "setting": "Bookend",
+   "skipped": true
+  },
+  {
+   "id": "acc_056",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-11-10T15:00:00+00:00",
+   "order": 56,
+   "cell": "work_proactive_outreach",
+   "setting": "High",
+   "skipped": true
+  },
+  {
+   "id": "acc_057",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-11-11T08:00:00+00:00",
+   "order": 57,
+   "cell": "personal_process_visibility",
+   "setting": "Bookend",
+   "skipped": false
+  },
+  {
+   "id": "acc_058",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-11-13T11:00:00+00:00",
+   "order": 58,
+   "cell": "work_task_expansion",
+   "setting": "High",
+   "skipped": false
+  },
+  {
+   "id": "acc_059",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-11-15T20:00:00+00:00",
+   "order": 59,
+   "cell": "personal_proactive_outreach",
+   "setting": "High",
+   "skipped": false
+  },
+  {
+   "id": "acc_061",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-11-19T15:00:00+00:00",
+   "order": 61,
+   "cell": "work_solution_breadth",
+   "setting": "High",
+   "skipped": false
+  },
+  {
+   "id": "acc_062",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-11-21T20:00:00+00:00",
+   "order": 62,
+   "cell": "personal_task_expansion",
+   "setting": "High",
+   "skipped": false
+  },
+  {
+   "id": "acc_063",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-11-23T08:00:00+00:00",
+   "order": 63,
+   "cell": "personal_autonomy_level",
+   "setting": "Reactive",
+   "skipped": false
+  },
+  {
+   "id": "acc_064",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-11-25T11:00:00+00:00",
+   "order": 64,
+   "cell": "work_capability_boundary",
+   "setting": "Find and hand off",
+   "skipped": false
+  },
+  {
+   "id": "acc_065",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-11-27T20:00:00+00:00",
+   "order": 65,
+   "cell": "personal_solution_breadth",
+   "setting": "High",
+   "skipped": false
+  },
+  {
+   "id": "acc_066",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-11-29T15:00:00+00:00",
+   "order": 66,
+   "cell": "work_information_elicitation",
+   "setting": "Structured",
+   "skipped": false
+  },
+  {
+   "id": "acc_067",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-11-30T08:00:00+00:00",
+   "order": 67,
+   "cell": "personal_capability_boundary",
+   "setting": "Suggest alternatives",
+   "skipped": false
+  },
+  {
+   "id": "acc_068",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-12-01T11:00:00+00:00",
+   "order": 68,
+   "cell": "work_autonomy_level",
+   "setting": "Autonomous",
+   "skipped": true
+  },
+  {
+   "id": "acc_069",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-12-03T15:00:00+00:00",
+   "order": 69,
+   "cell": "work_topic_management",
+   "setting": "One-at-a-time",
+   "skipped": false
+  },
+  {
+   "id": "acc_070",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-12-05T11:00:00+00:00",
+   "order": 70,
+   "cell": "work_tone_formality",
+   "setting": "Consultative",
+   "skipped": false
+  },
+  {
+   "id": "acc_071",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-12-07T20:00:00+00:00",
+   "order": 71,
+   "cell": "personal_topic_management",
+   "setting": "One-at-a-time",
+   "skipped": false
+  },
+  {
+   "id": "acc_074",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-12-09T08:00:00+00:00",
+   "order": 74,
+   "cell": "personal_tone_formality",
+   "setting": "Casual",
+   "skipped": false
+  },
+  {
+   "id": "acc_076",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-12-13T15:00:00+00:00",
+   "order": 76,
+   "cell": "work_verbosity",
+   "setting": "Terse",
+   "skipped": false
+  },
+  {
+   "id": "acc_077",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-12-15T08:00:00+00:00",
+   "order": 77,
+   "cell": "personal_verbosity",
+   "setting": "Detailed",
+   "skipped": false
+  },
+  {
+   "id": "acc_078",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-12-17T20:00:00+00:00",
+   "order": 78,
+   "cell": "personal_information_elicitation",
+   "setting": "Structured",
+   "skipped": true
+  },
+  {
+   "id": "acc_079",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-12-19T11:00:00+00:00",
+   "order": 79,
+   "cell": "work_emotional_engagement",
+   "setting": "Relationship-focused",
+   "skipped": false
+  },
+  {
+   "id": "acc_080",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-12-21T08:00:00+00:00",
+   "order": 80,
+   "cell": "personal_emotional_engagement",
+   "setting": "Relationship-focused",
+   "skipped": false
+  },
+  {
+   "id": "acc_081",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-12-23T15:00:00+00:00",
+   "order": 81,
+   "cell": "work_guidance_level",
+   "setting": "Assumed",
+   "skipped": false
+  },
+  {
+   "id": "acc_082",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-12-26T20:00:00+00:00",
+   "order": 82,
+   "cell": "personal_guidance_level",
+   "setting": "Assumed",
+   "skipped": false
+  },
+  {
+   "id": "acc_083",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-12-28T11:00:00+00:00",
+   "order": 83,
+   "cell": "work_reasoning_visibility",
+   "setting": "Hide",
+   "skipped": false
+  },
+  {
+   "id": "acc_084",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2026-12-30T08:00:00+00:00",
+   "order": 84,
+   "cell": "personal_reasoning_visibility",
+   "setting": "Hide",
+   "skipped": false
+  },
+  {
+   "id": "acc_085",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2026-12-31T15:00:00+00:00",
+   "order": 85,
+   "cell": "work_process_visibility",
+   "setting": "Bookend",
+   "skipped": false
+  },
+  {
+   "id": "acc_086",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2027-01-01T11:00:00+00:00",
+   "order": 86,
+   "cell": "work_uncertainty_expression",
+   "setting": "Hide",
+   "skipped": false
+  },
+  {
+   "id": "acc_087",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2027-01-02T20:00:00+00:00",
+   "order": 87,
+   "cell": "personal_uncertainty_expression",
+   "setting": "Hide",
+   "skipped": false
+  },
+  {
+   "id": "acc_088",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2027-01-04T08:00:00+00:00",
+   "order": 88,
+   "cell": "personal_autonomy_level",
+   "setting": "Self-directed",
+   "skipped": false
+  },
+  {
+   "id": "acc_089",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2027-01-05T15:00:00+00:00",
+   "order": 89,
+   "cell": "work_proactive_outreach",
+   "setting": "High",
+   "skipped": false
+  },
+  {
+   "id": "acc_091",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2027-01-07T20:00:00+00:00",
+   "order": 91,
+   "cell": "personal_process_visibility",
+   "setting": "Bookend",
+   "skipped": false
+  },
+  {
+   "id": "acc_092",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2027-01-08T11:00:00+00:00",
+   "order": 92,
+   "cell": "work_task_expansion",
+   "setting": "High",
+   "skipped": false
+  },
+  {
+   "id": "acc_093",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2027-01-10T08:00:00+00:00",
+   "order": 93,
+   "cell": "personal_proactive_outreach",
+   "setting": "High",
+   "skipped": false
+  },
+  {
+   "id": "acc_094",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2027-01-12T15:00:00+00:00",
+   "order": 94,
+   "cell": "work_solution_breadth",
+   "setting": "High",
+   "skipped": false
+  },
+  {
+   "id": "acc_095",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2027-01-13T11:00:00+00:00",
+   "order": 95,
+   "cell": "work_autonomy_level",
+   "setting": "Autonomous",
+   "skipped": false
+  },
+  {
+   "id": "acc_096",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2027-01-15T20:00:00+00:00",
+   "order": 96,
+   "cell": "personal_task_expansion",
+   "setting": "High",
+   "skipped": false
+  },
+  {
+   "id": "acc_097",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2027-01-16T15:00:00+00:00",
+   "order": 97,
+   "cell": "work_capability_boundary",
+   "setting": "Find and hand off",
+   "skipped": false
+  },
+  {
+   "id": "acc_099",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2027-01-18T08:00:00+00:00",
+   "order": 99,
+   "cell": "personal_solution_breadth",
+   "setting": "High",
+   "skipped": false
+  },
+  {
+   "id": "acc_100",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2027-01-20T20:00:00+00:00",
+   "order": 100,
+   "cell": "personal_information_elicitation",
+   "setting": "Structured",
+   "skipped": false
+  },
+  {
+   "id": "acc_101",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2027-01-21T07:00:00+00:00",
+   "order": 101,
+   "cell": "work_information_elicitation",
+   "setting": "Structured",
+   "skipped": false
+  },
+  {
+   "id": "acc_102",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2027-01-21T08:00:00+00:00",
+   "order": 102,
+   "cell": "personal_capability_boundary",
+   "setting": "Suggest alternatives",
+   "skipped": false
+  },
+  {
+   "id": "acc_103",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2027-01-26T20:00:00+00:00",
+   "order": 103,
+   "cell": "personal_autonomy_level",
+   "setting": "Self-directed",
+   "skipped": false
+  },
+  {
+   "id": "acc_104",
+   "kind": "accumulation",
+   "context": "work",
+   "date": "2027-01-28T15:00:00+00:00",
+   "order": 104,
+   "cell": "work_topic_management",
+   "setting": "One-at-a-time",
+   "skipped": false
+  },
+  {
+   "id": "acc_105",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2027-01-29T08:00:00+00:00",
+   "order": 105,
+   "cell": "personal_topic_management",
+   "setting": "One-at-a-time",
+   "skipped": false
+  },
+  {
+   "id": "acc_108",
+   "kind": "accumulation",
+   "context": "personal",
+   "date": "2027-01-30T20:00:00+00:00",
+   "order": 108,
+   "cell": "personal_tone_formality",
+   "setting": "Casual",
+   "skipped": false
+  },
+  {
+   "id": "evolv_01",
+   "kind": "forced_event",
+   "context": "work",
+   "date": "2026-10-05T15:00:00+00:00",
+   "order": 15,
+   "cell": "work_tone_formality",
+   "setting": "Casual",
+   "skipped": false
+  },
+  {
+   "id": "evolv_02",
+   "kind": "forced_event",
+   "context": "work",
+   "date": "2026-10-10T15:00:00+00:00",
+   "order": 30,
+   "cell": "work_process_visibility",
+   "setting": "Silent",
+   "skipped": false
+  },
+  {
+   "id": "evolv_03",
+   "kind": "forced_event",
+   "context": "work",
+   "date": "2026-10-25T11:00:00+00:00",
+   "order": 45,
+   "cell": "work_autonomy_level",
+   "setting": "Self-directed",
+   "skipped": false
+  },
+  {
+   "id": "evolv_04",
+   "kind": "forced_event",
+   "context": "personal",
+   "date": "2026-11-17T08:00:00+00:00",
+   "order": 60,
+   "cell": "personal_information_elicitation",
+   "setting": "Iterative",
+   "skipped": false
+  },
+  {
+   "id": "evolv_05",
+   "kind": "forced_event",
+   "context": "personal",
+   "date": "2026-12-11T20:00:00+00:00",
+   "order": 75,
+   "cell": "personal_autonomy_level",
+   "setting": "Reactive",
+   "skipped": false
+  },
+  {
+   "id": "fin_01",
+   "kind": "final_probe",
+   "context": "work",
+   "cell": "work_tone_formality",
+   "setting": "Consultative",
+   "selected": "Consultative",
+   "passed": true,
+   "floored": false,
+   "brs": 5,
+   "prs": 5,
+   "skipped": false
+  },
+  {
+   "id": "fin_02",
+   "kind": "final_probe",
+   "context": "work",
+   "cell": "work_verbosity",
+   "setting": "Terse",
+   "selected": "Terse",
+   "passed": true,
+   "floored": false,
+   "brs": 2,
+   "prs": 2,
+   "skipped": false
+  },
+  {
+   "id": "fin_03",
+   "kind": "final_probe",
+   "context": "work",
+   "cell": "work_emotional_engagement",
+   "setting": "Relationship-focused",
+   "selected": "Relationship-focused",
+   "passed": true,
+   "floored": false,
+   "brs": 4,
+   "prs": 4,
+   "skipped": false
+  },
+  {
+   "id": "fin_04",
+   "kind": "final_probe",
+   "context": "work",
+   "cell": "work_guidance_level",
+   "setting": "Assumed",
+   "selected": "Assumed",
+   "passed": true,
+   "floored": false,
+   "brs": 3,
+   "prs": 2,
+   "skipped": false
+  },
+  {
+   "id": "fin_05",
+   "kind": "final_probe",
+   "context": "work",
+   "cell": "work_reasoning_visibility",
+   "setting": "Hide",
+   "selected": "Show",
+   "passed": false,
+   "floored": false,
+   "brs": 1,
+   "prs": 2,
+   "skipped": false
+  },
+  {
+   "id": "fin_06",
+   "kind": "final_probe",
+   "context": "work",
+   "cell": "work_uncertainty_expression",
+   "setting": "Hide",
+   "selected": "Express",
+   "passed": false,
+   "floored": false,
+   "brs": 1,
+   "prs": 1,
+   "skipped": false
+  },
+  {
+   "id": "fin_07",
+   "kind": "final_probe",
+   "context": "work",
+   "cell": "work_process_visibility",
+   "setting": "Bookend",
+   "selected": "Bookend",
+   "passed": true,
+   "floored": false,
+   "brs": 5,
+   "prs": 4,
+   "skipped": false
+  },
+  {
+   "id": "fin_08",
+   "kind": "final_probe",
+   "context": "work",
+   "cell": "work_autonomy_level",
+   "setting": "Autonomous",
+   "selected": "Self-directed",
+   "passed": false,
+   "floored": false,
+   "brs": 2,
+   "prs": 4,
+   "skipped": false
+  },
+  {
+   "id": "fin_09",
+   "kind": "final_probe",
+   "context": "work",
+   "cell": "work_proactive_outreach",
+   "setting": "High",
+   "selected": "High",
+   "passed": true,
+   "floored": false,
+   "brs": 5,
+   "prs": 5,
+   "skipped": false
+  },
+  {
+   "id": "fin_10",
+   "kind": "final_probe",
+   "context": "work",
+   "cell": "work_task_expansion",
+   "setting": "High",
+   "selected": "Low",
+   "passed": false,
+   "floored": false,
+   "brs": 1,
+   "prs": 1,
+   "skipped": false
+  },
+  {
+   "id": "fin_11",
+   "kind": "final_probe",
+   "context": "work",
+   "cell": "work_solution_breadth",
+   "setting": "High",
+   "selected": "Low",
+   "passed": false,
+   "floored": false,
+   "brs": 1,
+   "prs": 1,
+   "skipped": false
+  },
+  {
+   "id": "fin_12",
+   "kind": "final_probe",
+   "context": "work",
+   "cell": "work_capability_boundary",
+   "setting": "Find and hand off",
+   "selected": "Suggest alternatives",
+   "passed": false,
+   "floored": false,
+   "brs": 1,
+   "prs": 1,
+   "skipped": false
+  },
+  {
+   "id": "fin_13",
+   "kind": "final_probe",
+   "context": "work",
+   "cell": "work_information_elicitation",
+   "setting": "Structured",
+   "selected": null,
+   "passed": false,
+   "floored": true,
+   "brs": 1,
+   "prs": 1,
+   "skipped": false
+  },
+  {
+   "id": "fin_14",
+   "kind": "final_probe",
+   "context": "work",
+   "cell": "work_topic_management",
+   "setting": "One-at-a-time",
+   "selected": "Organize",
+   "passed": false,
+   "floored": false,
+   "brs": 1,
+   "prs": 2,
+   "skipped": false
+  },
+  {
+   "id": "fin_15",
+   "kind": "final_probe",
+   "context": "personal",
+   "cell": "personal_tone_formality",
+   "setting": "Casual",
+   "selected": "Casual",
+   "passed": true,
+   "floored": false,
+   "brs": 5,
+   "prs": 5,
+   "skipped": false
+  },
+  {
+   "id": "fin_16",
+   "kind": "final_probe",
+   "context": "personal",
+   "cell": "personal_verbosity",
+   "setting": "Detailed",
+   "selected": "Detailed",
+   "passed": true,
+   "floored": false,
+   "brs": 5,
+   "prs": 5,
+   "skipped": false
+  },
+  {
+   "id": "fin_17",
+   "kind": "final_probe",
+   "context": "personal",
+   "cell": "personal_emotional_engagement",
+   "setting": "Relationship-focused",
+   "selected": "Relationship-focused",
+   "passed": true,
+   "floored": false,
+   "brs": 4,
+   "prs": 5,
+   "skipped": false
+  },
+  {
+   "id": "fin_18",
+   "kind": "final_probe",
+   "context": "personal",
+   "cell": "personal_guidance_level",
+   "setting": "Assumed",
+   "selected": "Assumed",
+   "passed": true,
+   "floored": false,
+   "brs": 4,
+   "prs": 2,
+   "skipped": false
+  },
+  {
+   "id": "fin_19",
+   "kind": "final_probe",
+   "context": "personal",
+   "cell": "personal_reasoning_visibility",
+   "setting": "Hide",
+   "selected": "Hide",
+   "passed": true,
+   "floored": false,
+   "brs": 1,
+   "prs": 2,
+   "skipped": false
+  },
+  {
+   "id": "fin_20",
+   "kind": "final_probe",
+   "context": "personal",
+   "cell": "personal_uncertainty_expression",
+   "setting": "Hide",
+   "selected": "Hide",
+   "passed": true,
+   "floored": false,
+   "brs": 5,
+   "prs": 5,
+   "skipped": false
+  },
+  {
+   "id": "fin_21",
+   "kind": "final_probe",
+   "context": "personal",
+   "cell": "personal_process_visibility",
+   "setting": "Bookend",
+   "selected": "Bookend",
+   "passed": true,
+   "floored": false,
+   "brs": 5,
+   "prs": 4,
+   "skipped": false
+  },
+  {
+   "id": "fin_22",
+   "kind": "final_probe",
+   "context": "personal",
+   "cell": "personal_autonomy_level",
+   "setting": "Self-directed",
+   "selected": "Self-directed",
+   "passed": true,
+   "floored": false,
+   "brs": 5,
+   "prs": 5,
+   "skipped": false
+  },
+  {
+   "id": "fin_23",
+   "kind": "final_probe",
+   "context": "personal",
+   "cell": "personal_proactive_outreach",
+   "setting": "High",
+   "selected": "High",
+   "passed": true,
+   "floored": false,
+   "brs": 5,
+   "prs": 5,
+   "skipped": false
+  },
+  {
+   "id": "fin_24",
+   "kind": "final_probe",
+   "context": "personal",
+   "cell": "personal_task_expansion",
+   "setting": "High",
+   "selected": "Low",
+   "passed": false,
+   "floored": false,
+   "brs": 1,
+   "prs": 2,
+   "skipped": false
+  },
+  {
+   "id": "fin_25",
+   "kind": "final_probe",
+   "context": "personal",
+   "cell": "personal_solution_breadth",
+   "setting": "High",
+   "selected": "Low",
+   "passed": false,
+   "floored": false,
+   "brs": 1,
+   "prs": 1,
+   "skipped": false
+  },
+  {
+   "id": "fin_26",
+   "kind": "final_probe",
+   "context": "personal",
+   "cell": "personal_capability_boundary",
+   "setting": "Suggest alternatives",
+   "selected": "Find and hand off",
+   "passed": false,
+   "floored": false,
+   "brs": 2,
+   "prs": 2,
+   "skipped": false
+  },
+  {
+   "id": "fin_27",
+   "kind": "final_probe",
+   "context": "personal",
+   "cell": "personal_information_elicitation",
+   "setting": "Structured",
+   "selected": "Structured",
+   "passed": true,
+   "floored": false,
+   "brs": 5,
+   "prs": 5,
+   "skipped": false
+  },
+  {
+   "id": "fin_28",
+   "kind": "final_probe",
+   "context": "personal",
+   "cell": "personal_topic_management",
+   "setting": "One-at-a-time",
+   "selected": "Organize",
+   "passed": false,
+   "floored": false,
+   "brs": 1,
+   "prs": 2,
+   "skipped": false
+  },
+  {
+   "id": "pre_01",
+   "kind": "pre_probe",
+   "context": "work",
+   "cell": "work_tone_formality",
+   "setting": "Casual",
+   "selected": "Consultative",
+   "passed": false,
+   "floored": false,
+   "brs": 5,
+   "prs": null,
+   "skipped": false
+  },
+  {
+   "id": "pre_02",
+   "kind": "pre_probe",
+   "context": "work",
+   "cell": "work_process_visibility",
+   "setting": "Silent",
+   "selected": "Bookend",
+   "passed": false,
+   "floored": false,
+   "brs": 1,
+   "prs": null,
+   "skipped": false
+  },
+  {
+   "id": "pre_03",
+   "kind": "pre_probe",
+   "context": "work",
+   "cell": "work_autonomy_level",
+   "setting": "Self-directed",
+   "selected": "Self-directed",
+   "passed": true,
+   "floored": false,
+   "brs": 5,
+   "prs": null,
+   "skipped": false
+  },
+  {
+   "id": "pre_04",
+   "kind": "pre_probe",
+   "context": "personal",
+   "cell": "personal_information_elicitation",
+   "setting": "Iterative",
+   "selected": "Infer",
+   "passed": false,
+   "floored": false,
+   "brs": 1,
+   "prs": null,
+   "skipped": false
+  },
+  {
+   "id": "pre_05",
+   "kind": "pre_probe",
+   "context": "personal",
+   "cell": "personal_autonomy_level",
+   "setting": "Reactive",
+   "selected": "Self-directed",
+   "passed": false,
+   "floored": false,
+   "brs": 2,
+   "prs": null,
+   "skipped": false
+  }
+ ]
+}
