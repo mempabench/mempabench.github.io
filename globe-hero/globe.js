@@ -1,6 +1,7 @@
 // Overview hero prototype: the top of a pale globe with four crystal balls standing on it.
 // Each ball holds one user's world (assets/world_<key>.png, drawn on a sprite that faces the camera).
-// Hovering (desktop) or swiping / tapping (touch) turns the globe so one ball comes to the front.
+// Hovering (desktop) or swiping / tapping (touch) turns the globe so one ball comes to the front; clicking or
+// tapping a ball asks whether to enter that user's Demo.
 import * as THREE from 'three';
 
 // ---------------------------------------------------------------- knobs
@@ -449,8 +450,25 @@ function ballAt(x, y) {
 const localPoint = (e) => { const b = hero.getBoundingClientRect(); return { x: e.clientX - b.left, y: e.clientY - b.top }; };
 const SWIPE_RAD_PER_PX = () => deg(USERS[1].lonDeg - USERS[0].lonDeg) / Math.max(160, 0.42 * hero.clientWidth);
 
+// Clicking or tapping a ball brings it to the front and asks before leaving for that user's Demo
+// (#enter-world in site/index.html): a stray click only opens the question.
+const enterDialog = document.getElementById('enter-world');
+function askToEnter(index) {
+  setFocus(index);
+  document.getElementById('enter-world-user').textContent = USERS[index].label;
+  document.getElementById('enter-world-go').href = `demo.html?user=user_${USERS[index].key}`;
+  enterDialog.showModal();
+}
+document.getElementById('enter-world-later').addEventListener('click', () => enterDialog.close());
+enterDialog.addEventListener('click', (e) => { if (e.target === enterDialog) enterDialog.close(); }); // the backdrop
+
 hero.addEventListener('pointermove', (e) => {
-  if (e.pointerType === 'mouse') { const p = localPoint(e); hoverAt(p.x, p.y); return; }
+  if (e.pointerType === 'mouse') {
+    const p = localPoint(e);
+    hero.style.cursor = ballAt(p.x, p.y) === null ? '' : 'pointer';
+    hoverAt(p.x, p.y);
+    return;
+  }
   const drag = state.drag;
   if (!drag || drag.id !== e.pointerId) return;
   const p = localPoint(e);
@@ -478,9 +496,15 @@ function endTouch(e) {
   } else if (e.type === 'pointerup') {
     const p = localPoint(e);
     const hit = ballAt(p.x, p.y);
-    if (hit !== null) setFocus(hit);
+    if (hit !== null) askToEnter(hit);
   }
 }
+hero.addEventListener('pointerup', (e) => {
+  if (e.pointerType !== 'mouse' || e.button !== 0) return;
+  const p = localPoint(e);
+  const hit = ballAt(p.x, p.y);
+  if (hit !== null) askToEnter(hit);
+});
 hero.addEventListener('pointerup', endTouch);
 hero.addEventListener('pointercancel', endTouch);
 // Pointer leaving the hero keeps the last ball in front: nothing moves when the visitor scrolls away.

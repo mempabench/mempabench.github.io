@@ -1,7 +1,7 @@
 // User B's room: 3D dollhouse of her living room, a sibling of lab/diorama-b (User A's room), whose code this
 // started from. layout.json (written by work/gen/b_room/make_layout.py, laid out by hand from the set photos)
 // holds the walls with their openings, the floor outline and every furniture piece; nothing the plan contains
-// is typed in here. The per-user values (the seated figure, its seat, face decal, dizzy eyes, the shots' objects)
+// is typed in here. The per-user values (the seated figure, its seat, its face, dizzy eyes, the shots' objects)
 // are the named constants below.
 //
 // Axis mapping, metres: plan (x, y, z) -> three.js (x - origin[0], z, origin[1] - y). Plan y runs away from
@@ -11,7 +11,6 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DecalGeometry } from 'three/addons/geometries/DecalGeometry.js';
-import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
@@ -52,9 +51,24 @@ const SEAT_PIECE = 'sofa';
 const RUG_UNDER = ['sofa', 'coffee_table'];
 const CEILING_LIGHTS_OVER = ['coffee_table', 'kitchen_island'];
 
-// The seated figure: GLB in models/ (TRELLIS units, front +z, feet at the bottom) and the prefix of its face
-// pictures in assets/faces/ (<faces>_<expression>.png).
-const FIGURE = { model: 'user_b_sit_phone', faces: 'user_b' };
+// The seated figure, one of FIGURES: FIGURE_SHIPPED, or the one named by ?figure=<name>.
+//   model:  GLB in models/ (front +z, feet at the bottom, phone in her hands;
+//           work/gen/b_character_user_b_meshy/build.sh <name> makes it from that Meshy model)
+//   faces:  prefix of her expression patches in assets/faces/ (<faces>_<expression>.webp, see FACE_DECAL), or
+//           null: her face is the model's own and stays as it is; the expressions still bring their effects over
+//           her head (FACE_FX)
+//   centre: the middle of her face in the GLB's units (between her eyes and her mouth, on the surface): the point
+//           the near and him shots aim at, the page's head anchor and the effects over her head are measured from
+//   box:    without face patches, the face's [width, height, depth] in the GLB's units round `centre`, facing the
+//           Inside eye: where the effects on her face (FACE_FX sweat, slide) are placed, as points of a face
+//           picture would be
+const FIGURES = {
+  threequarter: { model: 'user_b_seated_threequarter', faces: 'user_b_skin', centre: [0.03, 0.64, 0.005], box: [0.2, 0.31, 0.3] },   // from the three-quarter picture
+};
+const FIGURE_SHIPPED = 'threequarter';
+const FIGURE_NAME = new URLSearchParams(location.search).get('figure') ?? FIGURE_SHIPPED;
+if (!FIGURES[FIGURE_NAME]) throw new Error(`?figure=${FIGURE_NAME}: unknown figure (expected one of ${Object.keys(FIGURES).join(', ')})`);
+const FIGURE = FIGURES[FIGURE_NAME];
 
 // User B on the sofa's right cushion (as the viewer faces the sofa), measured on the sofa model by raycasting
 // when the room loads (sofa local frame: x along the sofa, - = the viewer's left end; y up from the floor; z
@@ -63,38 +77,24 @@ const FIGURE = { model: 'user_b_sit_phone', faces: 'user_b' };
 // back as the backrest allows, but no further back than keeps the backs of her lower legs `calfClearance` in
 // front of the sofa's front face. She is then turned `turn` degrees about the middle of her seat (negative:
 // towards her right, where the Inside camera is), so the Inside view sees her face three-quarter rather than
-// in profile (the face pictures are drawn from her right).
+// in profile.
 //   cushion: her centre between the arms' inner faces, as a share of that width (3/4: the right of two)
 const FIGURE_SEAT = { cushion: 3 / 4, sink: 0.06, calfClearance: 0.02, turn: -15 };
 
-// Her face: a picture from assets/faces/ (work/gen/b_character_user_b/make_faces.py cuts them from her
-// expression sheets) projected onto the head as a decal. Frame in the GLB's own units: `centre` of the
-// projection box (just behind the face surface, so the box reaches the far cheek), `towards` the projector
-// (above and to her right, the three-quarter angle the sheets were drawn at), `up` the picture's up, `roll`
-// degrees about `towards`, `size` [width, height, depth of the projection box]: the approved size and place of
-// her face. `fold`: triangles turned away from the projector are kept while the cosine of their normal to it is
-// above -fold (the folds beside the nose, on the far cheek and under the jaw, which the camera sees from beside
-// the projector, would otherwise be holes); the back of the head is far below that. The model is made to fit the
-// pictures (work/gen/b_character_user_b/room_model.py, which reads the same frame from
-// work/gen/b_room/face_decal.json): its own nose, eye sockets and lips are flattened under them, and its painted
-// face is wiped to plain skin, so the picture's features are the only ones.
+// Her expressions, when FIGURE.faces is set: patches of her own skin from assets/faces/, projected onto her face
+// as a decal. Each is her face as the model paints it, seen straight on through this frame without light, with
+// the eyes, brows, mouth and cheeks redrawn into the expression; alpha is the union of those areas, feathered, so
+// round them the model's own face shows and the patch has no edge (work/gen/expressions/make_expressions.py with
+// work/gen/expressions/user_b.json, whose `frame` this is: change both together). Frame in the GLB's own units:
+// `centre` of the projection box (behind the face surface, so the box reaches the far cheek), `towards` the
+// projector (straight at her bowed face), `up` the picture's up, `roll` degrees about `towards`, `size` [width,
+// height, depth of the projection box]. `fold`: triangles turned away from the projector are kept while the cosine
+// of their normal to it is above -fold; the back of the head is far below that.
 const FACE_DECAL = {
-  centre: [0.0045, 0.3426, -0.0492], towards: [-0.5357, 0.1972, 0.8210], up: [0.1078, 0.9804, -0.1652],
-  roll: -7.55, size: [0.1240, 0.1586, 0.26], fold: 0.25,
+  centre: [0.03, 0.645, -0.04], towards: [0.0, -0.27, 0.963], up: [0, 1, 0],
+  roll: 0, size: [0.34, 0.34, 0.2], fold: 0.25,
 };
-// Her phone. The model's own (a bent, open sheet) is removed (work/gen/b_character_user_b/room_model.py); this one
-// sits in her hands in its place: its lower half behind the fingers of her right hand, its top under her left thumb.
-// In the GLB's units: `centre`, `normal` (the way the screen faces: towards her eyes), `long` (its long side,
-// pointing away from her). In metres: `size` [width, length, thickness], corner `radius`, the screen's `inset` from
-// the edge. `frame`: colour. The screen is on: a dark blue-grey, lighter towards its top (`screen` [top, bottom]),
-// glowing faintly (`glow`), glossy (`gloss`: its share of the room's reflections, against the room's low LIGHT.env).
-// The room's cameras are in front of her and see its back: satin blue-grey, lighter towards its top (`back`
-// [top, bottom]), with a camera bump (`bump` [side, height] metres, `bumpAt` its centre from the top corner).
-const PHONE = {
-  centre: [-0.0108, 0.1443, 0.1049], normal: [0.0747, 0.7729, -0.6301], long: [0.1637, 0.6138, 0.7723],
-  size: [0.07, 0.14, 0.008], radius: 0.007, inset: 0.004, frame: '#1d1f24', screen: ['#3a4a5e', '#141b26'],
-  glow: 0.35, gloss: 1.0, back: ['#4a5566', '#1e242e'], bump: [0.02, 0.0015], bumpAt: [0.016, 0.016],
-};
+const FACE_CENTRE = FIGURE.centre;
 const FACE_EXPRESSIONS = ['neutral', 'thinking', 'pleased', 'impatient', 'confused', 'delighted', 'angry', 'dizzy'];   // keys 1-8
 // Changing expression cross-fades the face picture in two layers split across the nose (FACE_SPLIT: y as a share
 // of the picture height, feather half-width): eyes and brows over the first `upper` share of `ms`, the mouth
@@ -102,31 +102,31 @@ const FACE_EXPRESSIONS = ['neutral', 'thinking', 'pleased', 'impatient', 'confus
 // in FACE_VIA passes through the middle one (each leg viaMs): neutral -> pleased -> delighted reads as a smile
 // growing, not as two faces dissolving.
 const FACE_FADE = { ms: 480, upper: 0.7, lower: 0.7, viaMs: 360 };
-const FACE_SPLIT = { y: 0.6, feather: 0.07 };
+const FACE_SPLIT = { y: 0.59, feather: 0.06 };
 const FACE_VIA = [['neutral', 'pleased', 'delighted'], ['thinking', 'pleased', 'delighted'], ['impatient', 'pleased', 'delighted']];
 // Blinking: the blink picture (closed eyelids only) laid over the face for `ms` (closing takes `close` of it),
 // every `every` ms (random in the range); not while the eyes are squeezed shut or spirals.
 const FACE_BLINK = { ms: 170, close: 0.4, every: [2400, 5600], not: ['delighted', 'dizzy'] };
 // Dizzy: each eye's spiral is redrawn turning (picture pixels: centre, semi-axes of the eyeball; turns per
 // second; lineWidth as a share of the semi-axes), over the dizzy picture's painted spiral.
-// eyes: work/gen/b_character_user_b/final/faces/dizzy_eyes.json.
-const DIZZY_EYES = { eyes: [[166, 183, 37, 41], [328, 187, 30, 41]], turns: 3.2, speed: 0.9, line: 0.15,
+// eyes: measured on the dizzy patch (its white and ink round each eye).
+const DIZZY_EYES = { eyes: [[330, 451, 86, 72], [697, 451, 88, 72]], turns: 3.2, speed: 0.9, line: 0.15,
   white: '#f3efe8', ink: '#221c1b' };
-// Effects over her head, flat cards always facing the camera, in metres from her face centre (the decal's
-// middle): `up` above it, `near` towards the camera (the fire stands in front of her hair, not inside it).
+// Effects over her head, flat cards always facing the camera, in metres from her face centre (FACE_CENTRE):
+// `up` above it, `near` towards the camera (the fire stands in front of her hair, not inside it).
 //   fire (angry): flames `size` [w, h], bottom `up` above the face centre, `flicker` ms per sway, at most `opacity`
 //   (small and faint: quietly fuming, not her head on fire).
 //   orbit (dizzy): stars and question marks circling `up` above the face centre, radius `radius`, `period` ms
 //   a turn, each card `size` metres high.
 //   sweat (confused): a drop `size` metres high at `at` on her near temple (a point of the face picture as
-//   fractions, x from the ear side, y down), `near` metres towards the camera, bobbing `bob` metres every `period` ms.
+//   fractions, x from the picture's left, her right, y down), `near` metres towards the camera, bobbing `bob` metres every `period` ms.
 //   slide (confused): a second drop sliding from `from` to `to` (face picture fractions) every `period` ms, down
 //   the side of her face, fading in and out at the ends.
 const FACE_FX = {
   fire: { size: [0.1, 0.12], up: 0.17, near: 0.22, flicker: 260, canvas: [128, 160], opacity: 0.7 },
   orbit: { up: 0.22, radius: 0.15, tilt: 0.025, period: 1700, size: 0.055, items: ['star', 'question', 'star', 'question', 'star'] },
-  sweat: { at: [-0.02, 0.32], near: 0.02, size: 0.045, bob: 0.004, period: 1400 },
-  slide: { from: [0.0, 0.4], to: [0.1, 0.72], near: 0.025, size: 0.04, period: 1800 },
+  sweat: { at: [0.15, 0.26], near: 0.02, size: 0.045, bob: 0.004, period: 1400 },
+  slide: { from: [0.15, 0.5], to: [0.2, 0.68], near: 0.025, size: 0.04, period: 1800 },
 };
 const FACE_FX_OF = { angry: ['fire'], dizzy: ['orbit'], confused: ['sweat', 'slide'] };
 
@@ -671,7 +671,8 @@ const face = {
   spinSpeed: DIZZY_EYES.speed * 2 * Math.PI,   // radians per second
   dirty: true,
 };
-let faceDecal = null;
+let figureMesh = null;   // her mesh (the effects follow it)
+let faceDecal = null;    // the decal her expression patches are drawn on (FIGURE.faces only)
 const fxCards = { fire: null, orbit: [], sweat: null, slide: null };
 const facePoints = { temple: new THREE.Vector3(), slideFrom: new THREE.Vector3(), slideTo: new THREE.Vector3() };   // mesh-local, FACE_FX sweat and slide
 
@@ -681,7 +682,7 @@ const smooth = (t) => t * t * (3 - 2 * t);
 // Fades her face to one of FACE_EXPRESSIONS (and its effects, FACE_FX_OF) over FACE_FADE.ms.
 export function setExpression(name) {
   if (!FACE_EXPRESSIONS.includes(name)) throw new Error(`setExpression: unknown expression '${name}' (expected one of ${FACE_EXPRESSIONS.join(', ')})`);
-  if (!faceDecal) throw new Error('setExpression: the figure is not in this scene');
+  if (!figureMesh) throw new Error('setExpression: the figure is not in this scene');
   const via = FACE_VIA.find((v) => (v[0] === face.shown && v[2] === name) || (v[2] === face.shown && v[0] === name));
   face.legs = via ? [via[1], name] : [name];
   face.legMs = via ? FACE_FADE.viaMs : FACE_FADE.ms;
@@ -692,7 +693,7 @@ window.setExpression = setExpression;
 // Starts fading from what the face shows now to the next of face.legs.
 function startFaceLeg(now) {
   const name = face.legs.shift();
-  face.from = splitPicture(face.base);
+  if (faceDecal) face.from = splitPicture(face.base);
   face.shown = name;
   face.start = now;
   face.ms = face.legMs;
@@ -783,9 +784,9 @@ function drawSpirals(g, angle, alpha) {
   g.restore();
 }
 
-// Redraws the face canvas and moves the effects for this frame.
+// Redraws the face canvas (with face pictures) and moves the effects for this frame.
 function updateFace(now) {
-  if (!faceDecal) return;
+  if (!figureMesh) return;
   let [up, low, t] = faceFadeAt(now);
   if (t >= 1 && face.legs.length && !face.hold) {
     startFaceLeg(now);
@@ -795,7 +796,7 @@ function updateFace(now) {
   const blink = blinkAt(now);
   const spin = face.fx.orbit > 0.001;   // the orbit's weight is the dizzy expression's
   // Also once more after a fade or blink ends, so its last frame is the finished picture.
-  if (face.dirty || t < 1 || face.drawnT < 1 || blink > 0 || spin || face.blinkWas > 0) {
+  if (faceDecal && (face.dirty || t < 1 || face.drawnT < 1 || blink > 0 || spin || face.blinkWas > 0)) {
     const to = face.pictures[face.shown], { width: w, height: h } = face.canvas;
     const b = face.baseG;
     b.clearRect(0, 0, w, h);
@@ -936,7 +937,7 @@ function buildFaceFx() {
 
 // A card on her face: at a mesh-local point of the head, `near` metres towards the camera.
 function onFace(card, local, near) {
-  faceDecal.parent.localToWorld(card.position.copy(local));
+  figureMesh.localToWorld(card.position.copy(local));
   fxToCamera.subVectors(camera.position, card.position).normalize();
   card.position.addScaledVector(fxToCamera, near);
   card.quaternion.copy(camera.quaternion);
@@ -947,8 +948,7 @@ const fxToCamera = new THREE.Vector3();
 const fxSlide = new THREE.Vector3();
 function updateFaceFx(now) {
   if (!fxCards.fire) return;
-  faceDecal.geometry.boundingSphere ?? faceDecal.geometry.computeBoundingSphere();
-  faceDecal.localToWorld(fxCentre.copy(faceDecal.geometry.boundingSphere.center));
+  figureMesh.localToWorld(fxCentre.set(...FACE_CENTRE));
   const fire = fxCards.fire, wf = face.fx.fire;
   fire.visible = wf > 0.01;
   if (fire.visible) {
@@ -1023,10 +1023,12 @@ function applyFaceDebug() {
 
 // Shows an expression at once, without a fade (the face's first picture).
 function showFaceNow(name) {
-  const { width: w, height: h } = face.canvas;
-  face.baseG.clearRect(0, 0, w, h);
-  face.baseG.drawImage(face.pictures[name].source, 0, 0);
-  face.from = splitPicture(face.base);
+  if (faceDecal) {
+    const { width: w, height: h } = face.canvas;
+    face.baseG.clearRect(0, 0, w, h);
+    face.baseG.drawImage(face.pictures[name].source, 0, 0);
+    face.from = splitPicture(face.base);
+  }
   face.shown = name;
   face.start = -Infinity;
   face.legs = [];
@@ -1036,9 +1038,40 @@ function showFaceNow(name) {
   face.dirty = true;
 }
 
+// A frame on her face for placing face picture points (fractions, x from the ear side, y down) on the head: world
+// axes x (picture right), y (picture up), z (towards the viewer), the picture's centre and size (world units).
+// With face pictures, FACE_DECAL's; without, FIGURE.box centred on FACE_CENTRE, facing the Inside eye.
+function faceFrame(mesh) {
+  mesh.updateWorldMatrix(true, false);   // parents too: the figure was just scaled and seated
+  const scale = mesh.getWorldScale(new THREE.Vector3()).x;
+  const decal = Boolean(FIGURE.faces);
+  const centre = mesh.localToWorld(new THREE.Vector3(...(decal ? FACE_DECAL.centre : FACE_CENTRE)));
+  const z = decal ? new THREE.Vector3(...FACE_DECAL.towards).transformDirection(mesh.matrixWorld)
+    : new THREE.Vector3().subVectors(insideEye, centre).normalize();
+  const y0 = decal ? new THREE.Vector3(...FACE_DECAL.up).transformDirection(mesh.matrixWorld) : new THREE.Vector3(0, 1, 0);
+  const x = new THREE.Vector3().crossVectors(y0, z).normalize();
+  const y = new THREE.Vector3().crossVectors(z, x);
+  const size = new THREE.Vector3(...(decal ? FACE_DECAL.size : FIGURE.box)).multiplyScalar(scale);
+  return { x, y, z, centre, size };
+}
+
+// FACE_FX points on her face (facePoints, mesh-local): face picture points projected along the frame's z onto the head.
+function placeFacePoints(mesh, { x, y, z, centre, size }) {
+  const onHead = ([u, v], out, what) => {
+    const p = centre.clone().addScaledVector(x, (u - 0.5) * size.x).addScaledVector(y, (0.5 - v) * size.y);
+    const hit = new THREE.Raycaster(p.clone().addScaledVector(z, size.z), z.clone().negate()).intersectObject(mesh, false)[0];
+    if (!hit) throw new Error(`FACE_FX.${what}: no head surface under face picture point ${u}, ${v}`);
+    mesh.worldToLocal(out.copy(hit.point));
+  };
+  onHead(FACE_FX.sweat.at, facePoints.temple, 'sweat.at');
+  onHead(FACE_FX.slide.from, facePoints.slideFrom, 'slide.from');
+  onHead(FACE_FX.slide.to, facePoints.slideTo, 'slide.to');
+}
+
+// The face pictures (FIGURE.faces) and the decal they are drawn on.
 async function buildFace(mesh) {
   const imageLoader = new THREE.ImageLoader();
-  const load = (name) => imageLoader.loadAsync(asset(`./assets/faces/${FIGURE.faces}_${name}.png`));
+  const load = (name) => imageLoader.loadAsync(asset(`./assets/faces/${FIGURE.faces}_${name}.webp`));
   // One after another: nine more requests at once, after the room's burst of models and cards, have had the
   // local test server (python http.server) reset connections.
   const loaded = [];
@@ -1060,15 +1093,9 @@ async function buildFace(mesh) {
   face.texture.colorSpace = THREE.SRGBColorSpace;
   face.texture.anisotropy = maxAniso;
   const d = FACE_DECAL;
-  mesh.updateWorldMatrix(true, false);   // parents too: the figure was just scaled and seated
-  const z = new THREE.Vector3(...d.towards).transformDirection(mesh.matrixWorld);
-  const y0 = new THREE.Vector3(...d.up).transformDirection(mesh.matrixWorld);
-  const x = new THREE.Vector3().crossVectors(y0, z).normalize();
-  const y = new THREE.Vector3().crossVectors(z, x);
+  const { x, y, z, centre, size } = faceFrame(mesh);
   const rot = new THREE.Matrix4().makeBasis(x, y, z).multiply(new THREE.Matrix4().makeRotationZ(yawRad(d.roll)));
-  const scale = mesh.getWorldScale(new THREE.Vector3()).x;
-  const geo = new DecalGeometry(mesh, mesh.localToWorld(new THREE.Vector3(...d.centre)),
-    new THREE.Euler().setFromRotationMatrix(rot), new THREE.Vector3(...d.size).multiplyScalar(scale));
+  const geo = new DecalGeometry(mesh, centre, new THREE.Euler().setFromRotationMatrix(rot), size);
   // Only the triangles facing the projector, or turned only a little away from it (FACE_DECAL.fold): the deep
   // box would also print the face, mirrored, inside the far side of the head.
   const n = geo.attributes.normal, facing = [];
@@ -1078,18 +1105,6 @@ async function buildFace(mesh) {
   }
   geo.setIndex(facing);
   geo.applyMatrix4(mesh.matrixWorld.clone().invert());
-  // FACE_FX points on her face: face picture points (fractions, x from the ear side, y down) projected along the
-  // decal's axis onto the head.
-  const size = new THREE.Vector3(...d.size).multiplyScalar(scale);
-  const onHead = ([u, v], out, what) => {
-    const p = mesh.localToWorld(new THREE.Vector3(...d.centre)).addScaledVector(x, (u - 0.5) * size.x).addScaledVector(y, (0.5 - v) * size.y);
-    const hit = new THREE.Raycaster(p.clone().addScaledVector(z, size.z), z.clone().negate()).intersectObject(mesh, false)[0];
-    if (!hit) throw new Error(`FACE_FX.${what}: no head surface under face picture point ${u}, ${v}`);
-    mesh.worldToLocal(out.copy(hit.point));
-  };
-  onHead(FACE_FX.sweat.at, facePoints.temple, 'sweat.at');
-  onHead(FACE_FX.slide.from, facePoints.slideFrom, 'slide.from');
-  onHead(FACE_FX.slide.to, facePoints.slideTo, 'slide.to');
   // Same material type and roughness as the body, so it takes the room's light the same way.
   const mat = new THREE.MeshStandardMaterial({
     map: face.texture, roughness: mesh.material.roughness, metalness: 0, transparent: true, depthWrite: false,
@@ -1099,6 +1114,14 @@ async function buildFace(mesh) {
   faceDecal.receiveShadow = true;
   faceDecal.userData.noAO = true;
   mesh.add(faceDecal);
+}
+
+// Her face: the pictures if FIGURE.faces, the points the effects sit on, the effects, the first expression; keys
+// 1-8 switch expressions.
+async function buildFaceAndFx(mesh) {
+  figureMesh = mesh;
+  if (FIGURE.faces) await buildFace(mesh);
+  placeFacePoints(mesh, faceFrame(mesh));
   buildFaceFx();
   showFaceNow('neutral');
   applyFaceDebug();
@@ -1128,54 +1151,8 @@ async function buildFigure(obj) {
   obj.rotation.y = turn;
   obj.position.set(seat.x - turned.x, fit.y0, fit.dz + pivot.z - turned.z);
   sofa.holder.add(obj);
-  await buildFace(mesh);
-  buildPhone(mesh);
+  await buildFaceAndFx(mesh);
   if (EMBED) seated = { obj, mesh, s: fit.s, seatY: fig.seatY, hipY: fit.y0 + fig.seatY * fit.s };
-}
-
-// PHONE as a child of her mesh (so it breathes with her), built in metres and scaled back to the mesh's units.
-function buildPhone(mesh) {
-  const p = PHONE;
-  const [w, l, t] = p.size;
-  const phone = new THREE.Group();
-  const body = new THREE.Mesh(new RoundedBoxGeometry(w, l, t, 3, p.radius), matte({ color: p.frame, roughness: 0.45 }));
-  const gradient = ([top, bottom]) => {
-    const c = document.createElement('canvas');
-    c.width = 32; c.height = 64;
-    const g = c.getContext('2d');
-    const grad = g.createLinearGradient(0, 0, c.width * 0.6, c.height);
-    grad.addColorStop(0, top);
-    grad.addColorStop(1, bottom);
-    g.fillStyle = grad;
-    g.fillRect(0, 0, c.width, c.height);
-    const tex = new THREE.CanvasTexture(c);
-    tex.colorSpace = THREE.SRGBColorSpace;
-    return tex;
-  };
-  const litTex = gradient(p.screen);
-  const back = new THREE.Mesh(new THREE.PlaneGeometry(w - 2 * p.inset, l - 2 * p.inset),
-    new THREE.MeshStandardMaterial({ map: gradient(p.back), roughness: 0.4, metalness: 0 }));
-  back.rotation.y = Math.PI;   // facing -z, away from the screen; its texture's top stays at the phone's top
-  back.position.z = -t / 2 - 0.0004;
-  const [side, rise] = p.bump;
-  const bump = new THREE.Mesh(new RoundedBoxGeometry(side, side, rise * 2, 2, side * 0.25), matte({ color: p.frame, roughness: 0.3 }));
-  bump.position.set(w / 2 - p.bumpAt[0], l / 2 - p.bumpAt[1], -t / 2);
-  back.receiveShadow = bump.castShadow = true;
-  phone.add(back, bump);
-  const screen = new THREE.Mesh(new THREE.PlaneGeometry(w - 2 * p.inset, l - 2 * p.inset),
-    new THREE.MeshStandardMaterial({ map: litTex, emissive: '#ffffff', emissiveMap: litTex, emissiveIntensity: p.glow,
-      roughness: 0.12, metalness: 0 }));
-  screen.material.userData.envMapIntensity = p.gloss;
-  screen.position.z = t / 2 + 0.0004;
-  body.castShadow = body.receiveShadow = screen.receiveShadow = true;
-  phone.add(body, screen);
-  const z = new THREE.Vector3(...p.normal).normalize();
-  const y = new THREE.Vector3(...p.long).normalize();
-  const x = new THREE.Vector3().crossVectors(y, z).normalize();
-  phone.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(x, y.crossVectors(z, x), z));
-  phone.position.set(...p.centre);
-  phone.scale.setScalar(1 / mesh.getWorldScale(new THREE.Vector3()).x);
-  mesh.add(phone);
 }
 
 // Embedded only: her figure and fit, for breathing about her seat and for the head anchor.
@@ -1385,7 +1362,7 @@ function placeLampGlow() {
 // Inside view: from the front left of the room (by the armchair), eye height 1.6 m, looking across the sofa
 // towards the window wall, as the set photo (owner_02_living_room_wide.webp) looks in from the audience side.
 // The eye stands this far to her right (about 40 degrees off the sofa's front) so that, with FIGURE_SEAT.turn,
-// it sees her face from her right at about the three-quarter angle her face pictures are drawn at.
+// it sees her face from her right, three-quarter.
 // Plan metres.
 const EYE = { x: 1.85, y: 0.35, height: 1.65 };
 const INSIDE_TARGET = { x: 3.6, y: 5.0, z: 0.95 };
@@ -1599,10 +1576,7 @@ const BREATH = { depth: 0.008, ms: 4200 };
 const NEAR = { share: 0.22, right: 0.3, down: 0.12, fov: 40, hfov: 52 };
 const HEAD_TOP = 0.16;   // metres above her face centre: the anchor the page's thought bubble sits on
 const send = (msg) => window.parent.postMessage({ mpb: msg.type, ...msg }, location.origin);
-const facePoint = () => {
-  faceDecal.geometry.computeBoundingSphere();
-  return faceDecal.localToWorld(faceDecal.geometry.boundingSphere.center.clone());
-};
+const facePoint = () => figureMesh.localToWorld(new THREE.Vector3(...FACE_CENTRE));
 const FIGURE_SHOT = { down: 0.25, fov: 44, hfov: 58 };   // from the Inside eye, aimed `down` below her face
 // object: the WINDOW_CARD's centre line at height y.
 const OBJECT_SHOT = { y: 1.35, fov: 30, hfov: 40 };

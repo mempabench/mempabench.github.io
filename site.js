@@ -5,9 +5,6 @@
 
   // ---------- icons ----------
   const ICON = {
-    paper: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>',
-    code: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"/></svg>',
-    data: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.8"/><path d="M4.5 5.5v6.5c0 1.6 3.4 2.8 7.5 2.8s7.5-1.2 7.5-2.8V5.5M4.5 12v6.5c0 1.6 3.4 2.8 7.5 2.8s7.5-1.2 7.5-2.8V12"/></svg>',
     chev: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>',
     pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6l-1 6 3 3H7l3-3zM12 13v7"/></svg>',
     smile: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-10"/></svg>',
@@ -46,12 +43,7 @@
     bar.className = "topbar";
     bar.innerHTML =
       `<a class="logo" href="index.html" aria-label="MemPABench home"><span>MemPABench</span></a>` +
-      `<nav class="nav" aria-label="Sections">${nav.map(([id, label, href]) => `<a href="${href}" data-nav="${id}"${id === page ? ' aria-current="page"' : ""}>${label}</a>`).join("")}</nav>` +
-      `<div class="tools">` +
-      `<a class="icon-btn" href="https://arxiv.org/abs/2610.30485" target="_blank" rel="noopener" title="Paper (arXiv)" aria-label="Paper on arXiv">${ICON.paper}</a>` +
-      `<a class="icon-btn" href="https://github.com/mempabench/mempabench" target="_blank" rel="noopener" title="Code (GitHub)" aria-label="Code on GitHub">${ICON.code}</a>` +
-      `<a class="icon-btn" href="https://huggingface.co/datasets/mempabench/mempabench-personas" target="_blank" rel="noopener" title="Dataset (Hugging Face)" aria-label="Dataset on Hugging Face">${ICON.data}</a>` +
-      `</div>`;
+      `<nav class="nav" aria-label="Sections">${nav.map(([id, label, href]) => `<a href="${href}" data-nav="${id}"${id === page ? ' aria-current="page"' : ""}>${label}</a>`).join("")}</nav>`;
     // On the Overview, "Citation" is an in-page anchor: mark it current while the citation is in view.
     if (page === "overview") {
       const cite = $("#citation");

@@ -86,18 +86,11 @@ p { margin: 0; }
 .nav a[aria-current="page"] { color: var(--ink); }
 /* current item: a 2px edge-colour underline on the bar's bottom line */
 .nav a[aria-current="page"]::after { content: ""; position: absolute; left: 13px; right: 13px; bottom: calc((36px - var(--bar-h)) / 2 + 1px); height: 2px; background: var(--accent-edge); }
-.tools { display: flex; align-items: center; gap: 2px; margin-left: 10px; padding-left: 12px; border-left: 1px solid var(--line); }
-.icon-btn {
-  width: 34px; height: 34px; border-radius: 999px; border: 0; background: transparent;
-  display: inline-grid; place-items: center; color: var(--ink-soft); cursor: pointer; text-decoration: none;
-}
-.icon-btn svg { width: 19px; height: 19px; }
 
 @media (max-width: 760px) {
   :root { --bar-h: 92px; }
   .topbar { flex-wrap: wrap; height: var(--bar-h); padding: 6px 12px 4px; gap: 0; align-content: space-between; }
   .logo span { font-size: 18px; }
-  .tools { margin-left: auto; border-left: 0; padding-left: 0; }
   .nav { order: 3; width: 100%; margin: 0; justify-content: space-between; }
   .nav a { padding: 5px 10px; font-size: 14px; }
   .nav a[aria-current="page"]::after { left: 10px; right: 10px; bottom: -4px; }
@@ -170,6 +163,14 @@ p { margin: 0; }
   border: 1px solid var(--accent); font-size: 13px; letter-spacing: .02em; white-space: nowrap; opacity: 0; transition: opacity .35s ease; }
 .globe-label.is-visible { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .globe-label { transition: none; } }
+/* clicking a ball asks before leaving for that user's Demo */
+.enter-world { width: min(360px, calc(100vw - 32px)); padding: 22px 20px; color: var(--ink); text-align: center; }
+.enter-world[open] { animation: pop .35s ease; }
+.enter-world::backdrop { background: rgba(35, 29, 24, .45); }
+.enter-world p { font-family: var(--font-display); font-weight: 600; font-size: 21px; margin: 0 0 18px; }
+.enter-world-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.enter-world .btn-link { font: inherit; font-weight: 600; font-size: 15px; cursor: pointer; }
+.enter-world .go { background: var(--accent); }
 @media (max-width: 760px) { .hero { padding-top: 26px; } }
 
 /* ---------- interaction ---------- */
