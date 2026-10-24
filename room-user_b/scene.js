@@ -83,13 +83,17 @@ const FACE_DECAL = {
   roll: -7.55, size: [0.1240, 0.1586, 0.26], fold: 0.25,
 };
 // Her phone. The model's own (a bent, open sheet) is removed (work/gen/b_character_user_b/room_model.py); this one
-// lies in her palms in its place, her fingers round its sides. In the GLB's units: `centre`, `normal` (the way the
-// screen faces: towards her eyes), `long` (its long side, pointing away from her). In metres: `size` [width,
-// length, thickness], corner `radius`, the screen's `inset` from the edge. `frame`, `screen`: colours; the screen
-// is glossy (`gloss`: its share of the room's reflections, against the room's low LIGHT.env).
+// sits in her hands in its place: its lower half behind the fingers of her right hand, its top under her left thumb.
+// In the GLB's units: `centre`, `normal` (the way the screen faces: towards her eyes), `long` (its long side,
+// pointing away from her). In metres: `size` [width, length, thickness], corner `radius`, the screen's `inset` from
+// the edge. `frame`: colour. The screen is on: a dark blue-grey, lighter towards its top (`screen` [top, bottom]),
+// glowing faintly (`glow`), glossy (`gloss`: its share of the room's reflections, against the room's low LIGHT.env).
+// The room's cameras are in front of her and see its back: satin blue-grey, lighter towards its top (`back`
+// [top, bottom]), with a camera bump (`bump` [side, height] metres, `bumpAt` its centre from the top corner).
 const PHONE = {
-  centre: [0.0016, 0.1621, 0.1218], normal: [0.0747, 0.7729, -0.6301], long: [0.1637, 0.6138, 0.7723],
-  size: [0.07, 0.14, 0.008], radius: 0.007, inset: 0.004, frame: '#1d1f24', screen: '#07090d', gloss: 1.0,
+  centre: [-0.0108, 0.1443, 0.1049], normal: [0.0747, 0.7729, -0.6301], long: [0.1637, 0.6138, 0.7723],
+  size: [0.07, 0.14, 0.008], radius: 0.007, inset: 0.004, frame: '#1d1f24', screen: ['#3a4a5e', '#141b26'],
+  glow: 0.35, gloss: 1.0, back: ['#4a5566', '#1e242e'], bump: [0.02, 0.0015], bumpAt: [0.016, 0.016],
 };
 const FACE_EXPRESSIONS = ['neutral', 'thinking', 'pleased', 'impatient', 'confused', 'delighted', 'angry', 'dizzy'];   // keys 1-8
 // Changing expression cross-fades the face picture in two layers split across the nose (FACE_SPLIT: y as a share
@@ -1089,7 +1093,7 @@ async function buildFace(mesh) {
   // Same material type and roughness as the body, so it takes the room's light the same way.
   const mat = new THREE.MeshStandardMaterial({
     map: face.texture, roughness: mesh.material.roughness, metalness: 0, transparent: true, depthWrite: false,
-    polygonOffset: true, polygonOffsetFactor: -4, polygonOffsetUnits: -4,
+    polygonOffset: true, polygonOffsetFactor: 0, polygonOffsetUnits: -4,
   });
   faceDecal = new THREE.Mesh(geo, mat);
   faceDecal.receiveShadow = true;
@@ -1135,8 +1139,32 @@ function buildPhone(mesh) {
   const [w, l, t] = p.size;
   const phone = new THREE.Group();
   const body = new THREE.Mesh(new RoundedBoxGeometry(w, l, t, 3, p.radius), matte({ color: p.frame, roughness: 0.45 }));
+  const gradient = ([top, bottom]) => {
+    const c = document.createElement('canvas');
+    c.width = 32; c.height = 64;
+    const g = c.getContext('2d');
+    const grad = g.createLinearGradient(0, 0, c.width * 0.6, c.height);
+    grad.addColorStop(0, top);
+    grad.addColorStop(1, bottom);
+    g.fillStyle = grad;
+    g.fillRect(0, 0, c.width, c.height);
+    const tex = new THREE.CanvasTexture(c);
+    tex.colorSpace = THREE.SRGBColorSpace;
+    return tex;
+  };
+  const litTex = gradient(p.screen);
+  const back = new THREE.Mesh(new THREE.PlaneGeometry(w - 2 * p.inset, l - 2 * p.inset),
+    new THREE.MeshStandardMaterial({ map: gradient(p.back), roughness: 0.4, metalness: 0 }));
+  back.rotation.y = Math.PI;   // facing -z, away from the screen; its texture's top stays at the phone's top
+  back.position.z = -t / 2 - 0.0004;
+  const [side, rise] = p.bump;
+  const bump = new THREE.Mesh(new RoundedBoxGeometry(side, side, rise * 2, 2, side * 0.25), matte({ color: p.frame, roughness: 0.3 }));
+  bump.position.set(w / 2 - p.bumpAt[0], l / 2 - p.bumpAt[1], -t / 2);
+  back.receiveShadow = bump.castShadow = true;
+  phone.add(back, bump);
   const screen = new THREE.Mesh(new THREE.PlaneGeometry(w - 2 * p.inset, l - 2 * p.inset),
-    new THREE.MeshStandardMaterial({ color: p.screen, roughness: 0.12, metalness: 0 }));
+    new THREE.MeshStandardMaterial({ map: litTex, emissive: '#ffffff', emissiveMap: litTex, emissiveIntensity: p.glow,
+      roughness: 0.12, metalness: 0 }));
   screen.material.userData.envMapIntensity = p.gloss;
   screen.position.z = t / 2 + 0.0004;
   body.castShadow = body.receiveShadow = screen.receiveShadow = true;
