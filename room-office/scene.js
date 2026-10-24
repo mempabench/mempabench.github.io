@@ -10,6 +10,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DecalGeometry } from 'three/addons/geometries/DecalGeometry.js';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
@@ -21,11 +22,13 @@ import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 // layout.json piece kind -> how it is drawn (see lab/diorama-b/scene.js for every option).
 //   model:      GLB in models/, one uniform scale from the measured width (fit: 'height' for tall pieces)
 //   turn:       extra degrees about the vertical, where the TRELLIS model's front is not its local +z
-//   heightOver: how far the model may rise above the measured height (default MAX_HEIGHT_OVER): the desks
-//               carry a monitor above the measured desk top
+//   heightOver: how far the model may rise above the measured height (default MAX_HEIGHT_OVER): the reception
+//               desk's fit box still holds the monitor and lamp cut out of it (their vertices stay in the GLB)
 //   seat:       a chair someone can sit on (CHARACTERS[...].chair names it)
+//   build:      drawn here instead of from a model: a function of the layout.json piece (procedural pieces below)
+//   props:      procedural props added in the piece's frame: a function of the layout.json piece
 const ASSETS = {
-  reception_desk:    { model: 'reception_desk', turn: 180, heightOver: 1.4 },
+  reception_desk:    { model: 'reception_desk', turn: 180, heightOver: 1.4, props: receptionDeskProps },
   reception_chair:   { model: 'reception_chair', fit: 'height', seat: true },
   binder_shelf:      { model: 'binder_shelf' },
   paper_boxes:       { model: 'paper_boxes' },
@@ -33,7 +36,7 @@ const ASSETS = {
   potted_plant:      { model: 'potted_plant', fit: 'height' },
   coat_rack:         { model: 'coat_rack', fit: 'height' },
   waiting_sofa:      { model: 'waiting_sofa' },
-  manager_desk:      { model: 'manager_desk', turn: 180, heightOver: 2 },
+  manager_desk:      { build: managerDesk },
   manager_chair:     { model: 'manager_chair', fit: 'height', seat: true },
   guest_chair:       { models: ['guest_chair_1', 'guest_chair_2'], fit: 'height' },   // one model per chair
   manager_bookshelf: { model: 'manager_bookshelf' },
@@ -46,6 +49,10 @@ const ASSETS = {
 // the 'object' shot opens on.
 // seat: sink into the seat top, calfClearance in front of the chair's front below the seat, turn degrees
 // about the middle of the seat (negative: towards the figure's right).
+// phone: the mobile phone in their hands (MOBILE), in the model's frame (GLB units): its centre, the direction of
+// its long side, and the way its screen faces (towards the eyes). From the TRELLIS phone each model held
+// (work/gen/cd_office_props/measure_phone.py): his in its plane, its lower edge in his fingers; hers turned upright
+// and tipped back towards her face, in her fingers.
 // decal / fx / dizzyEyes: as FACE_DECAL / FACE_FX / DIZZY_EYES in lab/diorama-b/scene.js, measured on this
 // model and its face sheet; dizzyEyes: null when the dizzy picture has no spiral eyes to turn (User C's).
 const CHARACTERS = {
@@ -53,6 +60,7 @@ const CHARACTERS = {
   user_c: {
     model: 'user_c_sit_phone', chair: 'manager_chair',
     seat: { sink: 0.03, calfClearance: 0.03, turn: 0 },
+    phone: { at: [-0.0012, 0.1523, 0.1163], long: [0.996, -0.0421, -0.0784], towards: [-0.0334, 0.6393, -0.7682] },   // held level in both hands
     decal: { centre: [0.0092, 0.3507, -0.1013], towards: [-0.5163, 0.007, 0.8564], up: [0.0036, 1.0, -0.006],
              roll: -9.55, size: [0.1337, 0.1611, 0.26] },
     fx: {
@@ -70,6 +78,7 @@ const CHARACTERS = {
   user_d: {
     model: 'user_d_sit_phone', chair: 'reception_chair',
     seat: { sink: 0.04, calfClearance: 0.02, turn: 25 },
+    phone: { at: [0.0856, 0.1913, 0.0753], long: [0.13, 0.835, 0.533], towards: [-0.2, 0.55, -0.81] },   // upright in her left hand, tipped back towards her
     decal: { centre: [-0.013, 0.3531, -0.0591], towards: [-0.6095, 0.0928, 0.7873], up: [0.0731, 0.9955, -0.0607],
              roll: 0, size: [0.1368, 0.1805, 0.24] },
     fx: {
@@ -1010,12 +1019,259 @@ async function buildFigure(obj) {
   obj.rotation.y = turn;
   obj.position.set(seat.x - turned.x, fit.y0, fit.dz + pivot.z - turned.z);
   chair.holder.add(obj);
+  if (!CHAR.phone) throw new Error(`CHARACTERS.${USER}.phone: give the phone in their hands`);
+  mesh.add(mobilePhone(CHAR.phone, fit.s));
   await buildFace(mesh);
   if (EMBED) seated = { obj, mesh, s: fit.s, seatY: fig.seatY, hipY: fit.y0 + fig.seatY * fit.s };
 }
 
 // Embedded only: the figure and its fit, for breathing about the seat and for the head anchor.
 let seated = null;
+
+// ---------------------------------------------------------------- procedural pieces and props
+
+// Drawn here where the TRELLIS mesh came out melted: the manager's desk and what stands on it, the reception
+// desk's monitor, telephone and candy jar, and the mobile phone in each figure's hand. The reception desk's
+// monitor, telephone, jar and lamp were cut out of reception_desk.glb (work/gen/cd_office_props/cut_glb.py drops
+// their triangles and keeps their vertices, so the model's fit box and scale are unchanged; the candy colours
+// baked into the counter round the old jar were painted over by patch_counter_texture.py).
+// A piece's frame (pieceFrame): metres, x across, y up from the floor, z towards the piece's front; a prop is
+// placed in it at [x, y, z] and turned `yaw` degrees, its own front being its local +z.
+const PROP_COLOURS = {
+  deskTop: '#8a512c', deskBody: '#7a4524', deskPlinth: '#3d281b', handle: '#b49a6a',
+  plastic: '#2a2a2d', keys: '#3c3c40', screen: '#0c0e12',
+  deskPhone: '#2f3033', deskPhoneKeys: '#55565b',
+  cup: '#2e3f6e', cupInside: '#1c2645', pens: ['#2f55b8', '#1d1d20', '#c23a32'],
+  paper: '#f6f3ea', clipboard: '#8c6a44', clip: '#b8b6b0', coaster: '#b38c5c', deskPad: '#2e3b34',
+  jarGlass: '#eef4f4', jarLid: '#cfcac2', sweets: ['#e0433a', '#f2b632', '#4fae5b', '#ef7f2e', '#e978a8', '#4a86d8'],
+  mobile: '#1f2023',
+};
+
+// Wood: fine wavy grain a little darker and lighter than the base colour, along u (whole waves, so it tiles).
+function woodTexture(hex) {
+  return canvasTexture([512, 512], (g, w, h) => {
+    g.fillStyle = hex;
+    g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 140; i++) {
+      const y = rand() * h, amp = 2 + rand() * 7, f = (2 * Math.PI * (1 + Math.floor(rand() * 3))) / w, ph = rand() * 2 * Math.PI;
+      g.strokeStyle = shade(hex, 0.84 + rand() * 0.24);
+      g.globalAlpha = 0.35 + rand() * 0.3;
+      g.lineWidth = 1 + rand() * 2.5;
+      g.beginPath();
+      for (let x = 0; x <= w; x += 8) g.lineTo(x, y + amp * Math.sin(x * f + ph));
+      g.stroke();
+    }
+  });
+}
+
+const woodTopMat = clay({ map: woodTexture(PROP_COLOURS.deskTop), bumpScale: 0.25 });
+const woodBodyMat = clay({ map: woodTexture(PROP_COLOURS.deskBody), bumpScale: 0.25 });
+const plinthMat = clay({ color: PROP_COLOURS.deskPlinth, bumpScale: 0.2 });
+const handleMat = matte({ color: PROP_COLOURS.handle, roughness: 0.45 });
+const plasticMat = matte({ color: PROP_COLOURS.plastic, roughness: 0.55 });
+const keysMat = matte({ color: PROP_COLOURS.keys, roughness: 0.7 });
+// Screens are dark and glossy: they take more of the room environment than the matte room (envMapIntensity).
+const screenMat = new THREE.MeshStandardMaterial({ color: PROP_COLOURS.screen, roughness: 0.12, metalness: 0 });
+screenMat.userData.envMapIntensity = 0.7;
+const deskPhoneMat = matte({ color: PROP_COLOURS.deskPhone, roughness: 0.5 });
+const deskPhoneKeysMat = matte({ color: PROP_COLOURS.deskPhoneKeys, roughness: 0.6 });
+const cupMats = [matte({ color: PROP_COLOURS.cup, roughness: 0.45 }), matte({ color: PROP_COLOURS.cupInside }), matte({ color: PROP_COLOURS.cup })];
+const penMats = PROP_COLOURS.pens.map((color) => matte({ color, roughness: 0.4 }));
+const paperMat = matte({ color: PROP_COLOURS.paper });
+const clipboardMat = matte({ color: PROP_COLOURS.clipboard, roughness: 0.8 });
+const clipMat = matte({ color: PROP_COLOURS.clip, roughness: 0.35 });
+const jarGlassMat = new THREE.MeshStandardMaterial({ color: PROP_COLOURS.jarGlass, transparent: true, opacity: 0.28, roughness: 0.05, metalness: 0, depthWrite: false, side: THREE.DoubleSide });
+jarGlassMat.userData.envMapIntensity = 0.8;
+const jarLidMat = matte({ color: PROP_COLOURS.jarLid, roughness: 0.35 });
+const coasterMat = clay({ color: PROP_COLOURS.coaster, bumpScale: 0.6 });
+const deskPadMat = matte({ color: PROP_COLOURS.deskPad, roughness: 0.7 });
+const sweetMats = PROP_COLOURS.sweets.map((color) => matte({ color, roughness: 0.3 }));
+const mobileMat = matte({ color: PROP_COLOURS.mobile, roughness: 0.5 });
+
+const rounded = (w, h, d, r) => new RoundedBoxGeometry(w, h, d, 3, r);
+
+// A mesh added to `parent` at `at`, turned `yaw` degrees about the vertical.
+function part(parent, geo, mat, at = [0, 0, 0], yaw = 0, { cast = true, receive = true } = {}) {
+  const mesh = new THREE.Mesh(geo, mat);
+  mesh.castShadow = cast;
+  mesh.receiveShadow = receive;
+  mesh.position.set(...at);
+  mesh.rotation.y = yawRad(yaw);
+  parent.add(mesh);
+  return mesh;
+}
+
+// An empty group in `parent` at `at`, turned `yaw` degrees: the frame a prop is built in.
+function propFrame(parent, at, yaw = 0) {
+  const g = new THREE.Group();
+  g.position.set(...at);
+  g.rotation.y = yawRad(yaw);
+  parent.add(g);
+  return g;
+}
+
+// A layout.json piece's frame in the scene.
+const pieceFrame = (p) => propFrame(scene, toV(p.x, p.y, p.z).toArray(), p.yaw_deg);
+
+// A flat-panel monitor; origin under the middle of the panel, on the surface it stands on; screen towards +z.
+// panel [w, h, d], bezel round the screen, lift: the panel's bottom above the surface; the neck behind the panel,
+// the foot under the neck.
+const MONITOR = { panel: [0.56, 0.33, 0.022], bezel: 0.012, lift: 0.045, back: [0.3, 0.2, 0.018], neck: [0.06, 0.03], foot: [0.24, 0.012, 0.17] };
+function monitor(parent, at, yaw) {
+  const g = propFrame(parent, at, yaw);
+  const { panel: [w, h, d], bezel, lift, back, neck, foot } = MONITOR;
+  const cy = lift + h / 2;
+  part(g, rounded(w, h, d, 0.008), plasticMat, [0, cy, 0]);
+  part(g, new THREE.PlaneGeometry(w - 2 * bezel, h - 2 * bezel), screenMat, [0, cy, d / 2 + 0.0005]);
+  part(g, rounded(...back, 0.006), plasticMat, [0, cy, -(d + back[2]) / 2 + 0.004]);
+  const neckZ = -d / 2 - back[2] - neck[1] / 2 + 0.006;
+  part(g, rounded(neck[0], cy, neck[1], 0.008), plasticMat, [0, cy / 2, neckZ]);
+  part(g, rounded(...foot, 0.005), plasticMat, [0, foot[1] / 2, neckZ + 0.03]);
+}
+
+// A keyboard, its keys towards its user (+z).
+function keyboard(parent, at, yaw) {
+  const g = propFrame(parent, at, yaw);
+  part(g, rounded(0.42, 0.016, 0.135, 0.005), plasticMat, [0, 0.008, 0]);
+  part(g, new THREE.BoxGeometry(0.39, 0.004, 0.1), keysMat, [0, 0.017, 0.006]);
+}
+
+// A desk telephone, its keypad and display at the front (+z), the handset lying across the back.
+function deskPhone(parent, at, yaw) {
+  const g = propFrame(parent, at, yaw);
+  part(g, rounded(0.2, 0.055, 0.18, 0.014), deskPhoneMat, [0, 0.0275, 0]);
+  part(g, rounded(0.09, 0.008, 0.075, 0.003), deskPhoneKeysMat, [0.035, 0.056, 0.042]);
+  part(g, rounded(0.06, 0.006, 0.03, 0.002), screenMat, [-0.055, 0.056, 0.05]);
+  part(g, rounded(0.21, 0.04, 0.055, 0.018), deskPhoneMat, [0, 0.07, -0.05]);
+}
+
+// A pen cup with three pens leaning out of it: each pen at [x, z] in the cup, tipped [about x, about z] radians.
+const PEN_CUP = { radius: 0.038, height: 0.1, pen: [0.0045, 0.15], pens: [[0.01, -0.008, 0.12, -0.2], [-0.012, 0.004, -0.06, 0.16], [0.004, 0.014, 0.22, 0.04]] };
+function penCup(parent, at) {
+  const g = propFrame(parent, at);
+  const { radius: r, height: h, pen: [pr, pl], pens } = PEN_CUP;
+  part(g, new THREE.CylinderGeometry(r, r * 0.94, h, 32), cupMats, [0, h / 2, 0]);
+  pens.forEach(([x, z, ax, az], i) => {
+    const barrel = part(g, new THREE.CylinderGeometry(pr, pr, pl, 12).translate(0, pl / 2, 0), penMats[i], [x, 0.012, z]);
+    barrel.rotation.set(ax, 0, az);
+    part(barrel, new THREE.CylinderGeometry(pr * 1.25, pr * 1.25, 0.035, 12), penMats[1], [0, pl - 0.0175, 0]);
+  });
+}
+
+// A few loose sheets of paper, each a little off the one below.
+function paperStack(parent, at, yaw) {
+  const g = propFrame(parent, at, yaw);
+  [[0, 0, 0], [0.006, -0.004, 3], [-0.004, 0.005, -2], [0.003, 0.002, 5]].forEach(([x, z, turn], i) => {
+    part(g, new THREE.BoxGeometry(0.21, 0.0025, 0.297), paperMat, [x, 0.00125 + i * 0.0026, z], turn);
+  });
+}
+
+// A clipboard lying flat, its clip away from +z.
+function clipboard(parent, at, yaw) {
+  const g = propFrame(parent, at, yaw);
+  part(g, rounded(0.23, 0.006, 0.32, 0.0025), clipboardMat, [0, 0.003, 0]);
+  part(g, new THREE.BoxGeometry(0.21, 0.002, 0.27), paperMat, [0, 0.007, 0.012]);
+  part(g, rounded(0.1, 0.012, 0.035, 0.004), clipMat, [0, 0.009, -0.135]);
+}
+
+// A clear glass candy jar with a lid on a cork coaster (`coaster` [radius, thickness]; on the reception counter it
+// also covers the hole the old jar's foot left): `sweets` round sweets of `sweet` radius heaped in its lower half.
+const CANDY_JAR = { radius: 0.07, height: 0.13, lid: 0.022, knob: 0.014, sweets: 22, sweet: 0.0125, coaster: [0.085, 0.007] };
+function candyJar(parent, at) {
+  const { radius: r, height: h, lid, knob, sweets, sweet, coaster: [cr, ct] } = CANDY_JAR;
+  part(propFrame(parent, at), new THREE.CylinderGeometry(cr, cr, ct, 48), coasterMat, [0, ct / 2, 0]);
+  const g = propFrame(parent, [at[0], at[1] + ct, at[2]]);
+  for (let i = 0; i < sweets; i++) {
+    const a = rand() * 2 * Math.PI, d = Math.sqrt(rand()) * (r - sweet - 0.004);
+    const layer = Math.floor(i / 8);
+    part(g, new THREE.SphereGeometry(sweet, 16, 12), sweetMats[i % sweetMats.length],
+      [d * Math.cos(a), 0.006 + sweet + layer * 1.6 * sweet + rand() * 0.004, d * Math.sin(a)], 0, { cast: false });
+  }
+  const glass = part(g, new THREE.CylinderGeometry(r, r, h, 40, 1, true), jarGlassMat, [0, h / 2, 0], 0, { cast: false });
+  glass.userData.noAO = true;
+  glass.renderOrder = 1;
+  // Sweets and lid cast no shadow: through the glass it would print a dark disc on the counter inside the jar.
+  part(g, new THREE.CylinderGeometry(r + 0.004, r + 0.004, lid, 40), jarLidMat, [0, h + lid / 2, 0], 0, { cast: false });
+  part(g, new THREE.SphereGeometry(knob, 16, 12), jarLidMat, [0, h + lid + knob * 0.6, 0], 0, { cast: false });
+}
+
+// The mobile phone in a figure's hands (CHARACTERS[...].phone), a child of the figure's mesh (scaled by s, the
+// figure's fit): a slim rounded slab, size [w, h, d] metres, dark glossy screen `bezel` in from its edges.
+const MOBILE = { size: [0.07, 0.15, 0.008], radius: 0.0035, bezel: 0.004 };
+function mobilePhone({ at, long, towards }, s) {
+  const [w, h, d] = MOBILE.size;
+  const z = new THREE.Vector3(...towards).normalize();
+  const y = new THREE.Vector3(...long).projectOnPlane(z);
+  if (y.length() < 0.5) throw new Error(`CHARACTERS.${USER}.phone: long ${long} is not across towards ${towards}`);
+  y.normalize();
+  const phone = new THREE.Group();
+  phone.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(new THREE.Vector3().crossVectors(y, z), y, z));
+  phone.position.set(...at);
+  phone.scale.setScalar(1 / s);
+  part(phone, rounded(w, h, d, MOBILE.radius), mobileMat);
+  part(phone, new THREE.PlaneGeometry(w - 2 * MOBILE.bezel, h - 2 * MOBILE.bezel), screenMat, [0, 0, d / 2 + 0.0003]);
+  return phone;
+}
+
+// The manager's desk (layout.json manager_desk, its size [W, D, H]): a top with bevelled edges, overhanging
+// the two pedestals by `overhang`; three drawers in each pedestal on his side (-z), `drawers` the shares of
+// their height; a modesty panel between the pedestals on the visitors' side, `panelInset` back from their faces;
+// dark plinths. Its props stand where the TRELLIS desk it replaces had them (monitor turned towards his chair).
+const MANAGER_DESK = {
+  top: 0.045, overhang: 0.03, pedestal: 0.43, plinth: 0.06, plinthInset: 0.02, gap: 0.01, drawers: [0.3, 0.33, 0.37],
+  panelInset: 0.03, panelBottom: 0.14, panel: 0.025,
+  monitor: { at: [-0.525, 0.147], yaw: 152 }, keyboard: { at: [-0.4, -0.09], yaw: 152 },
+  phone: { at: [0.6, -0.12], yaw: -136 }, penCup: [-0.05, 0.21], papers: { at: [0.22, 0.02], yaw: 8 },
+};
+function managerDesk(p) {
+  const g = pieceFrame(p);
+  const [W, D, H] = p.size;
+  const d = MANAGER_DESK;
+  part(g, rounded(W, d.top, D, 0.012), woodTopMat, [0, H - d.top / 2, 0]);
+  const bodyD = D - 2 * d.overhang, bodyH = H - d.top - d.plinth;
+  const drawerSpace = bodyH - (d.drawers.length + 1) * d.gap;
+  for (const side of [-1, 1]) {
+    const x = side * (W / 2 - d.overhang - d.pedestal / 2);
+    part(g, rounded(d.pedestal, bodyH, bodyD, 0.008), woodBodyMat, [x, d.plinth + bodyH / 2, 0]);
+    part(g, new THREE.BoxGeometry(d.pedestal - 2 * d.plinthInset, d.plinth, bodyD - 2 * d.plinthInset), plinthMat, [x, d.plinth / 2, 0]);
+    let top = d.plinth + bodyH - d.gap;
+    for (const share of d.drawers) {
+      const dh = share * drawerSpace;
+      part(g, rounded(d.pedestal - 2 * d.gap, dh, 0.014, 0.004), woodTopMat, [x, top - dh / 2, -bodyD / 2 - 0.005]);
+      part(g, rounded(0.11, 0.012, 0.014, 0.005), handleMat, [x, top - dh * 0.3, -bodyD / 2 - 0.016]);
+      top -= dh + d.gap;
+    }
+  }
+  const panelW = W - 2 * d.overhang - 2 * d.pedestal, panelH = H - d.top - d.panelBottom;
+  part(g, rounded(panelW + 0.02, panelH, d.panel, 0.005), woodBodyMat, [0, d.panelBottom + panelH / 2, bodyD / 2 - d.panelInset - d.panel / 2]);
+  const on = ([x, z]) => [x, H, z];
+  monitor(g, on(d.monitor.at), d.monitor.yaw);
+  keyboard(g, on(d.keyboard.at), d.keyboard.yaw);
+  deskPhone(g, on(d.phone.at), d.phone.yaw);
+  penCup(g, on(d.penCup));
+  paperStack(g, on(d.papers.at), d.papers.yaw);
+}
+
+// The reception desk's props (reception_desk.glb's piece frame): on the inner work surface (`work` high, behind
+// the counter) the monitor turned to her, and a desk pad (`pad` [w, h, d]) with the telephone on it, over where
+// the old telephone stood; on the counter (`counter` high) the candy jar and the sign-in clipboard (over the hole
+// the old monitor's foot left).
+const RECEPTION_DESK = {
+  work: 0.75, counter: 1.03,
+  monitor: { at: [0.62, -0.12], yaw: 140 },
+  pad: { at: [-0.15, -0.32], size: [0.56, 0.014, 0.3] }, phone: { at: [-0.2, -0.33], yaw: 120 },
+  candyJar: [1.075, 0.36], clipboard: { at: [-0.01, 0.33], yaw: -6 },
+};
+function receptionDeskProps(p) {
+  const g = pieceFrame(p);
+  const d = RECEPTION_DESK;
+  monitor(g, [d.monitor.at[0], d.work, d.monitor.at[1]], d.monitor.yaw);
+  const [pw, ph, pd] = d.pad.size;
+  part(g, rounded(pw, ph, pd, 0.004), deskPadMat, [d.pad.at[0], d.work + ph / 2, d.pad.at[1]]);
+  deskPhone(g, [d.phone.at[0], d.work + ph, d.phone.at[1]], d.phone.yaw);
+  candyJar(g, [d.candyJar[0], d.counter, d.candyJar[1]]);
+  clipboard(g, [d.clipboard.at[0], d.counter, d.clipboard.at[1]], d.clipboard.yaw);
+}
 
 // Placed GLB pieces by layout.json kind ({ holder, size } from model()), for the chairs the figures sit on.
 const placedModels = {};
@@ -1024,6 +1280,7 @@ const modelsUsed = {};   // kind -> how many of its `models` list are taken
 async function buildPiece(p) {
   const spec = ASSETS[p.kind];
   if (!spec) throw new Error(`layout.json piece kind ${p.kind} (${p.source}) has no entry in ASSETS`);
+  if (spec.build) return spec.build(p);
   let name = spec.model;
   if (spec.models) {
     const i = modelsUsed[p.kind] = (modelsUsed[p.kind] ?? -1) + 1;
@@ -1032,6 +1289,7 @@ async function buildPiece(p) {
   }
   const placed = await model(name, p, measuredSize(p, spec), spec.turn ?? 0, 1, spec.fit, spec.heightOver);
   if (spec.seat) placedModels[p.kind] = placed;
+  if (spec.props) spec.props(p);
 }
 
 // The window card over each window opening, WINDOW_CARD.margin wider; glass behind it.

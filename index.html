@@ -23,6 +23,11 @@
     <div class="hero-head wrap">
       <h1 id="hero-title">Can your Personal Agent remember how you want to be assisted?</h1>
       <p class="sub">MemPABench: Benchmarking personal agent memory for interaction preferences</p>
+      <div class="hero-links">
+        <a class="btn-link" href="https://arxiv.org/abs/2610.30485" target="_blank" rel="noopener">Paper</a>
+        <a class="btn-link" href="https://github.com/mempabench/mempabench" target="_blank" rel="noopener">Code</a>
+        <a class="btn-link" href="https://huggingface.co/datasets/mempabench/mempabench-personas" target="_blank" rel="noopener">Dataset</a>
+      </div>
     </div>
     <div class="globe-hero" id="globe-hero" aria-label="Four users' worlds, each in a crystal ball on a globe">
       <div class="globe-label" id="globe-label" aria-live="polite"></div>
@@ -183,13 +188,8 @@
   <section class="block wrap" id="start" aria-labelledby="start-title" data-toc="Try it">
     <h2 id="start-title">Try it</h2>
     <div class="start card">
-      <div class="start-links">
-        <a class="btn-link" href="https://github.com/mempabench/mempabench" target="_blank" rel="noopener">Code</a>
-        <a class="btn-link" href="https://huggingface.co/datasets/mempabench/mempabench-personas" target="_blank" rel="noopener">Dataset</a>
-        <a class="btn-link" href="https://arxiv.org/abs/2610.30485" target="_blank" rel="noopener">Paper</a>
-      </div>
       <pre class="start-cmd"><code>git clone --recursive https://github.com/mempabench/mempabench.git &amp;&amp; cd mempabench &amp;&amp; uv sync --locked</code></pre>
-      <p class="muted small">Then follow the <a href="https://github.com/mempabench/mempabench#quick-start" target="_blank" rel="noopener">quick start</a> to pull the users and run a PA.</p>
+      <p class="muted small">Then pull the four users, run a PA with one of them and score it; the <a href="https://github.com/mempabench/mempabench#quick-start" target="_blank" rel="noopener">quick start</a> has the commands. A run needs an OpenRouter key and makes paid calls.</p>
     </div>
   </section>
 

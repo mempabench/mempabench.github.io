@@ -1093,6 +1093,139 @@
    }
   }
  },
+ "users": [
+  "User A",
+  "User B",
+  "User C",
+  "User D"
+ ],
+ "by_user_metrics": [
+  "PSA",
+  "BRS",
+  "PRS"
+ ],
+ "by_user": {
+  "File memory": {
+   "PSA": {
+    "User A": 63.1,
+    "User B": 64.9,
+    "User C": 47.6,
+    "User D": 61.3
+   },
+   "BRS": {
+    "User A": 3.79,
+    "User B": 3.86,
+    "User C": 2.86,
+    "User D": 3.51
+   },
+   "PRS": {
+    "User A": 3.88,
+    "User B": 3.83,
+    "User C": 3.01,
+    "User D": 3.7
+   }
+  },
+  "Simple RAG": {
+   "PSA": {
+    "User A": 43.1,
+    "User B": 52.1,
+    "User C": 45.5,
+    "User D": 58.7
+   },
+   "BRS": {
+    "User A": 2.97,
+    "User B": 3.35,
+    "User C": 2.82,
+    "User D": 3.44
+   },
+   "PRS": {
+    "User A": 3.16,
+    "User B": 3.38,
+    "User C": 2.87,
+    "User D": 3.57
+   }
+  },
+  "Mem0": {
+   "PSA": {
+    "User A": 42.3,
+    "User B": 55.1,
+    "User C": 42.3,
+    "User D": 60.4
+   },
+   "BRS": {
+    "User A": 3.05,
+    "User B": 3.43,
+    "User C": 2.77,
+    "User D": 3.5
+   },
+   "PRS": {
+    "User A": 3.19,
+    "User B": 3.47,
+    "User C": 2.93,
+    "User D": 3.55
+   }
+  },
+  "MemOS": {
+   "PSA": {
+    "User A": 43.5,
+    "User B": 52.7,
+    "User C": 41.1,
+    "User D": 62.8
+   },
+   "BRS": {
+    "User A": 3.07,
+    "User B": 3.35,
+    "User C": 2.75,
+    "User D": 3.45
+   },
+   "PRS": {
+    "User A": 3.17,
+    "User B": 3.43,
+    "User C": 2.84,
+    "User D": 3.58
+   }
+  },
+  "No Memory": {
+   "PSA": {
+    "User A": 43.5,
+    "User B": 55.4,
+    "User C": 42.9,
+    "User D": 56.9
+   },
+   "BRS": {
+    "User A": 3.02,
+    "User B": 3.42,
+    "User C": 2.76,
+    "User D": 3.38
+   },
+   "PRS": {
+    "User A": 3.13,
+    "User B": 3.47,
+    "User C": 2.94,
+    "User D": 3.58
+   }
+  },
+  "Oracle": {
+   "PSA": {
+    "User A": 99.7,
+    "User B": 98.5,
+    "User C": 98.5,
+    "User D": 99.4
+   },
+   "BRS": {
+    "User A": 4.85,
+    "User B": 4.61,
+    "User C": 4.44,
+    "User D": 4.45
+   },
+   "PRS": {
+    "User A": 4.69,
+    "User B": 4.5,
+    "User C": 4.16,
+    "User D": 4.33
+   }
+  }
+ },
  "sources": {
   "Overall.PSA": "Tabs/MainTable.tex",
   "Overall.CS": "Tabs/CS_PET.tex",
@@ -1102,6 +1235,9 @@
   "Dimension.PSA": "Appedix_TableAndFigure/FullTableWith_IXDim.tex",
   "Dimension.BRS": "Appedix_TableAndFigure/BRS_DimTable.tex",
   "Dimension.PRS": "Appedix_TableAndFigure/PRS_DimTable.tex",
-  "random_selection_psa": "Results.tex"
+  "random_selection_psa": "Results.tex",
+  "by_user.PSA": "Tabs/MainTable.tex",
+  "by_user.BRS": "Appedix_TableAndFigure/BRS_Table.tex",
+  "by_user.PRS": "Appedix_TableAndFigure/PRS_Table.tex"
  }
 }

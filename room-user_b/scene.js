@@ -11,6 +11,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DecalGeometry } from 'three/addons/geometries/DecalGeometry.js';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
@@ -80,6 +81,15 @@ const FIGURE_SEAT = { cushion: 3 / 4, sink: 0.06, calfClearance: 0.02, turn: -15
 const FACE_DECAL = {
   centre: [0.0045, 0.3426, -0.0492], towards: [-0.5357, 0.1972, 0.8210], up: [0.1078, 0.9804, -0.1652],
   roll: -7.55, size: [0.1240, 0.1586, 0.26], fold: 0.25,
+};
+// Her phone. The model's own (a bent, open sheet) is removed (work/gen/b_character_user_b/room_model.py); this one
+// lies in her palms in its place, her fingers round its sides. In the GLB's units: `centre`, `normal` (the way the
+// screen faces: towards her eyes), `long` (its long side, pointing away from her). In metres: `size` [width,
+// length, thickness], corner `radius`, the screen's `inset` from the edge. `frame`, `screen`: colours; the screen
+// is glossy (`gloss`: its share of the room's reflections, against the room's low LIGHT.env).
+const PHONE = {
+  centre: [0.0016, 0.1621, 0.1218], normal: [0.0747, 0.7729, -0.6301], long: [0.1637, 0.6138, 0.7723],
+  size: [0.07, 0.14, 0.008], radius: 0.007, inset: 0.004, frame: '#1d1f24', screen: '#07090d', gloss: 1.0,
 };
 const FACE_EXPRESSIONS = ['neutral', 'thinking', 'pleased', 'impatient', 'confused', 'delighted', 'angry', 'dizzy'];   // keys 1-8
 // Changing expression cross-fades the face picture in two layers split across the nose (FACE_SPLIT: y as a share
@@ -1115,7 +1125,29 @@ async function buildFigure(obj) {
   obj.position.set(seat.x - turned.x, fit.y0, fit.dz + pivot.z - turned.z);
   sofa.holder.add(obj);
   await buildFace(mesh);
+  buildPhone(mesh);
   if (EMBED) seated = { obj, mesh, s: fit.s, seatY: fig.seatY, hipY: fit.y0 + fig.seatY * fit.s };
+}
+
+// PHONE as a child of her mesh (so it breathes with her), built in metres and scaled back to the mesh's units.
+function buildPhone(mesh) {
+  const p = PHONE;
+  const [w, l, t] = p.size;
+  const phone = new THREE.Group();
+  const body = new THREE.Mesh(new RoundedBoxGeometry(w, l, t, 3, p.radius), matte({ color: p.frame, roughness: 0.45 }));
+  const screen = new THREE.Mesh(new THREE.PlaneGeometry(w - 2 * p.inset, l - 2 * p.inset),
+    new THREE.MeshStandardMaterial({ color: p.screen, roughness: 0.12, metalness: 0 }));
+  screen.material.userData.envMapIntensity = p.gloss;
+  screen.position.z = t / 2 + 0.0004;
+  body.castShadow = body.receiveShadow = screen.receiveShadow = true;
+  phone.add(body, screen);
+  const z = new THREE.Vector3(...p.normal).normalize();
+  const y = new THREE.Vector3(...p.long).normalize();
+  const x = new THREE.Vector3().crossVectors(y, z).normalize();
+  phone.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(x, y.crossVectors(z, x), z));
+  phone.position.set(...p.centre);
+  phone.scale.setScalar(1 / mesh.getWorldScale(new THREE.Vector3()).x);
+  mesh.add(phone);
 }
 
 // Embedded only: her figure and fit, for breathing about her seat and for the head anchor.

@@ -17,9 +17,11 @@
 <main class="wrap">
   <section class="lb-head">
     <h1>Leaderboard</h1>
-    <p class="lead">Four memory systems on User A&ndash;D, each run with four PA backbones. A row averages its backbones; open it to see each one.</p>
+    <p class="lead" id="lb-lead">Four memory systems on User A&ndash;D, each run with four PA backbones. A row averages its backbones; open it to see each one.</p>
+    <p class="lead" id="bu-lead" hidden>Each memory system's score with each user, averaged over the four PA backbones; the best memory system in each column is highlighted.</p>
     <div class="lb-controls">
       <div class="seg" id="view-seg" role="group" aria-label="Breakdown"></div>
+      <div class="seg" id="bu-metric-seg" role="group" aria-label="Metric" hidden></div>
     </div>
   </section>
 

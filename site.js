@@ -288,13 +288,20 @@
     const noEx = Object.keys(lb.metrics).filter((mk) => !mex.metrics[mk]?.text || !mex.metrics[mk]?.calc);
     if (noEx.length) throw new Error(`metric_examples.json: no example for ${noEx.join(", ")}`);
     const views = ["Overall", ...lb.dimensions];
+    // "By user": one column per user (the mean of that user's four backbone cells), one metric at a time; it is
+    // opened by leaderboard.html#by-user (the Demo pages link there)
+    const BY_USER = "By user";
+    for (const c of [...lb.memory_systems, ...lb.reference_conditions]) for (const mk of lb.by_user_metrics) for (const u of USERS) {
+      if (typeof lb.by_user[c]?.[mk]?.[`User ${u.id}`] !== "number") throw new Error(`leaderboard.json: by_user["${c}"].${mk} has no User ${u.id}`);
+    }
     const st = {
-      view: views.includes(store.get("lb.view")) ? store.get("lb.view") : "Overall",
+      view: location.hash === "#by-user" ? BY_USER : [...views, BY_USER].includes(store.get("lb.view")) ? store.get("lb.view") : "Overall",
       metric: "PSA",
+      userMetric: lb.by_user_metrics.includes(store.get("lb.userMetric")) ? store.get("lb.userMetric") : "PSA",
       open: new Set(),
       pins: new Set(Array.isArray(store.get("lb.pins")) ? store.get("lb.pins") : []),
     };
-    if (lb.views_metrics[st.view].includes(store.get("lb.metric"))) st.metric = store.get("lb.metric");
+    if (lb.views_metrics[st.view]?.includes(store.get("lb.metric"))) st.metric = store.get("lb.metric");
     const keyOf = (c, m) => (m ? `${c}|${m}` : c);
     const valueOf = (key, metric) => {
       const [c, m] = key.split("|");
@@ -304,11 +311,18 @@
     const labelOf = (key) => key.replace("|", " · ");
 
     const viewSeg = $("#view-seg");
-    viewSeg.innerHTML = views.map((v) => `<button type="button" data-v="${esc(v)}">${esc(v)}</button>`).join("");
+    viewSeg.innerHTML = [...views, BY_USER].map((v) => `<button type="button" data-v="${esc(v)}">${esc(v)}</button>`).join("");
     viewSeg.addEventListener("click", (e) => {
       const b = e.target.closest("button"); if (!b) return;
       st.view = b.dataset.v;
-      if (!lb.views_metrics[st.view].includes(st.metric)) st.metric = "PSA";
+      if (st.view !== BY_USER && !lb.views_metrics[st.view].includes(st.metric)) st.metric = "PSA";
+      render();
+    });
+    const buSeg = $("#bu-metric-seg");
+    buSeg.innerHTML = lb.by_user_metrics.map((mk) => `<button type="button" data-m="${mk}">${mk}</button>`).join("") + `<span class="bu-name" id="bu-name"></span>`;
+    buSeg.addEventListener("click", (e) => {
+      const b = e.target.closest("button"); if (!b) return;
+      st.userMetric = b.dataset.m;
       render();
     });
 
@@ -351,9 +365,45 @@
       }).join("");
     }
 
+    // rows: the memory systems by their four-user average, then the reference rows; in each user's column (and the
+    // average's) the highest memory system is highlighted, reference rows never
+    function renderByUser() {
+      const mk = st.userMetric, m = lb.metrics[mk];
+      const cols = [...USERS, null];   // null: the four-user average, as in the main table
+      const val = (c, u) => (u ? lb.by_user[c][mk][`User ${u.id}`] : lb.views.Overall[c][mk].mean);
+      const best = cols.map((u) => Math.max(...lb.memory_systems.map((c) => val(c, u))));
+      const sorted = [...lb.memory_systems].sort((a, b) => val(b, null) - val(a, null));
+      const row = (c, ref) => `<tr class="bu${ref ? " ref" : ""}"><td class="name">${esc(c)}</td>` + cols.map((u, i) => {
+        const v = val(c, u), top = !ref && v === best[i];
+        return `<td class="${u ? "" : "avg"}${top ? " best" : ""}"><div class="cell"><span class="num">${fmt(v, m.decimals)}</span>` +
+          (top ? `<span class="sr">, highest${u ? ` for User ${u.id}` : " average"}</span>` : "") +
+          `<span class="track"><span class="fill" style="width:${pct(v, m)}%"></span></span></div></td>`;
+      }).join("") + `</tr>`;
+      $("#bu-name").textContent = `${m.name} (${m.unit})`;
+      $("#lb-table").innerHTML =
+        `<colgroup><col class="name-col">${cols.map(() => "<col>").join("")}</colgroup>` +
+        `<thead><tr><th class="name-col">Memory</th>` +
+        USERS.map((u) => `<th class="u" scope="col"><a href="demo.html?user=${u.key}" title="User ${u.id}'s demo">${avatar(u)}<span>User ${u.id}</span></a></th>`).join("") +
+        `<th class="avg" scope="col">Average</th></tr></thead><tbody>` +
+        sorted.map((c) => row(c, false)).join("") +
+        `<tr class="ref-sep"><td colspan="${cols.length + 1}">Reference</td></tr>` +
+        lb.reference_conditions.map((c) => row(c, true)).join("") + `</tbody>`;
+    }
+
     function render() {
-      store.set("lb.view", st.view); store.set("lb.metric", st.metric); store.set("lb.pins", [...st.pins]);
+      store.set("lb.view", st.view); store.set("lb.metric", st.metric); store.set("lb.userMetric", st.userMetric); store.set("lb.pins", [...st.pins]);
       $$("button", viewSeg).forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.v === st.view)));
+      const byUser = st.view === BY_USER;
+      $("#lb-lead").hidden = byUser; $("#bu-lead").hidden = !byUser; buSeg.hidden = !byUser;
+      if (byUser !== (location.hash === "#by-user")) history.replaceState(null, "", byUser ? "#by-user" : location.pathname + location.search);
+      if (byUser) {
+        $$("button", buSeg).forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.m === st.userMetric)));
+        renderByUser();
+        $("#lb-notes-rand").style.display = "none";
+        $("#lb-notes-dim").style.display = "";
+        $("#compare").classList.remove("show");   // pins belong to the main table
+        return;
+      }
       const metrics = lb.views_metrics[st.view];
       const sorted = [...lb.memory_systems].sort((a, b) => lb.views[st.view][b][st.metric].mean - lb.views[st.view][a][st.metric].mean);
       $("#lb-table").innerHTML =

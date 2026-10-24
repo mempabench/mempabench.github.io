@@ -790,7 +790,7 @@
       const mark = { work: "\u{1F4BB}", personal: "\u{1F3E0}" };   // laptop for work, house for personal
       const opts = prefDims.map((d) => `<optgroup label="${esc(d.name)}">` + d.attributes.flatMap((a) => ["work", "personal"].map((c) => {
         const cell = `${c}_${a.key}`, ch = replay.changed_cells.some((x) => x.cell === cell);
-        return `<option value="${cell}"${cell === followCell ? " selected" : ""}>${esc(a.name)} · ${mark[c]} ${CTX[c]}${ch ? " (changes)" : ""}</option>`;
+        return `<option value="${cell}"${cell === followCell ? " selected" : ""}>${esc(a.name)} · ${mark[c]}${ch ? " (changes)" : ""}</option>`;
       })).join("") + `</optgroup>`).join("");
       $("#tl-follow").innerHTML = `<label for="tl-pick">Follow one preference:</label> <span class="tl-pick-wrap"><select id="tl-pick">${opts}</select></span>`;
       $("#tl-pick").addEventListener("change", (e) => { followCell = e.target.value; closePop(); renderTimeline(); });
@@ -830,7 +830,6 @@
       const steps = stepsFor(cell).sort((a, b) => at(a) - at(b));
       steps.forEach((e, i) => { h += `<span class="tl-num${posOf[e.id][1]}" style="${posOf[e.id][0]}">${i + 1}</span>`; });
       tlChart.innerHTML = h;
-      $("#tl-sub").textContent = `${sessions.length} sessions · ${probes.length} probes`;
       if (!$("#tl-pick")) renderPicker(); else $("#tl-pick").value = cell;
       $("#tl-steps").innerHTML = steps.map((e, i) => `<li class="tl-step"><span class="tl-num">${i + 1}</span><div class="when">${esc(tlWhen(e))}</div>` +
         `<p>${tlLine(e)}</p><button type="button" class="tl-link" data-ep="${esc(e.id)}">What happened</button></li>`).join("");
@@ -914,6 +913,24 @@
       else if (!tlPop.hidden) closePop();
     });
 
+    // ----- how each memory did with this user: PSA per memory system, the mean of the user's four backbone cells
+    // (leaderboard.json by_user); the best memory system is drawn in the user's colour -----
+    function renderMemCard(lb) {
+      const m = lb.metrics.PSA;
+      const v = (c) => {
+        const x = lb.by_user[c]?.PSA?.[name];
+        if (typeof x !== "number") throw new Error(`leaderboard.json: by_user["${c}"].PSA has no ${name}`);
+        return x;
+      };
+      const bar = (c, cls) => `<div class="hbar${cls}"><span class="name">${esc(c)}</span><span class="track">` +
+        `<span class="fill" style="width:${((v(c) - m.min) / (m.max - m.min)) * 100}%"></span></span><span class="val">${v(c).toFixed(m.decimals)}</span></div>`;
+      const order = [...lb.memory_systems].sort((a, b) => v(b) - v(a));
+      $("#mem-card").innerHTML = `<div class="mem-head"><h3 id="mem-title">How each memory did with ${name}</h3>` +
+        `<p>${esc(m.name)} (PSA, %), averaged over the four PA backbones.</p><a class="tl-link" href="leaderboard.html#by-user">All four users on the leaderboard</a></div>` +
+        `<div class="hbars">${order.map((c, i) => bar(c, i === 0 ? " top" : "")).join("")}</div>` +
+        `<div class="hbars">${lb.reference_conditions.map((c) => bar(c, " ref")).join("")}</div>`;
+    }
+
     // ----- load -----
     enter.addEventListener("click", () => opening().catch((err) => showError(err.message)));
     segs.addEventListener("click", (e) => {
@@ -925,9 +942,9 @@
     });
     return (async () => {
       try {
-        const [rep, story, prefs, prof, tl] = await Promise.all([
+        const [rep, story, prefs, prof, tl, lb] = await Promise.all([
           api.loadJSON(DATA + "replay.json"), api.loadJSON(DATA + "story.json"), api.loadJSON("data/preferences.json"),
-          api.loadJSON(DATA + "profile.json"), api.loadJSON(DATA + "timeline.json"),
+          api.loadJSON(DATA + "profile.json"), api.loadJSON(DATA + "timeline.json"), api.loadJSON("data/leaderboard.json"),
         ]);
         replay = rep;
         replay._story = story;
@@ -964,6 +981,7 @@
         replay.featured.forEach((f) => renderPrefs(probeOf[f.probe]));   // fails here, not mid-play, on a missing cell
         $("#prefs").innerHTML = "";
         renderTimeline();
+        renderMemCard(lb);
         await roomReady;
         setFace("neutral");
         shot("inside", 0);
